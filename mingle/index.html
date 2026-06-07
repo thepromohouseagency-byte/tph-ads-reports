@@ -202,7 +202,7 @@
   <div class="topnav-right">
     
     <div class="period-badge">
-      📅 2026-06-01 – 2026-06-06
+      📅 2026-04-01 – 2026-06-07
     </div>
     
   </div>
@@ -218,15 +218,8 @@
 <div class="main">
 
   
-  <div class="selector-row">
-    <label>Report period:</label>
-    <select onchange="location.href='?report='+encodeURIComponent(this.value)">
-      
-      <option value="June 6" selected>
-        June 6
-      </option>
-      
-    </select>
+  <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
+    📅 Data covers campaigns active through <strong>2026-06-07</strong>
   </div>
   
 
@@ -237,38 +230,38 @@
     <div class="kpi-card" onclick="toggleDrawer('impressions')" id="card-impressions">
       <div class="kpi-icon">👁</div>
       <div class="kpi-label">Impressions</div>
-      <div class="kpi-value">3,790</div>
+      <div class="kpi-value">7,501</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('reach')" id="card-reach">
       <div class="kpi-icon">👥</div>
       <div class="kpi-label">Reach</div>
-      <div class="kpi-value">3,622</div>
+      <div class="kpi-value">6,881</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('link_clicks')" id="card-link_clicks">
       <div class="kpi-icon">🖱</div>
       <div class="kpi-label">Link Clicks</div>
-      <div class="kpi-value">102</div>
+      <div class="kpi-value">193</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('unique_link_clicks')" id="card-unique_link_clicks">
       <div class="kpi-icon">✦</div>
       <div class="kpi-label">Unique Link Clicks</div>
-      <div class="kpi-value">97</div>
+      <div class="kpi-value">187</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('spend')" id="card-spend">
       <div class="kpi-icon">💰</div>
       <div class="kpi-label">Amount Spent</div>
-      <div class="kpi-value">$27.85</div>
+      <div class="kpi-value">$57.66</div>
       <div class="kpi-sub">USD</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('cpu')" id="card-cpu">
       <div class="kpi-icon">📊</div>
       <div class="kpi-label">Cost / Unique Click</div>
-      <div class="kpi-value">$0.29</div>
+      <div class="kpi-value">$0.31</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
   </div>
@@ -317,12 +310,12 @@
         
         <tr>
           <td class="campaign-name-cell">Mingle 6/19/2026</td>
-          <td class="num">3,790</td>
-          <td class="num">3,622</td>
-          <td class="num">102</td>
-          <td class="num">97</td>
-          <td class="num">$27.85</td>
-          <td class="num">$0.24</td>
+          <td class="num">7,501</td>
+          <td class="num">6,881</td>
+          <td class="num">193</td>
+          <td class="num">187</td>
+          <td class="num">$57.66</td>
+          <td class="num">$0.25</td>
           <td class="bar-cell">
             <div class="bar-wrap">
               <div class="bar-fill" style="width:100.0%"></div>
@@ -337,7 +330,10 @@
 
   
 
-  <div class="footer">TPH · Meta Ads Reporter · June 6</div>
+  <!-- ── Eventbrite Section ── -->
+  
+
+  <div class="footer">TPH · Ads & Events Reporter · current</div>
 </div>
 
 
@@ -345,12 +341,12 @@
 // Campaign data for drawer
 const campaignData = ["Mingle 6/19/2026"].map((name, i) => ({
   name,
-  impressions: [3790][i],
-  reach: [3622][i],
-  link_clicks: [102][i],
-  unique_link_clicks: [97][i],
-  spend: [27.85][i],
-  cpu: [0.24217391][i],
+  impressions: [7501][i],
+  reach: [6881][i],
+  link_clicks: [193][i],
+  unique_link_clicks: [187][i],
+  spend: [57.66][i],
+  cpu: [0.25069565][i],
 }));
 
 const drawerConfig = {
