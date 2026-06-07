@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mingle — Ad Performance</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f0f2f8;
+    color: #1a1d2e;
+    min-height: 100vh;
+  }
+
+  /* ── Top Nav ── */
+  .topnav {
+    background: #1a1d3b;
+    padding: 0 32px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topnav-brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 700; font-size: 1rem; }
+  .topnav-brand .dot { width: 10px; height: 10px; border-radius: 50%; background: #4f8ef7; }
+  .topnav-right { display: flex; align-items: center; gap: 16px; }
+  .period-badge {
+    background: rgba(255,255,255,.1);
+    color: #c8d0f0;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: .82rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    background: #1a1d3b;
+    padding: 0 32px 32px;
+    color: #fff;
+  }
+  .page-header h1 { font-size: 2rem; font-weight: 800; letter-spacing: -.02em; }
+  .page-header .sub { color: #8892c0; font-size: .9rem; margin-top: 4px; }
+
+  /* ── Main layout ── */
+  .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 48px; }
+
+  /* ── Report selector ── */
+  .selector-row { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .selector-row label { font-size: .85rem; font-weight: 600; color: #667; white-space: nowrap; }
+  .selector-row select {
+    padding: 8px 14px; border: 1px solid #dce1f0; border-radius: 8px;
+    font-size: .88rem; background: #fff; cursor: pointer; outline: none;
+    color: #1a1d2e; box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  }
+  .selector-row select:focus { border-color: #4f8ef7; }
+
+  /* ── KPI cards ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 700px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 440px) { .kpi-grid { grid-template-columns: 1fr; } }
+
+  .kpi-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 20px 18px;
+    box-shadow: 0 2px 8px rgba(26,29,59,.07);
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent, #4f8ef7);
+    border-radius: 14px 14px 0 0;
+  }
+  .kpi-card .kpi-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--accent-light, #e8f0ff);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; margin-bottom: 14px;
+  }
+  .kpi-card .kpi-label { font-size: .73rem; font-weight: 700; color: #9099b8; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 6px; }
+  .kpi-card .kpi-value { font-size: 2rem; font-weight: 800; color: #1a1d2e; line-height: 1; }
+  .kpi-card .kpi-sub { font-size: .75rem; color: #b0b8d4; margin-top: 5px; }
+
+  .kpi-card:nth-child(1) { --accent: #4f8ef7; --accent-light: #e8f1ff; }
+  .kpi-card:nth-child(2) { --accent: #7c5cbf; --accent-light: #f0ebff; }
+  .kpi-card:nth-child(3) { --accent: #22c0a0; --accent-light: #e0faf5; }
+  .kpi-card:nth-child(4) { --accent: #f7844f; --accent-light: #fff0e8; }
+  .kpi-card:nth-child(5) { --accent: #e94f7c; --accent-light: #ffe8f0; }
+  .kpi-card:nth-child(6) { --accent: #f7c94f; --accent-light: #fffae8; }
+
+  .kpi-card { cursor: pointer; transition: transform .15s, box-shadow .15s; }
+  .kpi-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,29,59,.12); }
+  .kpi-card .kpi-expand-hint { font-size: .7rem; color: #b0b8d4; margin-top: 8px; display: flex; align-items: center; gap: 4px; }
+  .kpi-card.active .kpi-expand-hint { color: var(--accent); }
+
+  /* ── Expand drawer ── */
+  .kpi-drawer {
+    display: none;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(26,29,59,.07);
+    margin-top: -8px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    border-top: 3px solid var(--drawer-accent, #4f8ef7);
+    animation: slideDown .2s ease;
+  }
+  .kpi-drawer.open { display: block; }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .kpi-drawer-header { padding: 14px 20px; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #9099b8; border-bottom: 1px solid #f0f2f8; display: flex; justify-content: space-between; align-items: center; }
+  .kpi-drawer table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+  .kpi-drawer thead th { padding: 9px 16px; text-align: left; font-size: .71rem; font-weight: 700; color: #b0b8d4; text-transform: uppercase; letter-spacing: .05em; background: #fafbff; }
+  .kpi-drawer thead th.num { text-align: right; }
+  .kpi-drawer tbody td { padding: 11px 16px; border-bottom: 1px solid #f5f6fb; }
+  .kpi-drawer tbody tr:last-child td { border-bottom: none; }
+  .kpi-drawer td.num { text-align: right; font-weight: 600; }
+  .kpi-drawer td.highlight { color: var(--drawer-accent, #4f8ef7); font-weight: 700; }
+  .kpi-drawer .drawer-bar-wrap { background: #f0f2f8; border-radius: 99px; height: 5px; overflow: hidden; margin-top: 4px; }
+  .kpi-drawer .drawer-bar-fill { height: 100%; border-radius: 99px; background: var(--drawer-accent, #4f8ef7); }
+
+  /* ── Panels ── */
+  .panel {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(26,29,59,.07);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 18px 22px 14px;
+    border-bottom: 1px solid #f0f2f8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .panel-header h2 { font-size: .88rem; font-weight: 700; color: #1a1d2e; }
+  .panel-header .sub { font-size: .78rem; color: #9099b8; }
+  .panel-body { padding: 20px 22px; }
+
+  /* ── Chart ── */
+  .chart-wrap { position: relative; height: 240px; }
+
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+  thead th {
+    padding: 10px 16px;
+    text-align: left;
+    font-size: .71rem;
+    font-weight: 700;
+    color: #9099b8;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    background: #f8f9fc;
+    border-bottom: 1px solid #eef0f8;
+    white-space: nowrap;
+  }
+  thead th.num, td.num { text-align: right; }
+  tbody td { padding: 13px 16px; border-bottom: 1px solid #f5f6fb; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #fafbff; }
+  .campaign-name-cell { font-weight: 600; max-width: 280px; }
+  .bar-cell { min-width: 100px; }
+  .bar-wrap { background: #f0f2f8; border-radius: 99px; height: 6px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #4f8ef7, #7c5cbf); }
+
+  tfoot td { padding: 13px 16px; font-weight: 800; background: #f5f7ff; color: #1a1d2e; border-top: 2px solid #e0e6ff; font-size: .88rem; }
+
+  /* ── Empty ── */
+  .empty { text-align: center; padding: 60px; color: #b0b8d4; font-size: .95rem; }
+
+  /* ── Footer ── */
+  .footer { text-align: center; font-size: .75rem; color: #c8cce0; margin-top: 16px; }
+
+  @media print {
+    .selector-row, .topnav { display: none; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Nav -->
+<div class="topnav">
+  <div class="topnav-brand">
+    <div class="dot"></div>
+    TPH · Meta Ads
+  </div>
+  <div class="topnav-right">
+    
+    <div class="period-badge">
+      📅 2026-06-01 – 2026-06-06
+    </div>
+    
+  </div>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <h1>Mingle</h1>
+  <div class="sub">Ad Performance Report</div>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+
+  
+  <div class="selector-row">
+    <label>Report period:</label>
+    <select onchange="location.href='?report='+encodeURIComponent(this.value)">
+      
+      <option value="June 6" selected>
+        June 6
+      </option>
+      
+    </select>
+  </div>
+  
+
+  
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card" onclick="toggleDrawer('impressions')" id="card-impressions">
+      <div class="kpi-icon">👁</div>
+      <div class="kpi-label">Impressions</div>
+      <div class="kpi-value">3,790</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('reach')" id="card-reach">
+      <div class="kpi-icon">👥</div>
+      <div class="kpi-label">Reach</div>
+      <div class="kpi-value">3,622</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('link_clicks')" id="card-link_clicks">
+      <div class="kpi-icon">🖱</div>
+      <div class="kpi-label">Link Clicks</div>
+      <div class="kpi-value">102</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('unique_link_clicks')" id="card-unique_link_clicks">
+      <div class="kpi-icon">✦</div>
+      <div class="kpi-label">Unique Link Clicks</div>
+      <div class="kpi-value">97</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('spend')" id="card-spend">
+      <div class="kpi-icon">💰</div>
+      <div class="kpi-label">Amount Spent</div>
+      <div class="kpi-value">$27.85</div>
+      <div class="kpi-sub">USD</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('cpu')" id="card-cpu">
+      <div class="kpi-icon">📊</div>
+      <div class="kpi-label">Cost / Unique Click</div>
+      <div class="kpi-value">$0.29</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+  </div>
+
+  <!-- Expand Drawer -->
+  <div class="kpi-drawer" id="kpi-drawer">
+    <div class="kpi-drawer-header">
+      <span id="drawer-title">Campaign Breakdown</span>
+      <span style="cursor:pointer;font-size:1rem;color:#b0b8d4" onclick="closeDrawer()">✕</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th class="num" id="drawer-col-header">Value</th>
+          <th style="width:120px"></th>
+        </tr>
+      </thead>
+      <tbody id="drawer-body"></tbody>
+    </table>
+  </div>
+
+  <!-- Spend by Campaign Chart -->
+  
+
+  <!-- Campaign Table -->
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Campaign Breakdown</h2>
+      <span class="sub">1 campaign</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th class="num">Impressions</th>
+          <th class="num">Reach</th>
+          <th class="num">Link Clicks</th>
+          <th class="num">Unique Clicks</th>
+          <th class="num">Spent (USD)</th>
+          <th class="num">Cost / Unique Click</th>
+          <th class="bar-cell"></th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="campaign-name-cell">Mingle 6/19/2026</td>
+          <td class="num">3,790</td>
+          <td class="num">3,622</td>
+          <td class="num">102</td>
+          <td class="num">97</td>
+          <td class="num">$27.85</td>
+          <td class="num">$0.24</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:100.0%"></div>
+            </div>
+          </td>
+        </tr>
+        
+      </tbody>
+      
+    </table>
+  </div>
+
+  
+
+  <div class="footer">TPH · Meta Ads Reporter · June 6</div>
+</div>
+
+
+<script>
+// Campaign data for drawer
+const campaignData = ["Mingle 6/19/2026"].map((name, i) => ({
+  name,
+  impressions: [3790][i],
+  reach: [3622][i],
+  link_clicks: [102][i],
+  unique_link_clicks: [97][i],
+  spend: [27.85][i],
+  cpu: [0.24217391][i],
+}));
+
+const drawerConfig = {
+  impressions:       { label: 'Impressions',        col: 'Impressions',        fmt: v => v.toLocaleString(),        accent: '#4f8ef7' },
+  reach:             { label: 'Reach',               col: 'Reach',              fmt: v => v.toLocaleString(),        accent: '#7c5cbf' },
+  link_clicks:       { label: 'Link Clicks',         col: 'Link Clicks',        fmt: v => v.toLocaleString(),        accent: '#22c0a0' },
+  unique_link_clicks:{ label: 'Unique Link Clicks',  col: 'Unique Link Clicks', fmt: v => v.toLocaleString(),        accent: '#f7844f' },
+  spend:             { label: 'Amount Spent (USD)',  col: 'Spent (USD)',        fmt: v => '$' + v.toFixed(2),        accent: '#e94f7c' },
+  cpu:               { label: 'Cost / Unique Click', col: 'Cost/Unique Click',  fmt: v => v ? '$' + v.toFixed(2) : '—', accent: '#f7c94f' },
+};
+
+let activeDrawer = null;
+
+function toggleDrawer(metric) {
+  if (activeDrawer === metric) { closeDrawer(); return; }
+  activeDrawer = metric;
+  const cfg = drawerConfig[metric];
+  const drawer = document.getElementById('kpi-drawer');
+  drawer.style.setProperty('--drawer-accent', cfg.accent);
+
+  // Update header
+  document.getElementById('drawer-title').textContent = cfg.label + ' by Campaign';
+  document.getElementById('drawer-col-header').textContent = cfg.col;
+
+  // Sort by value desc
+  const sorted = [...campaignData].sort((a, b) => (b[metric] || 0) - (a[metric] || 0));
+  const maxVal = sorted[0][metric] || 1;
+
+  const tbody = document.getElementById('drawer-body');
+  tbody.innerHTML = sorted.map(c => {
+    const val = c[metric] || 0;
+    const pct = Math.round((val / maxVal) * 100);
+    return `<tr>
+      <td>${c.name}</td>
+      <td class="num highlight">${cfg.fmt(val)}</td>
+      <td>
+        <div class="drawer-bar-wrap">
+          <div class="drawer-bar-fill" style="width:${pct}%"></div>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  drawer.classList.add('open');
+
+  // Highlight active card
+  document.querySelectorAll('.kpi-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('card-' + metric).classList.add('active');
+  document.querySelectorAll('.kpi-card.active .kpi-expand-hint').forEach(el => el.textContent = '▲ click to close');
+
+  // Scroll drawer into view
+  setTimeout(() => drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+}
+
+function closeDrawer() {
+  activeDrawer = null;
+  document.getElementById('kpi-drawer').classList.remove('open');
+  document.querySelectorAll('.kpi-card').forEach(c => {
+    c.classList.remove('active');
+    c.querySelector('.kpi-expand-hint').textContent = '▼ click for breakdown';
+  });
+}
+</script>
+
+
+
+
+</body>
+</html>
