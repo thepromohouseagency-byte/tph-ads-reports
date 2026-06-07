@@ -202,7 +202,7 @@
   <div class="topnav-right">
     
     <div class="period-badge">
-      📅 2026-06-01 – 2026-06-06
+      📅 2026-04-01 – 2026-06-07
     </div>
     
   </div>
@@ -218,15 +218,8 @@
 <div class="main">
 
   
-  <div class="selector-row">
-    <label>Report period:</label>
-    <select onchange="location.href='?report='+encodeURIComponent(this.value)">
-      
-      <option value="June 6" selected>
-        June 6
-      </option>
-      
-    </select>
+  <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
+    📅 Data covers campaigns active through <strong>2026-06-07</strong>
   </div>
   
 
@@ -237,38 +230,38 @@
     <div class="kpi-card" onclick="toggleDrawer('impressions')" id="card-impressions">
       <div class="kpi-icon">👁</div>
       <div class="kpi-label">Impressions</div>
-      <div class="kpi-value">123,687</div>
+      <div class="kpi-value">242,824</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('reach')" id="card-reach">
       <div class="kpi-icon">👥</div>
       <div class="kpi-label">Reach</div>
-      <div class="kpi-value">103,823</div>
+      <div class="kpi-value">201,292</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('link_clicks')" id="card-link_clicks">
       <div class="kpi-icon">🖱</div>
       <div class="kpi-label">Link Clicks</div>
-      <div class="kpi-value">9,092</div>
+      <div class="kpi-value">16,162</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('unique_link_clicks')" id="card-unique_link_clicks">
       <div class="kpi-icon">✦</div>
       <div class="kpi-label">Unique Link Clicks</div>
-      <div class="kpi-value">8,427</div>
+      <div class="kpi-value">14,830</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('spend')" id="card-spend">
       <div class="kpi-icon">💰</div>
       <div class="kpi-label">Amount Spent</div>
-      <div class="kpi-value">$914.45</div>
+      <div class="kpi-value">$1939.89</div>
       <div class="kpi-sub">USD</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('cpu')" id="card-cpu">
       <div class="kpi-icon">📊</div>
       <div class="kpi-label">Cost / Unique Click</div>
-      <div class="kpi-value">$0.11</div>
+      <div class="kpi-value">$0.13</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
   </div>
@@ -310,7 +303,7 @@
   <div class="panel">
     <div class="panel-header">
       <h2>Campaign Breakdown</h2>
-      <span class="sub">2 campaigns</span>
+      <span class="sub">3 campaigns</span>
     </div>
     <table>
       <thead>
@@ -328,23 +321,38 @@
       <tbody>
         
         <tr>
+          <td class="campaign-name-cell">PH Live 5/30/2026</td>
+          <td class="num">115,873</td>
+          <td class="num">94,291</td>
+          <td class="num">6,774</td>
+          <td class="num">6,125</td>
+          <td class="num">$999.24</td>
+          <td class="num">$0.12</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:51.5%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
           <td class="campaign-name-cell">PH 6/6/2026</td>
-          <td class="num">117,987</td>
-          <td class="num">98,394</td>
-          <td class="num">8,857</td>
-          <td class="num">8,201</td>
-          <td class="num">$873.51</td>
+          <td class="num">121,250</td>
+          <td class="num">101,572</td>
+          <td class="num">9,153</td>
+          <td class="num">8,479</td>
+          <td class="num">$899.71</td>
           <td class="num">$0.09</td>
           <td class="bar-cell">
             <div class="bar-wrap">
-              <div class="bar-fill" style="width:95.5%"></div>
+              <div class="bar-fill" style="width:46.4%"></div>
             </div>
           </td>
         </tr>
         
         <tr>
           <td class="campaign-name-cell">PH 6/13/2026</td>
-          <td class="num">5,700</td>
+          <td class="num">5,701</td>
           <td class="num">5,429</td>
           <td class="num">235</td>
           <td class="num">226</td>
@@ -352,7 +360,7 @@
           <td class="num">$0.17</td>
           <td class="bar-cell">
             <div class="bar-wrap">
-              <div class="bar-fill" style="width:4.5%"></div>
+              <div class="bar-fill" style="width:2.1%"></div>
             </div>
           </td>
         </tr>
@@ -362,12 +370,12 @@
       <tfoot>
         <tr>
           <td><strong>Total</strong></td>
-          <td class="num">123,687</td>
-          <td class="num">103,823</td>
-          <td class="num">9,092</td>
-          <td class="num">8,427</td>
-          <td class="num">$914.45</td>
-          <td class="num">$0.11</td>
+          <td class="num">242,824</td>
+          <td class="num">201,292</td>
+          <td class="num">16,162</td>
+          <td class="num">14,830</td>
+          <td class="num">$1939.89</td>
+          <td class="num">$0.13</td>
           <td></td>
         </tr>
       </tfoot>
@@ -377,20 +385,23 @@
 
   
 
-  <div class="footer">TPH · Meta Ads Reporter · June 6</div>
+  <!-- ── Eventbrite Section ── -->
+  
+
+  <div class="footer">TPH · Ads & Events Reporter · current</div>
 </div>
 
 
 <script>
 // Campaign data for drawer
-const campaignData = ["PH 6/6/2026", "PH 6/13/2026"].map((name, i) => ({
+const campaignData = ["PH Live 5/30/2026", "PH 6/6/2026", "PH 6/13/2026"].map((name, i) => ({
   name,
-  impressions: [117987, 5700][i],
-  reach: [98394, 5429][i],
-  link_clicks: [8857, 235][i],
-  unique_link_clicks: [8201, 226][i],
-  spend: [873.51, 40.94][i],
-  cpu: [0.08750852, 0.16508065][i],
+  impressions: [115873, 121250, 5701][i],
+  reach: [94291, 101572, 5429][i],
+  link_clicks: [6774, 9153, 235][i],
+  unique_link_clicks: [6125, 8479, 226][i],
+  spend: [999.24, 899.71, 40.94][i],
+  cpu: [0.12236591, 0.08784515, 0.16508065][i],
 }));
 
 const drawerConfig = {
@@ -458,8 +469,8 @@ function closeDrawer() {
 
 
 <script>
-const labels = ["PH 6/6/2026", "PH 6/13/2026"];
-const spends = [873.51, 40.94];
+const labels = ["PH Live 5/30/2026", "PH 6/6/2026", "PH 6/13/2026"];
+const spends = [999.24, 899.71, 40.94];
 
 const colors = [
   '#4f8ef7','#7c5cbf','#22c0a0','#f7844f','#e94f7c',
