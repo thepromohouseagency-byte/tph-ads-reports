@@ -681,9 +681,8 @@
   <div class="kpi-grid" style="margin-bottom:24px">
     <div class="kpi-card" style="--accent:#f05537;--accent-light:#fff0ec">
       <div class="kpi-icon" style="background:#fff0ec">🎟</div>
-      <div class="kpi-label">Tickets Sold</div>
-      <div class="kpi-value">23,208</div>
-      <div class="kpi-sub">of 39,679 capacity</div>
+      <div class="kpi-label">Total RSVPs / Tickets</div>
+      <div class="kpi-value">23,210</div>
     </div>
     <div class="kpi-card" style="--accent:#00b87a;--accent-light:#e6faf3">
       <div class="kpi-icon" style="background:#e6faf3">💵</div>
@@ -691,14 +690,6 @@
       <div class="kpi-value">$7,990.00</div>
       <div class="kpi-sub">USD</div>
     </div>
-    
-    <div class="kpi-card" style="--accent:#7c5cbf;--accent-light:#f0ebff">
-      <div class="kpi-icon" style="background:#f0ebff">📊</div>
-      <div class="kpi-label">Sell-Through Rate</div>
-      <div class="kpi-value">58%</div>
-      <div class="kpi-sub">of total capacity filled</div>
-    </div>
-    
     
     <div class="kpi-card" style="--accent:#e94f7c;--accent-light:#ffe8f0">
       <div class="kpi-icon" style="background:#ffe8f0">🎯</div>
@@ -722,10 +713,9 @@
           <th>Event</th>
           <th>Venue</th>
           <th class="num">Date</th>
-          <th class="num">Tickets Sold</th>
-          <th class="num">Capacity</th>
-          <th class="num">Sell-Through</th>
-          <th class="num">Gross Revenue</th>
+          <th class="num">Total</th>
+          <th>Ticket Breakdown</th>
+          <th class="num">Revenue</th>
         </tr>
       </thead>
       <tbody>
@@ -734,16 +724,39 @@
           <td style="font-weight:600">Too Lit To Sit: Everyone Free Entry with RSVP + Complimentary drinks</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-06-13</td>
-          <td class="num">241</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">241</td>
+          <td>
             
-              2,136
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:11.3%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 12am</span>
+              <span style="font-weight:600;color:#f05537">
+                126
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                92
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                22
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $10ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">11%</td>
           <td class="num">$10.00</td>
         </tr>
         
@@ -751,16 +764,39 @@
           <td style="font-weight:600">Slow Whine vs Fast Whine | Free Entry + Drinks @ Stafford Room</td>
           <td style="color:#9099b8;font-size:.82rem">The Stafford Room</td>
           <td class="num">2026-06-12</td>
-          <td class="num">505</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">507</td>
+          <td>
             
-              2,135
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:23.7%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 12am</span>
+              <span style="font-weight:600;color:#f05537">
+                270
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                202
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                34
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $10ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">24%</td>
           <td class="num">$10.00</td>
         </tr>
         
@@ -768,16 +804,53 @@
           <td style="font-weight:600">Trap &amp; Twerk Takeover: Everyone Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-06-06</td>
-          <td class="num">1,378</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,378</td>
+          <td>
             
-              2,211
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:62.3%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30 pm</span>
+              <span style="font-weight:600;color:#f05537">
+                648
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                624
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                82
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                22 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit for Champagne Package for $300++</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 2 Bottles for $550 ++ with 6 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">62%</td>
           <td class="num">$320.00</td>
         </tr>
         
@@ -785,16 +858,39 @@
           <td style="font-weight:600">Island Gyals Do It Better | Free Entry + Drinks @ Stafford Room</td>
           <td style="color:#9099b8;font-size:.82rem">The Stafford Room</td>
           <td class="num">2026-06-05</td>
-          <td class="num">1,088</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,088</td>
+          <td>
             
-              2,160
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:50.4%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30 pm</span>
+              <span style="font-weight:600;color:#f05537">
+                543
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                458
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                58
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                29 · $10ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">50%</td>
           <td class="num">$290.00</td>
         </tr>
         
@@ -802,16 +898,46 @@
           <td style="font-weight:600">106 &amp; Park vs TikTok Hits: Party Experience: Everyone Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-05-30</td>
-          <td class="num">2,008</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">2,008</td>
+          <td>
             
-              2,051
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:97.9%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30 pm</span>
+              <span style="font-weight:600;color:#f05537">
+                1080
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                811
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                100
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                16 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 2 Bottles for $550 ++ with 6 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">98%</td>
           <td class="num">$210.00</td>
         </tr>
         
@@ -819,16 +945,46 @@
           <td style="font-weight:600">Dancehall vs Soca | Free Entry + Drinks @ Stafford Room</td>
           <td style="color:#9099b8;font-size:.82rem">The Stafford Room</td>
           <td class="num">2026-05-29</td>
-          <td class="num">1,976</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,976</td>
+          <td>
             
-              2,032
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:97.2%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30pm</span>
+              <span style="font-weight:600;color:#f05537">
+                1061
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                732
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                89
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                93 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 2 Bottles for $450 ++ with 6 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">97%</td>
           <td class="num">$980.00</td>
         </tr>
         
@@ -836,16 +992,46 @@
           <td style="font-weight:600">Hip Hop vs R&amp;B Anthems Only Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-05-23</td>
-          <td class="num">981</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">981</td>
+          <td>
             
-              2,136
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:45.9%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30pm</span>
+              <span style="font-weight:600;color:#f05537">
+                546
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                360
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                67
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                7 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit for Champagne Package for $300++</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">46%</td>
           <td class="num">$120.00</td>
         </tr>
         
@@ -853,16 +1039,53 @@
           <td style="font-weight:600">Whine Your Waistline | Free Entry + 1 Hour Open Bar @ Stafford Room</td>
           <td style="color:#9099b8;font-size:.82rem">The Stafford Room</td>
           <td class="num">2026-05-22</td>
-          <td class="num">1,703</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,703</td>
+          <td>
             
-              2,210
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:77.1%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30pm</span>
+              <span style="font-weight:600;color:#f05537">
+                857
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                647
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                100
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                97 · $20ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 2 Bottles for $450 ++ with 6 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 5 Bottles for $1,125 ++ with 16 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">77%</td>
           <td class="num">$2,040.00</td>
         </tr>
         
@@ -870,16 +1093,39 @@
           <td style="font-weight:600">Hip Hop vs Dancehall | Free Entry w/ RSVP + Drinks</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-05-16</td>
-          <td class="num">1,643</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,643</td>
+          <td>
             
-              1,911
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:86.0%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30pm</span>
+              <span style="font-weight:600;color:#f05537">
+                895
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                600
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                100
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                48 · $10ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">86%</td>
           <td class="num">$480.00</td>
         </tr>
         
@@ -887,16 +1133,46 @@
           <td style="font-weight:600">Whine First Talk Later w/ Chow Lee | Free Entry @ Stafford Room</td>
           <td style="color:#9099b8;font-size:.82rem">The Stafford Room</td>
           <td class="num">2026-05-15</td>
-          <td class="num">1,349</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,349</td>
+          <td>
             
-              2,135
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:63.2%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30pm</span>
+              <span style="font-weight:600;color:#f05537">
+                579
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                680
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                66
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                23 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 2 Bottles for $450 ++ with 6 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">63%</td>
           <td class="num">$280.00</td>
         </tr>
         
@@ -904,16 +1180,46 @@
           <td style="font-weight:600">Pretty Girls Love Dancehall  | Everyone Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-05-09</td>
-          <td class="num">961</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">961</td>
+          <td>
             
-              2,136
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:45.0%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30 pm</span>
+              <span style="font-weight:600;color:#f05537">
+                439
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                486
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                27
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                8 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 2 Bottles for $550 ++ with 6 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">45%</td>
           <td class="num">$130.00</td>
         </tr>
         
@@ -921,16 +1227,39 @@
           <td style="font-weight:600">FLAGFEST Party | Free Entry + Drinks @ Stafford Room</td>
           <td style="color:#9099b8;font-size:.82rem">The Stafford Room</td>
           <td class="num">2026-05-08</td>
-          <td class="num">983</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">983</td>
+          <td>
             
-              2,140
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:45.9%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30pm</span>
+              <span style="font-weight:600;color:#f05537">
+                422
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                509
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                37
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                15 · $10ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">46%</td>
           <td class="num">$150.00</td>
         </tr>
         
@@ -938,16 +1267,53 @@
           <td style="font-weight:600">90s &amp; 2000s Hip-Hop &amp; R&amp;B Party | Everyone Free w/ RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-05-02</td>
-          <td class="num">1,370</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,370</td>
+          <td>
             
-              1,822
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:75.2%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30pm</span>
+              <span style="font-weight:600;color:#f05537">
+                716
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                545
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                66
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                40 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit for Champagne Package for $300++</span>
+              <span style="font-weight:600;color:#00b87a">
+                2 · $25ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 3 Bottles for $825++ with 9 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $25ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">75%</td>
           <td class="num">$475.00</td>
         </tr>
         
@@ -955,16 +1321,53 @@
           <td style="font-weight:600">Carnival After Dark with Vontee The Singer | Everyone Free w/ RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">The Stafford Room</td>
           <td class="num">2026-05-01</td>
-          <td class="num">1,210</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,210</td>
+          <td>
             
-              2,134
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:56.7%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30 pm</span>
+              <span style="font-weight:600;color:#f05537">
+                603
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                538
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                44
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                22 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 2 Bottles for $450 ++ with 6 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                2 · $50ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 3 Bottles for $675++ with 9 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">57%</td>
           <td class="num">$370.00</td>
         </tr>
         
@@ -972,16 +1375,46 @@
           <td style="font-weight:600">R&amp;B After Dark: Anthems, Slow Jams &amp; No Skips | Everyone Free w/ RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-04-25</td>
-          <td class="num">1,296</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,296</td>
+          <td>
             
-              2,136
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:60.7%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30 pm</span>
+              <span style="font-weight:600;color:#f05537">
+                680
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                534
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                68
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                13 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 2 Bottles for $550 ++ with 6 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $25ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">61%</td>
           <td class="num">$155.00</td>
         </tr>
         
@@ -989,16 +1422,46 @@
           <td style="font-weight:600">Reggae vs Soca Caribbean Party | Free Entry w/ RSVP + Drinks</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-04-18</td>
-          <td class="num">1,868</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,868</td>
+          <td>
             
-              1,937
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:96.4%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30pm</span>
+              <span style="font-weight:600;color:#f05537">
+                1041
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                634
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                91
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                99 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit for Champagne Package for $300++</span>
+              <span style="font-weight:600;color:#00b87a">
+                3 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">96%</td>
           <td class="num">$1,140.00</td>
         </tr>
         
@@ -1006,16 +1469,53 @@
           <td style="font-weight:600">Dirty South: 2000s vs 2010s Hip-Hop Anthems | Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-04-11</td>
-          <td class="num">1,426</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,426</td>
+          <td>
             
-              2,211
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:64.5%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30</span>
+              <span style="font-weight:600;color:#f05537">
+                762
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                537
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                84
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                41 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit for Champagne Package for $300++</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 4 Bottles for $1,100 ++ with 12 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">64%</td>
           <td class="num">$510.00</td>
         </tr>
         
@@ -1023,16 +1523,53 @@
           <td style="font-weight:600">Spring Fling: Outside Energy | Everyone Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">OUT OF ORDINARY</td>
           <td class="num">2026-04-04</td>
-          <td class="num">1,146</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">1,146</td>
+          <td>
             
-              2,136
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:53.7%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11:30 pm</span>
+              <span style="font-weight:600;color:#f05537">
+                536
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                521
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                65
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">General Admission Ticket</span>
+              <span style="font-weight:600;color:#00b87a">
+                22 · $10ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit for Champagne Package for $300++</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Deposit: 2 Bottles for $550 ++ with 6 Guests</span>
+              <span style="font-weight:600;color:#00b87a">
+                1 · $50ea
+              </span>
+            </div>
             
           </td>
-          <td class="num">54%</td>
           <td class="num">$320.00</td>
         </tr>
         
@@ -1040,16 +1577,32 @@
           <td style="font-weight:600">Foreign Fridays: Everyone Free w/ RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">The Stafford Room</td>
           <td class="num">2026-04-03</td>
-          <td class="num">76</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">76</td>
+          <td>
             
-              1,910
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:4.0%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 12am</span>
+              <span style="font-weight:600;color:#f05537">
+                37
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 1130pm</span>
+              <span style="font-weight:600;color:#f05537">
+                34
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                5
+              </span>
+            </div>
             
           </td>
-          <td class="num">4%</td>
           <td class="num">$0.00</td>
         </tr>
         
@@ -1057,11 +1610,9 @@
       
       <tfoot>
         <tr>
-          <td colspan="2"><strong>Total</strong></td>
+          <td colspan="3"><strong>Total</strong></td>
+          <td class="num">23,210</td>
           <td></td>
-          <td class="num">23,208</td>
-          <td class="num">39,679</td>
-          <td class="num">58%</td>
           <td class="num">$7,990.00</td>
         </tr>
       </tfoot>
