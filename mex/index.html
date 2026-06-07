@@ -411,9 +411,8 @@
   <div class="kpi-grid" style="margin-bottom:24px">
     <div class="kpi-card" style="--accent:#f05537;--accent-light:#fff0ec">
       <div class="kpi-icon" style="background:#fff0ec">🎟</div>
-      <div class="kpi-label">Tickets Sold</div>
+      <div class="kpi-label">Total RSVPs / Tickets</div>
       <div class="kpi-value">928</div>
-      <div class="kpi-sub">of 3,324 capacity</div>
     </div>
     <div class="kpi-card" style="--accent:#00b87a;--accent-light:#e6faf3">
       <div class="kpi-icon" style="background:#e6faf3">💵</div>
@@ -421,14 +420,6 @@
       <div class="kpi-value">$0.00</div>
       <div class="kpi-sub">USD</div>
     </div>
-    
-    <div class="kpi-card" style="--accent:#7c5cbf;--accent-light:#f0ebff">
-      <div class="kpi-icon" style="background:#f0ebff">📊</div>
-      <div class="kpi-label">Sell-Through Rate</div>
-      <div class="kpi-value">28%</div>
-      <div class="kpi-sub">of total capacity filled</div>
-    </div>
-    
     
     <div class="kpi-card" style="--accent:#e94f7c;--accent-light:#ffe8f0">
       <div class="kpi-icon" style="background:#ffe8f0">🎯</div>
@@ -452,10 +443,9 @@
           <th>Event</th>
           <th>Venue</th>
           <th class="num">Date</th>
-          <th class="num">Tickets Sold</th>
-          <th class="num">Capacity</th>
-          <th class="num">Sell-Through</th>
-          <th class="num">Gross Revenue</th>
+          <th class="num">Total</th>
+          <th>Ticket Breakdown</th>
+          <th class="num">Revenue</th>
         </tr>
       </thead>
       <tbody>
@@ -464,16 +454,18 @@
           <td style="font-weight:600">Kyle Richh of 41 at PH Live | Free Entry  w/ RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">Planet Hollywood New York</td>
           <td class="num">2026-06-13</td>
-          <td class="num">27</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">27</td>
+          <td>
             
-              1,108
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:2.4%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Everyone free entry before 11:30pm</span>
+              <span style="font-weight:600;color:#f05537">
+                27
+              </span>
+            </div>
             
           </td>
-          <td class="num">2%</td>
           <td class="num">$0.00</td>
         </tr>
         
@@ -481,16 +473,18 @@
           <td style="font-weight:600">Mekai Curtis of Raising Kanan at PH Live | Free Entry Before 12AM w/ RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">Planet Hollywood New York</td>
           <td class="num">2026-06-06</td>
-          <td class="num">152</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">152</td>
+          <td>
             
-              1,108
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:13.7%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Everyone free entry before 12am</span>
+              <span style="font-weight:600;color:#f05537">
+                152
+              </span>
+            </div>
             
           </td>
-          <td class="num">14%</td>
           <td class="num">$0.00</td>
         </tr>
         
@@ -498,16 +492,18 @@
           <td style="font-weight:600">REMY MA Birthday Celebration at PH Live NYC</td>
           <td style="color:#9099b8;font-size:.82rem">Planet Hollywood New York</td>
           <td class="num">2026-05-30</td>
-          <td class="num">749</td>
-          <td class="num">
+          <td class="num" style="font-weight:700">749</td>
+          <td>
             
-              1,108
-              <div class="bar-wrap" style="margin-top:4px">
-                <div class="bar-fill" style="width:67.6%;background:linear-gradient(90deg,#f05537,#f7844f)"></div>
-              </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Everyone free entry before 12am</span>
+              <span style="font-weight:600;color:#f05537">
+                749
+              </span>
+            </div>
             
           </td>
-          <td class="num">68%</td>
           <td class="num">$0.00</td>
         </tr>
         
@@ -515,11 +511,9 @@
       
       <tfoot>
         <tr>
-          <td colspan="2"><strong>Total</strong></td>
-          <td></td>
+          <td colspan="3"><strong>Total</strong></td>
           <td class="num">928</td>
-          <td class="num">3,324</td>
-          <td class="num">28%</td>
+          <td></td>
           <td class="num">$0.00</td>
         </tr>
       </tfoot>
