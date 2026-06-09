@@ -210,6 +210,10 @@
   </div>
   <div class="topnav-right">
     
+    <div class="period-badge">
+      📅 2026-05-10 – 2026-06-08
+    </div>
+    
   </div>
 </div>
 
@@ -223,11 +227,162 @@
 <div class="main">
 
   
+  <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
+    📅 Data covers campaigns active through <strong>2026-06-08</strong>
+  </div>
+  
 
   
-  <div class="panel">
-    <div class="empty">No Meta Ads data available for this report period.</div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card" onclick="toggleDrawer('impressions')" id="card-impressions">
+      <div class="kpi-icon">👁</div>
+      <div class="kpi-label">Impressions</div>
+      <div class="kpi-value">11,671</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('reach')" id="card-reach">
+      <div class="kpi-icon">👥</div>
+      <div class="kpi-label">Reach</div>
+      <div class="kpi-value">11,092</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('link_clicks')" id="card-link_clicks">
+      <div class="kpi-icon">🖱</div>
+      <div class="kpi-label">Link Clicks</div>
+      <div class="kpi-value">697</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('unique_link_clicks')" id="card-unique_link_clicks">
+      <div class="kpi-icon">✦</div>
+      <div class="kpi-label">Unique Link Clicks</div>
+      <div class="kpi-value">650</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('spend')" id="card-spend">
+      <div class="kpi-icon">💰</div>
+      <div class="kpi-label">Amount Spent</div>
+      <div class="kpi-value">$94.39</div>
+      <div class="kpi-sub">USD</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('cpu')" id="card-cpu">
+      <div class="kpi-icon">📊</div>
+      <div class="kpi-label">Cost / Unique Click</div>
+      <div class="kpi-value">$0.15</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
   </div>
+
+  <!-- Expand Drawer -->
+  <div class="kpi-drawer" id="kpi-drawer">
+    <div class="kpi-drawer-header">
+      <span id="drawer-title">Campaign Breakdown</span>
+      <span style="cursor:pointer;font-size:1rem;color:#b0b8d4" onclick="closeDrawer()">✕</span>
+    </div>
+    <div style="display:block;width:100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
+    <table style="width:max-content;min-width:100%;white-space:nowrap;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th class="num" id="drawer-col-header">Value</th>
+          <th style="width:120px"></th>
+        </tr>
+      </thead>
+      <tbody id="drawer-body"></tbody>
+    </table>
+    </div>
+
+  </div>
+
+  <!-- Spend by Campaign Chart -->
+  
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Spend by Campaign</h2>
+      <span class="sub">USD</span>
+    </div>
+    <div class="panel-body">
+      <div class="chart-wrap">
+        <canvas id="spendChart"></canvas>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Campaign Table -->
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Campaign Breakdown</h2>
+      <span class="sub">2 campaigns</span>
+    </div>
+    <div style="display:block;width:100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
+    <table style="width:max-content;min-width:100%;white-space:nowrap;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th class="num">Impressions</th>
+          <th class="num">Reach</th>
+          <th class="num">Link Clicks</th>
+          <th class="num">Unique Clicks</th>
+          <th class="num">Spent (USD)</th>
+          <th class="num">Cost / Unique Click</th>
+          <th class="bar-cell"></th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="campaign-name-cell">Underground Lounge 6/26/2026</td>
+          <td class="num">6,507</td>
+          <td class="num">6,279</td>
+          <td class="num">427</td>
+          <td class="num">401</td>
+          <td class="num">$52.49</td>
+          <td class="num">$0.11</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:55.6%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Underground Lounge 6/27/2026</td>
+          <td class="num">5,164</td>
+          <td class="num">4,813</td>
+          <td class="num">270</td>
+          <td class="num">249</td>
+          <td class="num">$41.90</td>
+          <td class="num">$0.13</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:44.4%"></div>
+            </div>
+          </td>
+        </tr>
+        
+      </tbody>
+      
+      <tfoot>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td class="num">11,671</td>
+          <td class="num">11,092</td>
+          <td class="num">697</td>
+          <td class="num">650</td>
+          <td class="num">$94.39</td>
+          <td class="num">$0.15</td>
+          <td></td>
+        </tr>
+      </tfoot>
+      
+    </table>
+    </div>
+
+  </div>
+
   
 
   <!-- ── Eventbrite Section ── -->
@@ -249,6 +404,13 @@
       <div class="kpi-label">Gross Revenue</div>
       <div class="kpi-value">$0.00</div>
       <div class="kpi-sub">USD</div>
+    </div>
+    
+    <div class="kpi-card" style="--accent:#e94f7c;--accent-light:#ffe8f0">
+      <div class="kpi-icon" style="background:#ffe8f0">🎯</div>
+      <div class="kpi-label">Cost Per Ticket Sold</div>
+      <div class="kpi-value">$0.59</div>
+      <div class="kpi-sub">ad spend ÷ tickets</div>
     </div>
     
   </div>
@@ -360,7 +522,130 @@
 </div>
 
 
+<script>
+// Campaign data for drawer
+const campaignData = ["Underground Lounge 6/26/2026", "Underground Lounge 6/27/2026"].map((name, i) => ({
+  name,
+  impressions: [6507, 5164][i],
+  reach: [6279, 4813][i],
+  link_clicks: [427, 270][i],
+  unique_link_clicks: [401, 249][i],
+  spend: [52.49, 41.9][i],
+  cpu: [0.113125, 0.13301587][i],
+}));
 
+const drawerConfig = {
+  impressions:       { label: 'Impressions',        col: 'Impressions',        fmt: v => v.toLocaleString(),        accent: '#4f8ef7' },
+  reach:             { label: 'Reach',               col: 'Reach',              fmt: v => v.toLocaleString(),        accent: '#7c5cbf' },
+  link_clicks:       { label: 'Link Clicks',         col: 'Link Clicks',        fmt: v => v.toLocaleString(),        accent: '#22c0a0' },
+  unique_link_clicks:{ label: 'Unique Link Clicks',  col: 'Unique Link Clicks', fmt: v => v.toLocaleString(),        accent: '#f7844f' },
+  spend:             { label: 'Amount Spent (USD)',  col: 'Spent (USD)',        fmt: v => '$' + v.toFixed(2),        accent: '#e94f7c' },
+  cpu:               { label: 'Cost / Unique Click', col: 'Cost/Unique Click',  fmt: v => v ? '$' + v.toFixed(2) : '—', accent: '#f7c94f' },
+};
+
+let activeDrawer = null;
+
+function toggleDrawer(metric) {
+  if (activeDrawer === metric) { closeDrawer(); return; }
+  activeDrawer = metric;
+  const cfg = drawerConfig[metric];
+  const drawer = document.getElementById('kpi-drawer');
+  drawer.style.setProperty('--drawer-accent', cfg.accent);
+
+  // Update header
+  document.getElementById('drawer-title').textContent = cfg.label + ' by Campaign';
+  document.getElementById('drawer-col-header').textContent = cfg.col;
+
+  // Sort by value desc
+  const sorted = [...campaignData].sort((a, b) => (b[metric] || 0) - (a[metric] || 0));
+  const maxVal = sorted[0][metric] || 1;
+
+  const tbody = document.getElementById('drawer-body');
+  tbody.innerHTML = sorted.map(c => {
+    const val = c[metric] || 0;
+    const pct = Math.round((val / maxVal) * 100);
+    return `<tr>
+      <td>${c.name}</td>
+      <td class="num highlight">${cfg.fmt(val)}</td>
+      <td>
+        <div class="drawer-bar-wrap">
+          <div class="drawer-bar-fill" style="width:${pct}%"></div>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  drawer.classList.add('open');
+
+  // Highlight active card
+  document.querySelectorAll('.kpi-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('card-' + metric).classList.add('active');
+  document.querySelectorAll('.kpi-card.active .kpi-expand-hint').forEach(el => el.textContent = '▲ click to close');
+
+  // Scroll drawer into view
+  setTimeout(() => drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+}
+
+function closeDrawer() {
+  activeDrawer = null;
+  document.getElementById('kpi-drawer').classList.remove('open');
+  document.querySelectorAll('.kpi-card').forEach(c => {
+    c.classList.remove('active');
+    c.querySelector('.kpi-expand-hint').textContent = '▼ click for breakdown';
+  });
+}
+</script>
+
+
+
+<script>
+const labels = ["Underground Lounge 6/26/2026", "Underground Lounge 6/27/2026"];
+const spends = [52.49, 41.9];
+
+const colors = [
+  '#4f8ef7','#7c5cbf','#22c0a0','#f7844f','#e94f7c',
+  '#f7c94f','#4fc3f7','#a5d6a7','#ef9a9a','#ce93d8'
+];
+
+new Chart(document.getElementById('spendChart'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Amount Spent (USD)',
+      data: spends,
+      backgroundColor: colors.slice(0, labels.length),
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' $' + ctx.parsed.y.toFixed(2)
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { font: { size: 11 }, color: '#9099b8', maxRotation: 30 }
+      },
+      y: {
+        grid: { color: '#f0f2f8' },
+        ticks: {
+          font: { size: 11 }, color: '#9099b8',
+          callback: v => '$' + v.toLocaleString()
+        }
+      }
+    }
+  }
+});
+</script>
 
 
 </body>
