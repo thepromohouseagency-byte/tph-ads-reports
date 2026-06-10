@@ -229,6 +229,8 @@
   
 
   
+
+  
   <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
     📅 Data covers campaigns active through <strong>2026-06-08</strong>
   </div>
@@ -399,7 +401,7 @@
     <div class="kpi-card" style="--accent:#f05537;--accent-light:#fff0ec">
       <div class="kpi-icon" style="background:#fff0ec">🎟</div>
       <div class="kpi-label">Total RSVPs / Tickets</div>
-      <div class="kpi-value">173</div>
+      <div class="kpi-value">213</div>
     </div>
     <div class="kpi-card" style="--accent:#00b87a;--accent-light:#e6faf3">
       <div class="kpi-icon" style="background:#e6faf3">💵</div>
@@ -411,7 +413,7 @@
     <div class="kpi-card" style="--accent:#e94f7c;--accent-light:#ffe8f0">
       <div class="kpi-icon" style="background:#ffe8f0">🎯</div>
       <div class="kpi-label">Cost Per Ticket Sold</div>
-      <div class="kpi-value">$0.55</div>
+      <div class="kpi-value">$0.44</div>
       <div class="kpi-sub">ad spend ÷ tickets</div>
     </div>
     
@@ -441,21 +443,21 @@
           <td style="font-weight:600">Caribbean Throwback Party: Reggae Gold vs Soca Gold at Underground Lounge</td>
           <td style="color:#9099b8;font-size:.82rem">UnderGround Lounge</td>
           <td class="num">2026-06-27</td>
-          <td class="num" style="font-weight:700">59</td>
+          <td class="num" style="font-weight:700">67</td>
           <td>
             
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Ladies free entry before 12am</span>
               <span style="font-weight:600;color:#f05537">
-                34
+                38
               </span>
             </div>
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Men free entry before 1130pm</span>
               <span style="font-weight:600;color:#f05537">
-                24
+                28
               </span>
             </div>
             
@@ -474,21 +476,21 @@
           <td style="font-weight:600">Born To Whine: Everyone Free entry with RSVP at Underground Lounge</td>
           <td style="color:#9099b8;font-size:.82rem">UnderGround Lounge</td>
           <td class="num">2026-06-26</td>
-          <td class="num" style="font-weight:700">114</td>
+          <td class="num" style="font-weight:700">146</td>
           <td>
             
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Ladies free entry before 12am</span>
               <span style="font-weight:600;color:#f05537">
-                64
+                85
               </span>
             </div>
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Men free entry before 1130pm</span>
               <span style="font-weight:600;color:#f05537">
-                46
+                57
               </span>
             </div>
             
@@ -508,7 +510,7 @@
       <tfoot>
         <tr>
           <td colspan="3"><strong>Total</strong></td>
-          <td class="num">173</td>
+          <td class="num">213</td>
           <td></td>
           <td class="num">$0.00</td>
         </tr>
@@ -518,6 +520,21 @@
     </div>
 
   </div>
+
+  
+  <div class="panel">
+    <div class="panel-header">
+      <h2>RSVP Trend</h2>
+      <span class="sub">RSVPs by event, sorted chronologically</span>
+    </div>
+    <div class="panel-body">
+      <div class="chart-wrap" style="height:260px">
+        <canvas id="rsvpTrendChart"></canvas>
+      </div>
+    </div>
+  </div>
+  
+
   
 
   <div class="footer">TPH · Ads & Events Reporter · current</div>
@@ -647,6 +664,69 @@ new Chart(document.getElementById('spendChart'), {
     }
   }
 });
+</script>
+
+
+
+<script>
+(function() {
+  // Sort events chronologically
+  const ebRaw = [{"client_id": "06418fd1-6635-4bf9-bc50-562eb8b0ac7a", "event_date": "2026-06-27", "event_id": "1991294298852", "event_name": "Caribbean Throwback Party: Reggae Gold vs Soca Gold at Underground Lounge", "gross_revenue": 0.0, "id": 1067, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-10T14:54:13.730643", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 38, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 28, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 1, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 67, "venue_name": "UnderGround Lounge"}, {"client_id": "06418fd1-6635-4bf9-bc50-562eb8b0ac7a", "event_date": "2026-06-26", "event_id": "1991294134360", "event_name": "Born To Whine: Everyone Free entry with RSVP at Underground Lounge", "gross_revenue": 0.0, "id": 1066, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-10T14:54:13.730643", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 85, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 57, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 4, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 146, "venue_name": "UnderGround Lounge"}];
+  const sorted = [...ebRaw].sort((a, b) => a.event_date.localeCompare(b.event_date));
+
+  // Assign a color per unique venue
+  const venueList = [...new Set(sorted.map(e => e.venue_name))];
+  const palette = ['#f05537','#4f8ef7','#7c5cbf','#22c0a0','#f7844f','#e94f7c','#f7c94f','#4fc3f7'];
+  const venueColor = {};
+  venueList.forEach((v, i) => { venueColor[v] = palette[i % palette.length]; });
+
+  const labels = sorted.map(e => {
+    // Short label: "Event Name\nDate"
+    const d = e.event_date.slice(5); // MM-DD
+    return e.event_name.length > 20 ? e.event_name.slice(0, 18) + '…' : e.event_name;
+  });
+  const data = sorted.map(e => e.tickets_sold);
+  const bgColors = sorted.map(e => venueColor[e.venue_name]);
+
+  new Chart(document.getElementById('rsvpTrendChart'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'RSVPs',
+        data: data,
+        backgroundColor: bgColors,
+        borderRadius: 8,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: (items) => sorted[items[0].dataIndex].event_name,
+            afterTitle: (items) => sorted[items[0].dataIndex].event_date + ' · ' + sorted[items[0].dataIndex].venue_name,
+            label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' RSVPs',
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { font: { size: 10 }, color: '#9099b8', maxRotation: 35 }
+        },
+        y: {
+          grid: { color: '#f0f2f8' },
+          ticks: { font: { size: 11 }, color: '#9099b8' },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+})();
 </script>
 
 
