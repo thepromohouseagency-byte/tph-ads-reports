@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TPH — All Clients Dashboard</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f0f2f8; color: #1a1d2e; }
+
+  .topnav { background: #1a1d3b; padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .topnav-brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 700; font-size: 1rem; }
+  .topnav-brand .dot { width: 10px; height: 10px; border-radius: 50%; background: #4f8ef7; }
+  .topnav-right a { color: #8892c0; font-size: .82rem; text-decoration: none; padding: 6px 14px; border: 1px solid rgba(255,255,255,.15); border-radius: 6px; }
+  .topnav-right a:hover { color: #fff; border-color: rgba(255,255,255,.3); }
+
+  .page-header { background: #1a1d3b; padding: 0 32px 28px; color: #fff; }
+  .page-header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.02em; }
+  .page-header .sub { color: #8892c0; font-size: .88rem; margin-top: 4px; }
+
+  .main { max-width: 1200px; margin: 0 auto; padding: 28px 24px 60px; }
+
+  /* Aggregate KPI strip */
+  .agg-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-bottom: 32px; }
+  @media (max-width: 900px) { .agg-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 500px) { .agg-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .agg-card { background: #fff; border-radius: 12px; padding: 18px 16px 14px; box-shadow: 0 2px 8px rgba(26,29,59,.07); position: relative; overflow: hidden; }
+  .agg-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: var(--accent, #4f8ef7); border-radius:12px 12px 0 0; }
+  .agg-card .label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #9099b8; margin-bottom: 6px; }
+  .agg-card .value { font-size: 1.6rem; font-weight: 800; color: #1a1d2e; line-height: 1; }
+  .agg-card .sub { font-size: .72rem; color: #b0b8d4; margin-top: 4px; }
+
+  /* Section label */
+  .section-label { font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: #9099b8; margin-bottom: 14px; }
+
+  /* Client cards grid */
+  .client-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 800px) { .client-grid { grid-template-columns: 1fr; } }
+
+  .client-card { background: #fff; border-radius: 14px; box-shadow: 0 2px 8px rgba(26,29,59,.07); overflow: hidden; }
+  .client-card-header { padding: 16px 20px 12px; border-bottom: 1px solid #f0f2f8; display: flex; align-items: center; justify-content: space-between; }
+  .client-card-header h2 { font-size: 1rem; font-weight: 800; color: #1a1d2e; }
+  .client-card-header a { font-size: .75rem; color: #4f8ef7; text-decoration: none; padding: 4px 10px; border: 1px solid #d0deff; border-radius: 6px; }
+  .client-card-header a:hover { background: #f0f5ff; }
+
+  /* Metric rows inside card */
+  .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-bottom: 1px solid #f5f6fb; }
+  .metric { padding: 14px 16px; border-right: 1px solid #f5f6fb; }
+  .metric:last-child { border-right: none; }
+  .metric .m-label { font-size: .67rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #b0b8d4; margin-bottom: 4px; }
+  .metric .m-value { font-size: 1.2rem; font-weight: 800; color: #1a1d2e; }
+  .metric .m-sub { font-size: .7rem; color: #9099b8; margin-top: 2px; }
+
+  /* Divider label inside card */
+  .card-section-label { padding: 8px 16px; font-size: .67rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #fff; background: var(--section-color, #4f8ef7); }
+
+  /* Campaign mini table */
+  .mini-table { width: 100%; border-collapse: collapse; font-size: .8rem; }
+  .mini-table th { padding: 7px 12px; text-align: left; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #b0b8d4; background: #fafbff; border-bottom: 1px solid #eef0f8; white-space: nowrap; }
+  .mini-table th.num, .mini-table td.num { text-align: right; }
+  .mini-table td { padding: 9px 12px; border-bottom: 1px solid #f5f6fb; color: #2a2d4e; }
+  .mini-table tr:last-child td { border-bottom: none; }
+  .mini-table tr:hover td { background: #fafbff; }
+  .bar-wrap { background: #f0f2f8; border-radius: 99px; height: 4px; overflow: hidden; margin-top: 3px; }
+  .bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #4f8ef7, #7c5cbf); }
+
+  /* Eventbrite mini table */
+  .eb-table { width: 100%; border-collapse: collapse; font-size: .8rem; }
+  .eb-table th { padding: 7px 12px; text-align: left; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #b0b8d4; background: #fff8f6; border-bottom: 1px solid #fde8e2; white-space: nowrap; }
+  .eb-table th.num, .eb-table td.num { text-align: right; }
+  .eb-table td { padding: 9px 12px; border-bottom: 1px solid #fdf2f0; color: #2a2d4e; }
+  .eb-table tr:last-child td { border-bottom: none; }
+  .eb-table tr:hover td { background: #fff8f6; }
+
+  /* AI insights preview */
+  .insights-preview { padding: 14px 16px; background: #faf8ff; border-top: 1px solid #ede8ff; }
+  .insights-preview .ins-label { font-size: .65rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: #7c5cbf; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+  .insights-preview p { font-size: .8rem; color: #3a3d5e; line-height: 1.55; }
+
+  .no-data { padding: 20px 16px; text-align: center; color: #b0b8d4; font-size: .82rem; }
+  .footer { text-align: center; font-size: .75rem; color: #c8cce0; margin-top: 24px; }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="topnav-brand">
+    <div class="dot"></div>
+    TPH · Owner Dashboard
+  </div>
+  <div class="topnav-right">
+    <a href="/">Admin Panel</a>
+  </div>
+</div>
+
+<div class="page-header">
+  <h1>All Clients</h1>
+  <div class="sub">Live overview · 5 clients</div>
+</div>
+
+<div class="main">
+
+  <!-- Aggregate KPIs -->
+  <div class="section-label">Combined Totals — All Clients</div>
+  <div class="agg-grid">
+    <div class="agg-card" style="--accent:#4f8ef7">
+      <div class="label">Total Spend</div>
+      <div class="value">$2,922</div>
+      <div class="sub">USD</div>
+    </div>
+    <div class="agg-card" style="--accent:#7c5cbf">
+      <div class="label">Total Reach</div>
+      <div class="value">0</div>
+      <div class="sub">unique people</div>
+    </div>
+    <div class="agg-card" style="--accent:#22c0a0">
+      <div class="label">Link Clicks</div>
+      <div class="value">0</div>
+      <div class="sub">unique clicks</div>
+    </div>
+    <div class="agg-card" style="--accent:#f05537">
+      <div class="label">Total RSVPs</div>
+      <div class="value">0</div>
+      <div class="sub">across 0 events</div>
+    </div>
+    <div class="agg-card" style="--accent:#f7844f">
+      <div class="label">Cost / RSVP</div>
+      <div class="value">$0.00</div>
+      <div class="sub">blended</div>
+    </div>
+    <div class="agg-card" style="--accent:#e94f7c">
+      <div class="label">Cost / Click</div>
+      <div class="value">$0.00</div>
+      <div class="sub">unique clicks</div>
+    </div>
+  </div>
+
+  <!-- Per-client cards -->
+  <div class="section-label">Client Breakdown</div>
+  <div class="client-grid">
+    
+    
+    
+    
+
+    <div class="client-card">
+
+      <!-- Header -->
+      <div class="client-card-header">
+        <h2>Mex</h2>
+        <a href="/report/f4e36628-5772-447c-b728-e5115fa712b0" target="_blank">View Full Report ↗</a>
+      </div>
+
+      <!-- Meta KPIs -->
+      
+      <div class="metrics-row">
+        <div class="metric">
+          <div class="m-label">Spend</div>
+          <div class="m-value">$1,940</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Reach</div>
+          <div class="m-value">201,292</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Unique Clicks</div>
+          <div class="m-value">14,832</div>
+          <div class="m-sub">$0.13 / click</div>
+        </div>
+      </div>
+
+      <!-- Meta campaigns mini table -->
+      <div class="card-section-label" style="--section-color:#4f8ef7">Meta Campaigns</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="mini-table" style="white-space:nowrap">
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="num">Spend</th>
+            <th class="num">Reach</th>
+            <th class="num">Clicks</th>
+            <th class="num">CPC</th>
+            <th style="width:60px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>PH Live 5/30/2026</td>
+            <td class="num">$999</td>
+            <td class="num">94,291</td>
+            <td class="num">6,125</td>
+            <td class="num">$0.12</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-fill" style="width:51.5%"></div>
+              </div>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>PH 6/6/2026</td>
+            <td class="num">$900</td>
+            <td class="num">101,572</td>
+            <td class="num">8,481</td>
+            <td class="num">$0.09</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-fill" style="width:46.4%"></div>
+              </div>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>PH 6/13/2026</td>
+            <td class="num">$41</td>
+            <td class="num">5,429</td>
+            <td class="num">226</td>
+            <td class="num">$0.17</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-fill" style="width:2.1%"></div>
+              </div>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      </div>
+      
+
+      <!-- Eventbrite section -->
+      
+      <div class="metrics-row" style="background:#fff8f6">
+        <div class="metric">
+          <div class="m-label">RSVPs</div>
+          <div class="m-value" style="color:#f05537">951</div>
+          <div class="m-sub">3 events</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Cost / RSVP</div>
+          <div class="m-value" style="color:#f05537">
+            
+              $2.04
+            
+          </div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Top Event</div>
+          <div class="m-value" style="font-size:.75rem;line-height:1.3;padding-top:2px">
+            REMY MA Birthday Celebration at PH …
+          </div>
+          <div class="m-sub">749 RSVPs</div>
+        </div>
+      </div>
+
+      <div class="card-section-label" style="--section-color:#f05537">Eventbrite Events</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="eb-table" style="white-space:nowrap">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Venue</th>
+            <th class="num">Date</th>
+            <th class="num">RSVPs</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>Kyle Richh of 41 at PH Live | Free Entry…</td>
+            <td style="color:#9099b8;font-size:.75rem">Planet Hollywood New York</td>
+            <td class="num">2026-06-13</td>
+            <td class="num" style="font-weight:700;color:#f05537">50</td>
+          </tr>
+          
+          <tr>
+            <td>Mekai Curtis of Raising Kanan at PH Live…</td>
+            <td style="color:#9099b8;font-size:.75rem">Planet Hollywood New York</td>
+            <td class="num">2026-06-06</td>
+            <td class="num" style="font-weight:700;color:#f05537">152</td>
+          </tr>
+          
+          <tr>
+            <td>REMY MA Birthday Celebration at PH Live …</td>
+            <td style="color:#9099b8;font-size:.75rem">Planet Hollywood New York</td>
+            <td class="num">2026-05-30</td>
+            <td class="num" style="font-weight:700;color:#f05537">749</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      </div>
+      
+
+      <!-- AI Insights preview -->
+      
+      
+      <div class="insights-preview">
+        <div class="ins-label">✨ AI Insights <span style="font-weight:400;color:#b0b8d4">· 2026-06-10</span></div>
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #7c5cbf">PERFORMANCE SUMMARY </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">Mex spent $1,939.90 across 3 campaigns and reached 201,292 people, driving 14,832 clicks at a very efficient $0.13 CPC. That traffic helped move 945 tickets over the period, with REMY MA Birthday Celebration at PH Live NYC leading the events, so the ads were generating solid interest and real ticket demand.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #e94f7c
+                ">FLAGS </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">No anomalies this period.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #f7844f
+                ">KEY INSIGHT </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">The Meta spend was working as a strong traffic engine, and that attention converted into healthy ticket volume, with the best-performing ad clearly supporting the strongest event outcome.</span>
+            </div>
+          
+        
+      </div>
+      
+
+    </div>
+    
+    
+    
+    
+
+    <div class="client-card">
+
+      <!-- Header -->
+      <div class="client-card-header">
+        <h2>Mingle</h2>
+        <a href="/report/6628bd62-d928-4cc4-890b-3de61620424f" target="_blank">View Full Report ↗</a>
+      </div>
+
+      <!-- Meta KPIs -->
+      
+      <div class="metrics-row">
+        <div class="metric">
+          <div class="m-label">Spend</div>
+          <div class="m-value">$165</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Reach</div>
+          <div class="m-value">16,709</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Unique Clicks</div>
+          <div class="m-value">561</div>
+          <div class="m-sub">$0.29 / click</div>
+        </div>
+      </div>
+
+      <!-- Meta campaigns mini table -->
+      <div class="card-section-label" style="--section-color:#4f8ef7">Meta Campaigns</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="mini-table" style="white-space:nowrap">
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="num">Spend</th>
+            <th class="num">Reach</th>
+            <th class="num">Clicks</th>
+            <th class="num">CPC</th>
+            <th style="width:60px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>Mingle 6/19/2026</td>
+            <td class="num">$165</td>
+            <td class="num">16,709</td>
+            <td class="num">561</td>
+            <td class="num">$0.25</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-fill" style="width:100.0%"></div>
+              </div>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      </div>
+      
+
+      <!-- Eventbrite section -->
+      
+      <div class="metrics-row" style="background:#fff8f6">
+        <div class="metric">
+          <div class="m-label">RSVPs</div>
+          <div class="m-value" style="color:#f05537">63</div>
+          <div class="m-sub">1 events</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Cost / RSVP</div>
+          <div class="m-value" style="color:#f05537">
+            
+              $2.62
+            
+          </div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Top Event</div>
+          <div class="m-value" style="font-size:.75rem;line-height:1.3;padding-top:2px">
+            Viral Fridays at Mingles Ultra Loun…
+          </div>
+          <div class="m-sub">63 RSVPs</div>
+        </div>
+      </div>
+
+      <div class="card-section-label" style="--section-color:#f05537">Eventbrite Events</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="eb-table" style="white-space:nowrap">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Venue</th>
+            <th class="num">Date</th>
+            <th class="num">RSVPs</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>Viral Fridays at Mingles Ultra Lounge | …</td>
+            <td style="color:#9099b8;font-size:.75rem">Mingles Event Space + Catering + Lounge</td>
+            <td class="num">2026-06-19</td>
+            <td class="num" style="font-weight:700;color:#f05537">63</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      </div>
+      
+
+      <!-- AI Insights preview -->
+      
+      
+      <div class="insights-preview">
+        <div class="ins-label">✨ AI Insights <span style="font-weight:400;color:#b0b8d4">· 2026-06-10</span></div>
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #7c5cbf">PERFORMANCE SUMMARY </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5"></span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #7c5cbf">Mingle delivered 63 RSVPs at a cost per RSVP of $2.63, which is a solid result for a free RSVP nightlife event. The campaign reached 16,709 people and generated 561 clicks, and the top performing ad, Mingle 6/19/2026, stood out because it produced the strongest overall RSVP response from that traffic. </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5"></span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #e94f7c
+                ">FLAGS </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5"></span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #7c5cbf">The weakest ad was Mingle 6/19/2026, and it underperformed relative to the rest because it was the only creative in the campaign, so there was no alternate ad carrying more efficient RSVP volume; reduce budget only if you want to test fresh creative first. Overall cost per RSVP is not above $3.00. No additional anomalies this period. </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5"></span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #f7c94f
+                ">CREATIVE REFRESH </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5"></span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #7c5cbf">All creatives are performing within normal range. </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5"></span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #f7844f
+                ">KEY INSIGHT </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5"></span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #7c5cbf">This spend level is translating into RSVPs efficiently, so keep leaning into the same audience and event angle while testing fresh creative to push the cost per RSVP even lower. </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5"></span>
+            </div>
+          
+        
+      </div>
+      
+
+    </div>
+    
+    
+    
+    
+
+    <div class="client-card">
+
+      <!-- Header -->
+      <div class="client-card-header">
+        <h2>Rocky</h2>
+        <a href="/report/2fd6a842-8de2-4a64-8857-2aa60b5813fd" target="_blank">View Full Report ↗</a>
+      </div>
+
+      <!-- Meta KPIs -->
+      
+      <div class="metrics-row">
+        <div class="metric">
+          <div class="m-label">Spend</div>
+          <div class="m-value">$66</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Reach</div>
+          <div class="m-value">8,220</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Unique Clicks</div>
+          <div class="m-value">413</div>
+          <div class="m-sub">$0.16 / click</div>
+        </div>
+      </div>
+
+      <!-- Meta campaigns mini table -->
+      <div class="card-section-label" style="--section-color:#4f8ef7">Meta Campaigns</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="mini-table" style="white-space:nowrap">
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="num">Spend</th>
+            <th class="num">Reach</th>
+            <th class="num">Clicks</th>
+            <th class="num">CPC</th>
+            <th style="width:60px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>Rocky Yacht 6/27/2026</td>
+            <td class="num">$66</td>
+            <td class="num">8,220</td>
+            <td class="num">413</td>
+            <td class="num">$0.13</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-fill" style="width:100.0%"></div>
+              </div>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      </div>
+      
+
+      <!-- Eventbrite section -->
+      
+      <div class="metrics-row" style="background:#fff8f6">
+        <div class="metric">
+          <div class="m-label">RSVPs</div>
+          <div class="m-value" style="color:#f05537">7</div>
+          <div class="m-sub">1 events</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Cost / RSVP</div>
+          <div class="m-value" style="color:#f05537">
+            
+              $9.39
+            
+          </div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Top Event</div>
+          <div class="m-value" style="font-size:.75rem;line-height:1.3;padding-top:2px">
+            PURE Infinity: NYC All White Yacht …
+          </div>
+          <div class="m-sub">7 RSVPs</div>
+        </div>
+      </div>
+
+      <div class="card-section-label" style="--section-color:#f05537">Eventbrite Events</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="eb-table" style="white-space:nowrap">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Venue</th>
+            <th class="num">Date</th>
+            <th class="num">RSVPs</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>PURE Infinity: NYC All White Yacht Exper…</td>
+            <td style="color:#9099b8;font-size:.75rem">Pier 15 East River Esplanade</td>
+            <td class="num">2026-06-27</td>
+            <td class="num" style="font-weight:700;color:#f05537">7</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      </div>
+      
+
+      <!-- AI Insights preview -->
+      
+      
+      <div class="insights-preview">
+        <div class="ins-label">✨ AI Insights <span style="font-weight:400;color:#b0b8d4">· 2026-06-10</span></div>
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #7c5cbf">PERFORMANCE SUMMARY </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">Overall cost per ticket came in at $9.39, which is workable for a paid ticket event. The campaign reached 8,220 people and sold 7 tickets, so reach was decent but conversion volume was still low. The top performing ad was “Rocky Yacht 6/27/2026” because it produced the strongest ticket outcome in this campaign and matched the event well.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #e94f7c
+                ">FLAGS </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">The weakest ad was “Rocky Yacht 6/27/2026,” and it underperformed because it did not translate clicks into enough ticket sales. I’d shift spend away from it until the creative changes. Overall cost per ticket is not above $10.00, so that is not a major issue here. No additional anomalies this period.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #f7c94f
+                ">CREATIVE REFRESH </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">All creatives are performing within normal range.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #f7844f
+                ">KEY INSIGHT </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">You got a low-cost click, but the real win will come from turning more of that traffic into paid tickets, so keep using the strongest event-matched creative and double down on messages that push urgency and clear purchase intent.</span>
+            </div>
+          
+        
+      </div>
+      
+
+    </div>
+    
+    
+    
+    
+
+    <div class="client-card">
+
+      <!-- Header -->
+      <div class="client-card-header">
+        <h2>Royal</h2>
+        <a href="/report/2a058042-5f0e-4fb5-afc3-d06316638d8f" target="_blank">View Full Report ↗</a>
+      </div>
+
+      <!-- Meta KPIs -->
+      
+      <div class="metrics-row">
+        <div class="metric">
+          <div class="m-label">Spend</div>
+          <div class="m-value">$657</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Reach</div>
+          <div class="m-value">62,835</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Unique Clicks</div>
+          <div class="m-value">3,337</div>
+          <div class="m-sub">$0.20 / click</div>
+        </div>
+      </div>
+
+      <!-- Meta campaigns mini table -->
+      <div class="card-section-label" style="--section-color:#4f8ef7">Meta Campaigns</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="mini-table" style="white-space:nowrap">
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="num">Spend</th>
+            <th class="num">Reach</th>
+            <th class="num">Clicks</th>
+            <th class="num">CPC</th>
+            <th style="width:60px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>Cafe Circa 6/19//2026</td>
+            <td class="num">$257</td>
+            <td class="num">26,521</td>
+            <td class="num">1,632</td>
+            <td class="num">$0.14</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-fill" style="width:39.1%"></div>
+              </div>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>Cafe Circa 6/20/2026</td>
+            <td class="num">$200</td>
+            <td class="num">17,868</td>
+            <td class="num">979</td>
+            <td class="num">$0.18</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-fill" style="width:30.5%"></div>
+              </div>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>Seven Midtown 6/20/2026</td>
+            <td class="num">$200</td>
+            <td class="num">18,446</td>
+            <td class="num">726</td>
+            <td class="num">$0.22</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-fill" style="width:30.4%"></div>
+              </div>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      </div>
+      
+
+      <!-- Eventbrite section -->
+      
+      <div class="metrics-row" style="background:#fff8f6">
+        <div class="metric">
+          <div class="m-label">RSVPs</div>
+          <div class="m-value" style="color:#f05537">441</div>
+          <div class="m-sub">12 events</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Cost / RSVP</div>
+          <div class="m-value" style="color:#f05537">
+            
+              $1.49
+            
+          </div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Top Event</div>
+          <div class="m-value" style="font-size:.75rem;line-height:1.3;padding-top:2px">
+            R&amp;B Rooftop Therapy at Cafe Circa |…
+          </div>
+          <div class="m-sub">163 RSVPs</div>
+        </div>
+      </div>
+
+      <div class="card-section-label" style="--section-color:#f05537">Eventbrite Events</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="eb-table" style="white-space:nowrap">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Venue</th>
+            <th class="num">Date</th>
+            <th class="num">RSVPs</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>R&amp;B &amp; Rosé Brunch &amp; Day Party at Seven M…</td>
+            <td style="color:#9099b8;font-size:.75rem">Seven MidTown</td>
+            <td class="num">2026-07-04</td>
+            <td class="num" style="font-weight:700;color:#f05537">7</td>
+          </tr>
+          
+          <tr>
+            <td>Rum Punch Fest at Cafe Circa | Free Entr…</td>
+            <td style="color:#9099b8;font-size:.75rem">Cafe Circa</td>
+            <td class="num">2026-07-04</td>
+            <td class="num" style="font-weight:700;color:#f05537">8</td>
+          </tr>
+          
+          <tr>
+            <td>Heatwave: R&amp;B vs Hip Hop at Cafe Circa |…</td>
+            <td style="color:#9099b8;font-size:.75rem">Cafe Circa</td>
+            <td class="num">2026-07-03</td>
+            <td class="num" style="font-weight:700;color:#f05537">0</td>
+          </tr>
+          
+          <tr>
+            <td>Summer Unlocked Brunch &amp; Day Party at Se…</td>
+            <td style="color:#9099b8;font-size:.75rem">Seven MidTown</td>
+            <td class="num">2026-06-27</td>
+            <td class="num" style="font-weight:700;color:#f05537">20</td>
+          </tr>
+          
+          <tr>
+            <td>Carnival After Dark at Cafe Circa | Cari…</td>
+            <td style="color:#9099b8;font-size:.75rem">Cafe Circa</td>
+            <td class="num">2026-06-27</td>
+            <td class="num" style="font-weight:700;color:#f05537">2</td>
+          </tr>
+          
+          <tr>
+            <td>90s vs 00s Hip Hop Anthems at Cafe Circa…</td>
+            <td style="color:#9099b8;font-size:.75rem">Cafe Circa</td>
+            <td class="num">2026-06-26</td>
+            <td class="num" style="font-weight:700;color:#f05537">0</td>
+          </tr>
+          
+          <tr>
+            <td>Summerfest Brunch &amp; Day Party at Cafe Ci…</td>
+            <td style="color:#9099b8;font-size:.75rem">Cafe Circa</td>
+            <td class="num">2026-06-21</td>
+            <td class="num" style="font-weight:700;color:#f05537">0</td>
+          </tr>
+          
+          <tr>
+            <td>Mimosas in Midtown Brunch at Seven Midto…</td>
+            <td style="color:#9099b8;font-size:.75rem">Seven MidTown</td>
+            <td class="num">2026-06-20</td>
+            <td class="num" style="font-weight:700;color:#f05537">127</td>
+          </tr>
+          
+          <tr>
+            <td>Reggae vs Soca at Cafe Circa | Free Entr…</td>
+            <td style="color:#9099b8;font-size:.75rem">Cafe Circa</td>
+            <td class="num">2026-06-20</td>
+            <td class="num" style="font-weight:700;color:#f05537">109</td>
+          </tr>
+          
+          <tr>
+            <td>Black Hollywood at Revel | Free Entry wi…</td>
+            <td style="color:#9099b8;font-size:.75rem">REVEL ATLANTA</td>
+            <td class="num">2026-06-20</td>
+            <td class="num" style="font-weight:700;color:#f05537">2</td>
+          </tr>
+          
+          <tr>
+            <td>Melanin &amp; Mimosas Brunch &amp; Day Party at …</td>
+            <td style="color:#9099b8;font-size:.75rem">Cafe Circa</td>
+            <td class="num">2026-06-20</td>
+            <td class="num" style="font-weight:700;color:#f05537">3</td>
+          </tr>
+          
+          <tr>
+            <td>R&amp;B Rooftop Therapy at Cafe Circa | Free…</td>
+            <td style="color:#9099b8;font-size:.75rem">Cafe Circa</td>
+            <td class="num">2026-06-19</td>
+            <td class="num" style="font-weight:700;color:#f05537">163</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      </div>
+      
+
+      <!-- AI Insights preview -->
+      
+      
+      <div class="insights-preview">
+        <div class="ins-label">✨ AI Insights <span style="font-weight:400;color:#b0b8d4">· 2026-06-10</span></div>
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #7c5cbf">PERFORMANCE SUMMARY </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">Royal delivered 354 RSVPs from 62,835 in reach with a $1.86 cost per RSVP, which is a strong result for free RSVP nightlife events. The top performing ad was Cafe Circa 6/19//2026 because it generated the strongest response and helped keep RSVP costs efficient.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #e94f7c
+                ">FLAGS </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">Seven Midtown 6/20/2026 was the weakest ad, and its 3.62% CTR shows people were seeing it but not engaging enough. I’d reduce spend on it for now and shift that budget toward better-performing ads. Overall cost per RSVP is not above $3.00. No additional anomalies this period.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #f7c94f
+                ">CREATIVE REFRESH </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">Seven Midtown 6/20/2026: CTR is only 3.62%, so the creative is losing attention; test a new image.   Seven Midtown 6/20/2026: Cost per unique click is $0.22, which is less efficient than it should be; swap the headline to make the offer feel stronger.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #f7844f
+                ">KEY INSIGHT </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">Keep putting more spend behind the ads that turn clicks into RSVPs efficiently, and keep refreshing weaker creative quickly so budget stays focused on volume, not wasted attention.</span>
+            </div>
+          
+        
+      </div>
+      
+
+    </div>
+    
+    
+    
+    
+
+    <div class="client-card">
+
+      <!-- Header -->
+      <div class="client-card-header">
+        <h2>Underground Lounge</h2>
+        <a href="/report/bbb5f12f-46a1-46a2-b8dd-b4dd55983e3d" target="_blank">View Full Report ↗</a>
+      </div>
+
+      <!-- Meta KPIs -->
+      
+      <div class="metrics-row">
+        <div class="metric">
+          <div class="m-label">Spend</div>
+          <div class="m-value">$94</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Reach</div>
+          <div class="m-value">11,092</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Unique Clicks</div>
+          <div class="m-value">650</div>
+          <div class="m-sub">$0.15 / click</div>
+        </div>
+      </div>
+
+      <!-- Meta campaigns mini table -->
+      <div class="card-section-label" style="--section-color:#4f8ef7">Meta Campaigns</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="mini-table" style="white-space:nowrap">
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th class="num">Spend</th>
+            <th class="num">Reach</th>
+            <th class="num">Clicks</th>
+            <th class="num">CPC</th>
+            <th style="width:60px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>Underground Lounge 6/26/2026</td>
+            <td class="num">$52</td>
+            <td class="num">6,279</td>
+            <td class="num">401</td>
+            <td class="num">$0.11</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-fill" style="width:55.6%"></div>
+              </div>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>Underground Lounge 6/27/2026</td>
+            <td class="num">$42</td>
+            <td class="num">4,813</td>
+            <td class="num">249</td>
+            <td class="num">$0.13</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-fill" style="width:44.4%"></div>
+              </div>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      </div>
+      
+
+      <!-- Eventbrite section -->
+      
+      <div class="metrics-row" style="background:#fff8f6">
+        <div class="metric">
+          <div class="m-label">RSVPs</div>
+          <div class="m-value" style="color:#f05537">213</div>
+          <div class="m-sub">2 events</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Cost / RSVP</div>
+          <div class="m-value" style="color:#f05537">
+            
+              $0.44
+            
+          </div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Top Event</div>
+          <div class="m-value" style="font-size:.75rem;line-height:1.3;padding-top:2px">
+            Born To Whine: Everyone Free entry …
+          </div>
+          <div class="m-sub">146 RSVPs</div>
+        </div>
+      </div>
+
+      <div class="card-section-label" style="--section-color:#f05537">Eventbrite Events</div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table class="eb-table" style="white-space:nowrap">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Venue</th>
+            <th class="num">Date</th>
+            <th class="num">RSVPs</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>Caribbean Throwback Party: Reggae Gold v…</td>
+            <td style="color:#9099b8;font-size:.75rem">UnderGround Lounge</td>
+            <td class="num">2026-06-27</td>
+            <td class="num" style="font-weight:700;color:#f05537">67</td>
+          </tr>
+          
+          <tr>
+            <td>Born To Whine: Everyone Free entry with …</td>
+            <td style="color:#9099b8;font-size:.75rem">UnderGround Lounge</td>
+            <td class="num">2026-06-26</td>
+            <td class="num" style="font-weight:700;color:#f05537">146</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      </div>
+      
+
+      <!-- AI Insights preview -->
+      
+      
+      <div class="insights-preview">
+        <div class="ins-label">✨ AI Insights <span style="font-weight:400;color:#b0b8d4">· 2026-06-10</span></div>
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #7c5cbf">PERFORMANCE SUMMARY </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">Underground Lounge delivered 213 RSVPs from 11,092 people reached at a strong $0.443 cost per RSVP, which is well below the $3.00 benchmark and shows the ads are working efficiently. The top performing ad was Underground Lounge 6/26/2026 because it drove the strongest response and helped keep RSVP costs low while scaling volume.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #e94f7c
+                ">FLAGS </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">The weakest ad was Underground Lounge 6/27/2026, and it underperformed because it lagged the 6/26 ad in driving RSVPs at the same spend level, making it the less efficient driver. Shift spend toward the stronger ad and reduce budget on this one. No additional anomalies this period.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #f7c94f
+                ">CREATIVE REFRESH </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">All creatives are performing within normal range.</span>
+            </div>
+          
+        
+          
+            
+            
+            
+            <div style="margin-bottom:8px">
+              <span style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:
+                #f7844f
+                ">KEY INSIGHT </span>
+              <span style="font-size:.78rem;color:#3a3d5e;line-height:1.5">When spend is concentrated behind the stronger creative, Underground Lounge turns ad dollars into RSVPs very efficiently, so keep backing the winning angle and lean into the format that worked on 6/26.</span>
+            </div>
+          
+        
+      </div>
+      
+
+    </div>
+    
+  </div>
+
+  <div class="footer">TPH · Owner Dashboard · Excludes RTC</div>
+</div>
+
+</body>
+</html>
