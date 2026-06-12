@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venue X — Ad Performance · TPH Sample Report</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f0f2f8;
+    color: #1a1d2e;
+    min-height: 100vh;
+  }
+
+  /* ── Demo Banner ── */
+  .demo-banner {
+    background: linear-gradient(90deg, #7c5cbf, #4f8ef7);
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+  .demo-banner span { opacity: .8; font-weight: 400; }
+
+  /* ── Top Nav ── */
+  .topnav {
+    background: #1a1d3b;
+    padding: 0 32px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topnav-brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 700; font-size: 1rem; }
+  .topnav-brand .dot { width: 10px; height: 10px; border-radius: 50%; background: #4f8ef7; }
+  .topnav-right { display: flex; align-items: center; gap: 16px; }
+  .period-badge {
+    background: rgba(255,255,255,.1);
+    color: #c8d0f0;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: .82rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    background: #1a1d3b;
+    padding: 0 32px 32px;
+    color: #fff;
+  }
+  .page-header h1 { font-size: 2rem; font-weight: 800; letter-spacing: -.02em; }
+  .page-header .sub { color: #8892c0; font-size: .9rem; margin-top: 4px; }
+
+  /* ── Main layout ── */
+  .main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 48px; }
+
+  /* ── KPI cards ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 700px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 440px) { .kpi-grid { grid-template-columns: 1fr; } }
+
+  .kpi-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 20px 18px;
+    box-shadow: 0 2px 8px rgba(26,29,59,.07);
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent, #4f8ef7);
+    border-radius: 14px 14px 0 0;
+  }
+  .kpi-card .kpi-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--accent-light, #e8f0ff);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; margin-bottom: 14px;
+  }
+  .kpi-card .kpi-label { font-size: .73rem; font-weight: 700; color: #9099b8; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 6px; }
+  .kpi-card .kpi-value { font-size: 2rem; font-weight: 800; color: #1a1d2e; line-height: 1; }
+  .kpi-card .kpi-sub { font-size: .75rem; color: #b0b8d4; margin-top: 5px; }
+
+  .kpi-card:nth-child(1) { --accent: #4f8ef7; --accent-light: #e8f1ff; }
+  .kpi-card:nth-child(2) { --accent: #7c5cbf; --accent-light: #f0ebff; }
+  .kpi-card:nth-child(3) { --accent: #22c0a0; --accent-light: #e0faf5; }
+  .kpi-card:nth-child(4) { --accent: #f7844f; --accent-light: #fff0e8; }
+  .kpi-card:nth-child(5) { --accent: #e94f7c; --accent-light: #ffe8f0; }
+  .kpi-card:nth-child(6) { --accent: #f7c94f; --accent-light: #fffae8; }
+
+  /* ── Panels ── */
+  .panel {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(26,29,59,.07);
+    margin-bottom: 24px;
+  }
+  .panel-header {
+    padding: 18px 22px 14px;
+    border-bottom: 1px solid #f0f2f8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .panel-header h2 { font-size: .88rem; font-weight: 700; color: #1a1d2e; }
+  .panel-header .sub { font-size: .78rem; color: #9099b8; }
+  .panel-body { padding: 20px 22px; }
+
+  /* ── Chart ── */
+  .chart-wrap { position: relative; height: 240px; }
+
+  /* ── Table ── */
+  .table-scroll { display: block; width: 100%; overflow-x: scroll; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+  thead th {
+    padding: 10px 16px;
+    text-align: left;
+    font-size: .71rem;
+    font-weight: 700;
+    color: #9099b8;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    background: #f8f9fc;
+    border-bottom: 1px solid #eef0f8;
+    white-space: nowrap;
+  }
+  thead th.num, td.num { text-align: right; }
+  tbody td { padding: 13px 16px; border-bottom: 1px solid #f5f6fb; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #fafbff; }
+  .campaign-name-cell { font-weight: 600; }
+  .bar-cell { min-width: 80px; }
+  .bar-wrap { background: #f0f2f8; border-radius: 99px; height: 6px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #4f8ef7, #7c5cbf); }
+  tfoot td { padding: 13px 16px; font-weight: 800; background: #f5f7ff; color: #1a1d2e; border-top: 2px solid #e0e6ff; font-size: .88rem; }
+
+  /* ── Mobile tweaks ── */
+  @media (max-width: 600px) {
+    .main { padding: 16px 12px 40px; }
+    .page-header { padding: 0 16px 24px; }
+    .page-header h1 { font-size: 1.5rem; }
+    .topnav { padding: 0 16px; }
+    .kpi-card .kpi-value { font-size: 1.5rem; }
+    .panel-body { padding: 12px; }
+  }
+
+  .empty { text-align: center; padding: 60px; color: #b0b8d4; font-size: .95rem; }
+  .footer { text-align: center; font-size: .75rem; color: #c8cce0; margin-top: 16px; }
+
+  @media print {
+    .topnav, .demo-banner { display: none; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Demo Banner -->
+<div class="demo-banner">
+  ✨ Sample Report — <span>This is a demo with illustrative data. Your actual report will reflect your real campaigns and events.</span>
+</div>
+
+<!-- Top Nav -->
+<div class="topnav">
+  <div class="topnav-brand">
+    <div class="dot"></div>
+    TPH · Meta Ads
+  </div>
+  <div class="topnav-right">
+    <div class="period-badge">📅 2026-05-01 – 2026-06-10</div>
+  </div>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <h1>Venue X</h1>
+  <div class="sub">Ad Performance Report</div>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+
+  <!-- AI Insights -->
+  <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(26,29,59,.07);margin-bottom:24px;overflow:hidden;border-top:4px solid #7c5cbf">
+    <div style="padding:18px 22px 14px;border-bottom:1px solid #f0f2f8;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:1.1rem">✨</span>
+        <span style="font-size:.88rem;font-weight:700;color:#1a1d2e">AI Insights</span>
+      </div>
+      <span style="font-size:.72rem;color:#b0b8d4">Generated 2026-06-10</span>
+    </div>
+    <div style="padding:20px 22px">
+      <div style="margin-bottom:20px">
+        <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#7c5cbf;margin-bottom:6px">PERFORMANCE SUMMARY</div>
+        <div style="font-size:.88rem;color:#2a2d4e;line-height:1.6">Your campaigns delivered 847 RSVPs at an average cost of $1.84 per RSVP — well under the $3 benchmark — reaching 38,200 unique people over the period. The top performer was <strong>Venue X · Friday Night Sessions 6/6/2026</strong>, which drove 312 RSVPs on its own with a CTR of 1.8%, nearly double the account average.</div>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#e94f7c;margin-bottom:6px">FLAGS</div>
+        <div style="font-size:.88rem;color:#2a2d4e;line-height:1.6"><strong>Venue X · Industry Thursdays 5/15/2026</strong> spent $210 but generated only 89 RSVPs at $2.36 each — acceptable, but its CTR of 0.6% signals the creative is getting stale. Consider pausing this ad set and reallocating its budget to the Friday Night Sessions format that's clearly resonating.</div>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#f7c94f;margin-bottom:6px">CREATIVE REFRESH</div>
+        <div style="font-size:.88rem;color:#2a2d4e;line-height:1.6"><strong>Venue X · Industry Thursdays 5/15/2026</strong> — CTR of 0.6% is below the 1% threshold; test a new visual with a stronger crowd-energy hook or swap the headline to something urgency-driven like "Last 50 Spots." <strong>Venue X · R&amp;B Saturdays 5/24/2026</strong> — CPC of $0.52 is above $0.40; try a video creative or tighten the audience targeting to 21–34 nightlife interests only.</div>
+      </div>
+      <div>
+        <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#f7844f;margin-bottom:6px">KEY INSIGHT</div>
+        <div style="font-size:.88rem;color:#2a2d4e;line-height:1.6">Friday-format events are your highest-RSVP drivers — doubling down on the Friday Night Sessions creative style for all upcoming events should push cost per RSVP closer to $1.50.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flagged Events -->
+  <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(26,29,59,.07);margin-bottom:24px;overflow:hidden;border-top:4px solid #e94f7c">
+    <div style="padding:18px 22px 14px;border-bottom:1px solid #f0f2f8;display:flex;align-items:center;gap:8px">
+      <span style="font-size:1.1rem">🚨</span>
+      <span style="font-size:.88rem;font-weight:700;color:#1a1d2e">Upcoming Events — Attention Needed</span>
+      <span style="margin-left:auto;font-size:.75rem;font-weight:700;background:#fde8ef;color:#e94f7c;padding:3px 10px;border-radius:99px">1 flagged</span>
+    </div>
+    <div style="padding:16px 22px">
+      <p style="font-size:.82rem;color:#9099b8;margin-bottom:14px">These upcoming events have RSVPs that are 50%+ below the venue's historical average. Consider boosting ad spend or outreach.</p>
+      <div style="display:block;width:100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
+      <table style="width:max-content;min-width:100%;white-space:nowrap;border-collapse:collapse;">
+        <thead>
+          <tr>
+            <th style="padding:9px 16px;text-align:left;font-size:.71rem;font-weight:700;color:#9099b8;text-transform:uppercase;letter-spacing:.06em;background:#f8f9fc;border-bottom:1px solid #eef0f8">Event</th>
+            <th style="padding:9px 16px;text-align:left;font-size:.71rem;font-weight:700;color:#9099b8;text-transform:uppercase;letter-spacing:.06em;background:#f8f9fc;border-bottom:1px solid #eef0f8">Venue</th>
+            <th style="padding:9px 16px;text-align:right;font-size:.71rem;font-weight:700;color:#9099b8;text-transform:uppercase;letter-spacing:.06em;background:#f8f9fc;border-bottom:1px solid #eef0f8">Date</th>
+            <th style="padding:9px 16px;text-align:right;font-size:.71rem;font-weight:700;color:#9099b8;text-transform:uppercase;letter-spacing:.06em;background:#f8f9fc;border-bottom:1px solid #eef0f8">Days Out</th>
+            <th style="padding:9px 16px;text-align:right;font-size:.71rem;font-weight:700;color:#9099b8;text-transform:uppercase;letter-spacing:.06em;background:#f8f9fc;border-bottom:1px solid #eef0f8">Current RSVPs</th>
+            <th style="padding:9px 16px;text-align:right;font-size:.71rem;font-weight:700;color:#9099b8;text-transform:uppercase;letter-spacing:.06em;background:#f8f9fc;border-bottom:1px solid #eef0f8">Venue Avg</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:12px 16px;border-bottom:1px solid #f5f6fb;font-weight:600">Friday Night Sessions 6/27/2026</td>
+            <td style="padding:12px 16px;border-bottom:1px solid #f5f6fb;color:#9099b8;font-size:.82rem">Venue X</td>
+            <td style="padding:12px 16px;border-bottom:1px solid #f5f6fb;text-align:right">2026-06-27</td>
+            <td style="padding:12px 16px;border-bottom:1px solid #f5f6fb;text-align:right"><span style="background:#fde8ef;color:#e94f7c;padding:2px 8px;border-radius:99px;font-size:.78rem;font-weight:700">17d</span></td>
+            <td style="padding:12px 16px;border-bottom:1px solid #f5f6fb;text-align:right;font-weight:700;color:#e94f7c">61</td>
+            <td style="padding:12px 16px;border-bottom:1px solid #f5f6fb;text-align:right;color:#9099b8">248</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Date range note -->
+  <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
+    📅 Data covers campaigns active through <strong>2026-06-10</strong>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-icon">👁</div>
+      <div class="kpi-label">Impressions</div>
+      <div class="kpi-value">184,320</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">👥</div>
+      <div class="kpi-label">Reach</div>
+      <div class="kpi-value">38,200</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">🖱</div>
+      <div class="kpi-label">Link Clicks</div>
+      <div class="kpi-value">3,941</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">✦</div>
+      <div class="kpi-label">Unique Link Clicks</div>
+      <div class="kpi-value">3,408</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">💰</div>
+      <div class="kpi-label">Amount Spent</div>
+      <div class="kpi-value">$1,558</div>
+      <div class="kpi-sub">USD</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">📊</div>
+      <div class="kpi-label">Cost / Unique Click</div>
+      <div class="kpi-value">$0.46</div>
+    </div>
+  </div>
+
+  <!-- Spend by Campaign Chart -->
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Spend by Campaign</h2>
+      <span class="sub">USD</span>
+    </div>
+    <div class="panel-body">
+      <div class="chart-wrap">
+        <canvas id="spendChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campaign Table -->
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Campaign Breakdown</h2>
+      <span class="sub">5 campaigns</span>
+    </div>
+    <div style="display:block;width:100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
+    <table style="width:max-content;min-width:100%;white-space:nowrap;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th class="num">Impressions</th>
+          <th class="num">Reach</th>
+          <th class="num">Link Clicks</th>
+          <th class="num">Unique Clicks</th>
+          <th class="num">Spent (USD)</th>
+          <th class="num">Cost / Unique Click</th>
+          <th class="bar-cell"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="campaign-name-cell">Venue X · Friday Night Sessions 6/6/2026</td>
+          <td class="num">58,420</td>
+          <td class="num">14,100</td>
+          <td class="num">1,248</td>
+          <td class="num">1,105</td>
+          <td class="num">$428.00</td>
+          <td class="num">$0.39</td>
+          <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:27%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="campaign-name-cell">Venue X · R&amp;B Saturdays 5/31/2026</td>
+          <td class="num">42,810</td>
+          <td class="num">9,880</td>
+          <td class="num">884</td>
+          <td class="num">756</td>
+          <td class="num">$392.00</td>
+          <td class="num">$0.52</td>
+          <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:25%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="campaign-name-cell">Venue X · Memorial Day Weekend 5/24/2026</td>
+          <td class="num">37,640</td>
+          <td class="num">7,420</td>
+          <td class="num">701</td>
+          <td class="num">612</td>
+          <td class="num">$344.00</td>
+          <td class="num">$0.56</td>
+          <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:22%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="campaign-name-cell">Venue X · Industry Thursdays 5/15/2026</td>
+          <td class="num">29,200</td>
+          <td class="num">4,960</td>
+          <td class="num">720</td>
+          <td class="num">614</td>
+          <td class="num">$210.00</td>
+          <td class="num">$0.34</td>
+          <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:13%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="campaign-name-cell">Venue X · Latin Nights 5/8/2026</td>
+          <td class="num">16,250</td>
+          <td class="num">1,840</td>
+          <td class="num">388</td>
+          <td class="num">321</td>
+          <td class="num">$184.00</td>
+          <td class="num">$0.57</td>
+          <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill" style="width:12%"></div></div></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td class="num">184,320</td>
+          <td class="num">38,200</td>
+          <td class="num">3,941</td>
+          <td class="num">3,408</td>
+          <td class="num">$1,558.00</td>
+          <td class="num">$0.46</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+    </div>
+  </div>
+
+  <!-- Eventbrite Section -->
+  <div style="margin: 32px 0 12px; display:flex; align-items:center; gap:10px;">
+    <div style="width:4px;height:28px;background:#f05537;border-radius:4px"></div>
+    <h2 style="font-size:1rem;font-weight:800;color:#1a1d2e;letter-spacing:-.01em;">Eventbrite Performance</h2>
+  </div>
+
+  <!-- Eventbrite KPI Cards -->
+  <div class="kpi-grid" style="margin-bottom:24px">
+    <div class="kpi-card" style="--accent:#f05537;--accent-light:#fff0ec">
+      <div class="kpi-icon" style="background:#fff0ec">🎟</div>
+      <div class="kpi-label">Total RSVPs / Tickets</div>
+      <div class="kpi-value">847</div>
+    </div>
+    <div class="kpi-card" style="--accent:#00b87a;--accent-light:#e6faf3">
+      <div class="kpi-icon" style="background:#e6faf3">💵</div>
+      <div class="kpi-label">Gross Revenue</div>
+      <div class="kpi-value">$0</div>
+      <div class="kpi-sub">USD</div>
+    </div>
+    <div class="kpi-card" style="--accent:#e94f7c;--accent-light:#ffe8f0">
+      <div class="kpi-icon" style="background:#ffe8f0">🎯</div>
+      <div class="kpi-label">Cost Per RSVP</div>
+      <div class="kpi-value">$1.84</div>
+      <div class="kpi-sub">ad spend ÷ RSVPs</div>
+    </div>
+  </div>
+
+  <!-- Eventbrite Event Table -->
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Event Breakdown</h2>
+      <span class="sub">5 events</span>
+    </div>
+    <div style="display:block;width:100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
+    <table style="width:max-content;min-width:100%;white-space:nowrap;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Venue</th>
+          <th class="num">Date</th>
+          <th class="num">Total</th>
+          <th>Ticket Breakdown</th>
+          <th class="num">Revenue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:600">Friday Night Sessions</td>
+          <td style="color:#9099b8;font-size:.82rem">Venue X</td>
+          <td class="num">2026-06-06</td>
+          <td class="num" style="font-weight:700">312</td>
+          <td>
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px">
+              <span style="color:#555">Free RSVP</span>
+              <span style="font-weight:600;color:#f05537">312 (free)</span>
+            </div>
+          </td>
+          <td class="num">$0.00</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">R&amp;B Saturdays</td>
+          <td style="color:#9099b8;font-size:.82rem">Venue X</td>
+          <td class="num">2026-05-31</td>
+          <td class="num" style="font-weight:700">218</td>
+          <td>
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px">
+              <span style="color:#555">Free RSVP</span>
+              <span style="font-weight:600;color:#f05537">218 (free)</span>
+            </div>
+          </td>
+          <td class="num">$0.00</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">Memorial Day Weekend</td>
+          <td style="color:#9099b8;font-size:.82rem">Venue X</td>
+          <td class="num">2026-05-24</td>
+          <td class="num" style="font-weight:700">128</td>
+          <td>
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px">
+              <span style="color:#555">Free RSVP</span>
+              <span style="font-weight:600;color:#f05537">128 (free)</span>
+            </div>
+          </td>
+          <td class="num">$0.00</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">Industry Thursdays</td>
+          <td style="color:#9099b8;font-size:.82rem">Venue X</td>
+          <td class="num">2026-05-15</td>
+          <td class="num" style="font-weight:700">89</td>
+          <td>
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px">
+              <span style="color:#555">Free RSVP</span>
+              <span style="font-weight:600;color:#f05537">89 (free)</span>
+            </div>
+          </td>
+          <td class="num">$0.00</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">Latin Nights</td>
+          <td style="color:#9099b8;font-size:.82rem">Venue X</td>
+          <td class="num">2026-05-08</td>
+          <td class="num" style="font-weight:700">100</td>
+          <td>
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px">
+              <span style="color:#555">Free RSVP</span>
+              <span style="font-weight:600;color:#f05537">100 (free)</span>
+            </div>
+          </td>
+          <td class="num">$0.00</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><strong>Total</strong></td>
+          <td class="num">847</td>
+          <td></td>
+          <td class="num">$0.00</td>
+        </tr>
+      </tfoot>
+    </table>
+    </div>
+  </div>
+
+  <!-- RSVP Trend Chart -->
+  <div class="panel">
+    <div class="panel-header">
+      <h2>RSVP Trend</h2>
+      <span class="sub">RSVPs by event, sorted chronologically</span>
+    </div>
+    <div class="panel-body">
+      <div class="chart-wrap" style="height:260px">
+        <canvas id="rsvpTrendChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">TPH · Ads & Events Reporter · Sample Report</div>
+</div>
+
+<script>
+// ── Spend by Campaign Chart ──
+const spendLabels = [
+  'Friday Night Sessions 6/6',
+  'R&B Saturdays 5/31',
+  'Memorial Day Weekend 5/24',
+  'Industry Thursdays 5/15',
+  'Latin Nights 5/8'
+];
+const spendData = [428, 392, 344, 210, 184];
+const colors = ['#4f8ef7','#7c5cbf','#22c0a0','#f7844f','#e94f7c'];
+
+new Chart(document.getElementById('spendChart'), {
+  type: 'bar',
+  data: {
+    labels: spendLabels,
+    datasets: [{
+      label: 'Amount Spent (USD)',
+      data: spendData,
+      backgroundColor: colors,
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ' $' + ctx.parsed.y.toFixed(2) } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#9099b8', maxRotation: 30 } },
+      y: { grid: { color: '#f0f2f8' }, ticks: { font: { size: 11 }, color: '#9099b8', callback: v => '$' + v } }
+    }
+  }
+});
+
+// ── RSVP Trend Chart ──
+const rsvpEvents = [
+  { name: 'Latin Nights',        date: '2026-05-08', rsvps: 100,  venue: 'Venue X' },
+  { name: 'Industry Thursdays',  date: '2026-05-15', rsvps: 89,   venue: 'Venue X' },
+  { name: 'Memorial Day Weekend',date: '2026-05-24', rsvps: 128,  venue: 'Venue X' },
+  { name: 'R&B Saturdays',       date: '2026-05-31', rsvps: 218,  venue: 'Venue X' },
+  { name: 'Friday Night Sessions',date:'2026-06-06', rsvps: 312,  venue: 'Venue X' },
+];
+
+new Chart(document.getElementById('rsvpTrendChart'), {
+  type: 'bar',
+  data: {
+    labels: rsvpEvents.map(e => e.name.length > 20 ? e.name.slice(0,18)+'…' : e.name),
+    datasets: [{
+      label: 'RSVPs',
+      data: rsvpEvents.map(e => e.rsvps),
+      backgroundColor: '#f05537',
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          title: items => rsvpEvents[items[0].dataIndex].name,
+          afterTitle: items => rsvpEvents[items[0].dataIndex].date + ' · ' + rsvpEvents[items[0].dataIndex].venue,
+          label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' RSVPs',
+        }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#9099b8', maxRotation: 35 } },
+      y: { grid: { color: '#f0f2f8' }, ticks: { font: { size: 11 }, color: '#9099b8' }, beginAtZero: true }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
