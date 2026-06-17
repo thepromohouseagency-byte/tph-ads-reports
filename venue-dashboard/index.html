@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TPH Venue Intelligence — Demo Dashboard</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f3ff;color:#1f2937;min-height:100vh}
+.topbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.logo{font-size:16px;font-weight:700;color:#1f2937;letter-spacing:.3px}
+.logo span{color:#7c3aed}
+.venue-pill{font-size:12px;background:#ede9fe;color:#4c1d95;padding:5px 14px;border-radius:20px;font-weight:600;display:flex;align-items:center;gap:6px}
+.demo-badge{font-size:11px;background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:20px;font-weight:600}
+.event-tabs{display:flex;gap:6px;padding:12px 24px;background:#fff;border-bottom:1px solid #e5e7eb;overflow-x:auto}
+.tab{font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid #e5e7eb;cursor:pointer;white-space:nowrap;color:#6b7280;background:#fff;font-weight:500;transition:all .15s}
+.tab:hover{border-color:#a78bfa;color:#4c1d95}
+.tab.active{background:#ede9fe;color:#4c1d95;border-color:#a78bfa;font-weight:600}
+.body{padding:20px 24px;display:flex;flex-direction:column;gap:16px;max-width:1200px;margin:0 auto}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;border-top:3px solid #7c3aed}
+.kpi-label{font-size:11px;color:#6b7280;margin-bottom:8px;display:flex;align-items:center;gap:5px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.kpi-value{font-size:26px;font-weight:700;color:#1f2937}
+.kpi-delta{font-size:11px;margin-top:5px;font-weight:600}
+.delta-up{color:#059669}
+.delta-down{color:#dc2626}
+.grid-main{display:grid;grid-template-columns:1fr 340px;gap:16px}
+.col-left{display:flex;flex-direction:column;gap:16px}
+.col-right{display:flex;flex-direction:column;gap:16px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:18px}
+.card-title{font-size:13px;font-weight:700;color:#374151;margin-bottom:16px;display:flex;align-items:center;gap:7px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.funnel-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.funnel-label{font-size:11px;color:#6b7280;width:96px;text-align:right;font-weight:500}
+.funnel-bar-wrap{flex:1;height:30px;background:#f5f3ff;border-radius:8px;overflow:hidden}
+.funnel-bar{height:100%;border-radius:8px;display:flex;align-items:center;padding-left:12px;font-size:11px;font-weight:700}
+.funnel-val{font-size:12px;font-weight:700;color:#1f2937;width:64px;text-align:right}
+.row-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:12px}
+.row-item:last-child{border-bottom:none}
+.row-label{color:#6b7280;display:flex;align-items:center;gap:5px}
+.row-val{font-weight:700;color:#1f2937}
+.ai-box{background:#ede9fe;border:1px solid #c4b5fd;border-radius:12px;padding:18px}
+.ai-tag{font-size:10px;font-weight:700;color:#5b21b6;background:#fff;border:1px solid #c4b5fd;border-radius:20px;padding:3px 10px;display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+.ai-insight{font-size:13px;color:#3730a3;line-height:1.6;margin-bottom:12px}
+.ai-bullets{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ai-bullets li{font-size:12px;color:#4338ca;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.bullet-dot{width:6px;height:6px;border-radius:50%;background:#7c3aed;margin-top:5px;flex-shrink:0}
+.ai-rec{margin-top:14px;padding-top:14px;border-top:1px solid #c4b5fd}
+.ai-rec-label{font-size:10px;color:#5b21b6;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.ai-rec-text{font-size:12px;color:#3730a3;line-height:1.6}
+.roi-big{text-align:center;padding:10px 0 14px}
+.roi-number{font-size:36px;font-weight:700;color:#4c1d95}
+.roi-sub{font-size:12px;color:#6d28d9;margin-top:4px}
+.roi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:4px}
+.roi-cell{background:#f5f3ff;border-radius:8px;padding:10px;text-align:center}
+.roi-cell-val{font-size:16px;font-weight:700;color:#4c1d95}
+.roi-cell-label{font-size:10px;color:#7c3aed;margin-top:3px;font-weight:500}
+.net-row{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;font-weight:700}
+.total-row{display:flex;justify-content:space-between;font-size:12px;padding:8px 0;border-top:1px solid #e5e7eb;margin-top:4px}
+.total-label{color:#6b7280}
+.cta-bar{background:#4c1d95;color:#fff;text-align:center;padding:24px;margin:8px 0 0;border-radius:12px}
+.cta-title{font-size:18px;font-weight:700;margin-bottom:8px}
+.cta-sub{font-size:13px;color:#c4b5fd;margin-bottom:16px}
+.cta-btn{display:inline-block;background:#7c3aed;color:#fff;padding:10px 28px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;border:2px solid #a78bfa}
+.legend{display:flex;gap:16px;margin-top:10px;font-size:11px;color:#6b7280}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend-box{width:10px;height:10px;border-radius:2px}
+@media(max-width:900px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .grid-main{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr}
+  .roi-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:500px){
+  .kpi-grid{grid-template-columns:1fr}
+  .topbar{flex-wrap:wrap;gap:8px}
+  .body{padding:14px 14px}
+  .funnel-label{width:70px;font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo"><span>TPH</span> Venue Intelligence</div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <span class="demo-badge">Demo</span>
+    <span class="venue-pill"><i class="ti ti-building" style="font-size:14px"></i> ONYX Nightclub</span>
+    <span style="font-size:11px;color:#9ca3af">Jun 2026</span>
+  </div>
+</div>
+
+<div class="event-tabs">
+  <div class="tab">All events</div>
+  <div class="tab active">Fri Jun 20 — Latin Night</div>
+  <div class="tab">Sat Jun 14 — Hip-Hop vs R&B</div>
+  <div class="tab">Fri Jun 6 — Afrobeats</div>
+  <div class="tab">Sat May 31 — Industry Night</div>
+</div>
+
+<div class="body">
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-label"><i class="ti ti-cash" style="font-size:14px"></i> Total revenue</div>
+      <div class="kpi-value">$18,420</div>
+      <div class="kpi-delta delta-up"><i class="ti ti-trending-up" style="font-size:13px"></i> +12% vs last event</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label"><i class="ti ti-users" style="font-size:14px"></i> Attendees</div>
+      <div class="kpi-value">312</div>
+      <div class="kpi-delta delta-up"><i class="ti ti-trending-up" style="font-size:13px"></i> +34 vs last event</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label"><i class="ti ti-speakerphone" style="font-size:14px"></i> Ad spend</div>
+      <div class="kpi-value">$1,850</div>
+      <div class="kpi-delta delta-down"><i class="ti ti-trending-down" style="font-size:13px"></i> −$200 vs last event</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label"><i class="ti ti-arrows-exchange" style="font-size:14px"></i> Revenue / attendee</div>
+      <div class="kpi-value">$59.04</div>
+      <div class="kpi-delta delta-up"><i class="ti ti-trending-up" style="font-size:13px"></i> +$4.20 vs last event</div>
+    </div>
+  </div>
+
+  <div class="grid-main">
+    <div class="col-left">
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-filter" style="font-size:16px;color:#7c3aed"></i> Marketing to revenue funnel</div>
+        <div class="funnel-row">
+          <div class="funnel-label">Ad spend</div>
+          <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%;background:#7c3aed;color:#fff">$1,850</div></div>
+          <div class="funnel-val">$1,850</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label">RSVPs</div>
+          <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:86%;background:#a78bfa;color:#fff">401</div></div>
+          <div class="funnel-val">401</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label">Attendees</div>
+          <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:67%;background:#c4b5fd;color:#4c1d95">312</div></div>
+          <div class="funnel-val">312</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label">Bar revenue</div>
+          <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:93%;background:#5DCAA5;color:#04342C">$14,200</div></div>
+          <div class="funnel-val">$14,200</div>
+        </div>
+        <div class="funnel-row" style="margin-bottom:0">
+          <div class="funnel-label">Net profit</div>
+          <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:54%;background:#1D9E75;color:#fff">$9,870</div></div>
+          <div class="funnel-val">$9,870</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-chart-bar" style="font-size:16px;color:#7c3aed"></i> Revenue trend — last 6 events</div>
+        <div style="position:relative;width:100%;height:200px">
+          <canvas id="trendChart" role="img" aria-label="Bar chart showing revenue and ad spend for last 6 events">Revenue from $12,400 to $18,420 across 6 events.</canvas>
+        </div>
+        <div class="legend">
+          <span><span class="legend-box" style="background:#7c3aed"></span>Bar revenue</span>
+          <span><span class="legend-box" style="background:#5DCAA5"></span>Ad spend</span>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title"><i class="ti ti-bottle" style="font-size:16px;color:#7c3aed"></i> Bottle sales</div>
+          <div class="row-item"><span class="row-label">Hennessy VS</span><span class="row-val">8 btl · $3,200</span></div>
+          <div class="row-item"><span class="row-label">Don Julio 1942</span><span class="row-val">4 btl · $3,600</span></div>
+          <div class="row-item"><span class="row-label">Casamigos Blanco</span><span class="row-val">6 btl · $2,400</span></div>
+          <div class="row-item"><span class="row-label">Grey Goose</span><span class="row-val">5 btl · $1,750</span></div>
+          <div class="total-row"><span class="total-label">Total</span><span style="font-weight:700">23 btl · $10,950</span></div>
+        </div>
+        <div class="card">
+          <div class="card-title"><i class="ti ti-users-group" style="font-size:16px;color:#7c3aed"></i> Staff costs</div>
+          <div class="row-item"><span class="row-label">Security (4)</span><span class="row-val">$800</span></div>
+          <div class="row-item"><span class="row-label">Bartenders (3)</span><span class="row-val">$540</span></div>
+          <div class="row-item"><span class="row-label">Promoters (2)</span><span class="row-val">$400</span></div>
+          <div class="row-item"><span class="row-label">DJ</span><span class="row-val">$600</span></div>
+          <div class="row-item"><span class="row-label">Host / Door</span><span class="row-val">$200</span></div>
+          <div class="total-row"><span class="total-label">Total</span><span style="font-weight:700;color:#dc2626">$2,540</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-right">
+
+      <div class="ai-box">
+        <div class="ai-tag"><i class="ti ti-sparkles" style="font-size:12px"></i> TPH AI analysis</div>
+        <div class="ai-insight">Latin Night outperformed your last 4 events. Here's what drove it:</div>
+        <ul class="ai-bullets">
+          <li><span class="bullet-dot"></span>Ad spend efficiency improved — $5.93 cost per attendee vs your $7.40 average</li>
+          <li><span class="bullet-dot"></span>Bottle sales per table up 18%. Don Julio 1942 is your highest-margin SKU</li>
+          <li><span class="bullet-dot"></span>77.8% RSVP-to-door conversion, up from 68%. Latin theme events consistently convert better</li>
+          <li><span class="bullet-dot"></span>Bar revenue per head hit $45.51 — your best in 3 months</li>
+        </ul>
+        <div class="ai-rec">
+          <div class="ai-rec-label">Recommendation</div>
+          <div class="ai-rec-text">Increase ad spend to $2,200 for next Latin Night. Based on your conversion rate, this projects 38 additional attendees and ~$1,730 in additional bar revenue — a 7.9× return on the extra $350.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-math" style="font-size:16px;color:#7c3aed"></i> Marketing ROI</div>
+        <div class="roi-big">
+          <div class="roi-number">9.95×</div>
+          <div class="roi-sub">return on ad spend</div>
+        </div>
+        <div class="roi-grid">
+          <div class="roi-cell"><div class="roi-cell-val">$5.93</div><div class="roi-cell-label">cost / attendee</div></div>
+          <div class="roi-cell"><div class="roi-cell-val">$45.51</div><div class="roi-cell-label">bar rev / head</div></div>
+          <div class="roi-cell"><div class="roi-cell-val">77.8%</div><div class="roi-cell-label">RSVP conversion</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><i class="ti ti-report-money" style="font-size:16px;color:#7c3aed"></i> Expenses breakdown</div>
+        <div class="row-item"><span class="row-label"><i class="ti ti-users-group" style="font-size:13px"></i> Staff</span><span class="row-val">$2,540</span></div>
+        <div class="row-item"><span class="row-label"><i class="ti ti-speakerphone" style="font-size:13px"></i> Ad spend</span><span class="row-val">$1,850</span></div>
+        <div class="row-item"><span class="row-label"><i class="ti ti-building-store" style="font-size:13px"></i> Bar inventory</span><span class="row-val">$3,200</span></div>
+        <div class="row-item"><span class="row-label"><i class="ti ti-receipt" style="font-size:13px"></i> Venue costs</span><span class="row-val">$960</span></div>
+        <div class="total-row"><span class="total-label">Total expenses</span><span style="font-weight:700">$8,550</span></div>
+        <div class="net-row"><span>Net profit</span><span style="color:#059669">$9,870</span></div>
+      </div>
+
+      <div class="cta-bar">
+        <div class="cta-title">Want this for your venue?</div>
+        <div class="cta-sub">TPH Venue Intelligence connects your marketing, bar, and staff data in one place — with AI that tells you exactly what to do next.</div>
+        <a href="mailto:buchanan.michael@outlook.com" class="cta-btn">Get in touch</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+new Chart(document.getElementById('trendChart'), {
+  type: 'bar',
+  data: {
+    labels: ['May 3','May 10','May 17','May 24','Jun 6','Jun 20'],
+    datasets: [
+      {label:'Bar revenue', data:[12400,14100,15800,13900,16400,18420], backgroundColor:'#7c3aed'},
+      {label:'Ad spend', data:[2100,1950,2200,1800,2000,1850], backgroundColor:'#5DCAA5'}
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{ticks:{font:{size:10},color:'#9ca3af'},grid:{color:'rgba(0,0,0,0.05)'}},
+      y:{ticks:{font:{size:10},color:'#9ca3af',callback:v=>'$'+Math.round(v/1000)+'k'},grid:{color:'rgba(0,0,0,0.05)'}}
+    }
+  }
+});
+
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
