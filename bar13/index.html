@@ -210,6 +210,10 @@
   </div>
   <div class="topnav-right">
     
+    <div class="period-badge">
+      📅 2026-04-01 – 2026-06-22
+    </div>
+    
   </div>
 </div>
 
@@ -227,11 +231,162 @@
   
 
   
+  <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
+    📅 Data covers campaigns active through <strong>2026-06-22</strong>
+  </div>
+  
 
   
-  <div class="panel">
-    <div class="empty">No Meta Ads data available for this report period.</div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card" onclick="toggleDrawer('impressions')" id="card-impressions">
+      <div class="kpi-icon">👁</div>
+      <div class="kpi-label">Impressions</div>
+      <div class="kpi-value">77,001</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('reach')" id="card-reach">
+      <div class="kpi-icon">👥</div>
+      <div class="kpi-label">Reach</div>
+      <div class="kpi-value">58,321</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('link_clicks')" id="card-link_clicks">
+      <div class="kpi-icon">🖱</div>
+      <div class="kpi-label">Link Clicks</div>
+      <div class="kpi-value">2,545</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('unique_link_clicks')" id="card-unique_link_clicks">
+      <div class="kpi-icon">✦</div>
+      <div class="kpi-label">Unique Link Clicks</div>
+      <div class="kpi-value">2,328</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('spend')" id="card-spend">
+      <div class="kpi-icon">💰</div>
+      <div class="kpi-label">Amount Spent</div>
+      <div class="kpi-value">$785.83</div>
+      <div class="kpi-sub">USD</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('cpu')" id="card-cpu">
+      <div class="kpi-icon">📊</div>
+      <div class="kpi-label">Cost / Unique Click</div>
+      <div class="kpi-value">$0.27</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
   </div>
+
+  <!-- Expand Drawer -->
+  <div class="kpi-drawer" id="kpi-drawer">
+    <div class="kpi-drawer-header">
+      <span id="drawer-title">Campaign Breakdown</span>
+      <span style="cursor:pointer;font-size:1rem;color:#b0b8d4" onclick="closeDrawer()">✕</span>
+    </div>
+    <div style="display:block;width:100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
+    <table style="width:max-content;min-width:100%;white-space:nowrap;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th class="num" id="drawer-col-header">Value</th>
+          <th style="width:120px"></th>
+        </tr>
+      </thead>
+      <tbody id="drawer-body"></tbody>
+    </table>
+    </div>
+
+  </div>
+
+  <!-- Spend by Campaign Chart -->
+  
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Spend by Campaign</h2>
+      <span class="sub">USD</span>
+    </div>
+    <div class="panel-body">
+      <div class="chart-wrap">
+        <canvas id="spendChart"></canvas>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Campaign Table -->
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Campaign Breakdown</h2>
+      <span class="sub">2 campaigns</span>
+    </div>
+    <div style="display:block;width:100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
+    <table style="width:max-content;min-width:100%;white-space:nowrap;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th class="num">Impressions</th>
+          <th class="num">Reach</th>
+          <th class="num">Link Clicks</th>
+          <th class="num">Unique Clicks</th>
+          <th class="num">Spent (USD)</th>
+          <th class="num">Cost / Unique Click</th>
+          <th class="bar-cell"></th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="campaign-name-cell">Bar13 6/26/2026</td>
+          <td class="num">39,183</td>
+          <td class="num">30,901</td>
+          <td class="num">1,142</td>
+          <td class="num">1,066</td>
+          <td class="num">$410.75</td>
+          <td class="num">$0.31</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:52.3%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Bar13 6/27/2026</td>
+          <td class="num">37,818</td>
+          <td class="num">27,420</td>
+          <td class="num">1,403</td>
+          <td class="num">1,262</td>
+          <td class="num">$375.08</td>
+          <td class="num">$0.24</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:47.7%"></div>
+            </div>
+          </td>
+        </tr>
+        
+      </tbody>
+      
+      <tfoot>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td class="num">77,001</td>
+          <td class="num">58,321</td>
+          <td class="num">2,545</td>
+          <td class="num">2,328</td>
+          <td class="num">$785.83</td>
+          <td class="num">$0.27</td>
+          <td></td>
+        </tr>
+      </tfoot>
+      
+    </table>
+    </div>
+
+  </div>
+
   
 
   <!-- ── Eventbrite Section ── -->
@@ -246,13 +401,20 @@
     <div class="kpi-card" style="--accent:#f05537;--accent-light:#fff0ec">
       <div class="kpi-icon" style="background:#fff0ec">🎟</div>
       <div class="kpi-label">Total RSVPs / Tickets</div>
-      <div class="kpi-value">2</div>
+      <div class="kpi-value">240</div>
     </div>
     <div class="kpi-card" style="--accent:#00b87a;--accent-light:#e6faf3">
       <div class="kpi-icon" style="background:#e6faf3">💵</div>
       <div class="kpi-label">Gross Revenue</div>
       <div class="kpi-value">$0.00</div>
       <div class="kpi-sub">USD</div>
+    </div>
+    
+    <div class="kpi-card" style="--accent:#e94f7c;--accent-light:#ffe8f0">
+      <div class="kpi-icon" style="background:#ffe8f0">🎯</div>
+      <div class="kpi-label">Cost Per Ticket Sold</div>
+      <div class="kpi-value">$3.27</div>
+      <div class="kpi-sub">ad spend ÷ tickets</div>
     </div>
     
   </div>
@@ -281,26 +443,61 @@
           <td style="font-weight:600">College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">Bar 13</td>
           <td class="num">2026-06-27</td>
-          <td class="num" style="font-weight:700">0</td>
-          <td>
-            
-            
-          </td>
-          <td class="num">$0.00</td>
-        </tr>
-        
-        <tr>
-          <td style="font-weight:600">College Night Out: CaribbeanEdition at Bar 13 Rooftop: Free Entry with RSVP</td>
-          <td style="color:#9099b8;font-size:.82rem">Bar 13</td>
-          <td class="num">2026-06-26</td>
-          <td class="num" style="font-weight:700">2</td>
+          <td class="num" style="font-weight:700">63</td>
           <td>
             
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Ladies free entry before 10</span>
               <span style="font-weight:600;color:#f05537">
-                2
+                26
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 930pm</span>
+              <span style="font-weight:600;color:#f05537">
+                34
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                3
+              </span>
+            </div>
+            
+          </td>
+          <td class="num">$0.00</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:600">College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP</td>
+          <td style="color:#9099b8;font-size:.82rem">Bar 13</td>
+          <td class="num">2026-06-26</td>
+          <td class="num" style="font-weight:700">177</td>
+          <td>
+            
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 10</span>
+              <span style="font-weight:600;color:#f05537">
+                94
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 930pm</span>
+              <span style="font-weight:600;color:#f05537">
+                79
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                4
               </span>
             </div>
             
@@ -313,7 +510,7 @@
       <tfoot>
         <tr>
           <td colspan="3"><strong>Total</strong></td>
-          <td class="num">2</td>
+          <td class="num">240</td>
           <td></td>
           <td class="num">$0.00</td>
         </tr>
@@ -344,14 +541,137 @@
 </div>
 
 
+<script>
+// Campaign data for drawer
+const campaignData = ["Bar13 6/26/2026", "Bar13 6/27/2026"].map((name, i) => ({
+  name,
+  impressions: [39183, 37818][i],
+  reach: [30901, 27420][i],
+  link_clicks: [1142, 1403][i],
+  unique_link_clicks: [1066, 1262][i],
+  spend: [410.75, 375.08][i],
+  cpu: [0.31117424, 0.24435179][i],
+}));
 
+const drawerConfig = {
+  impressions:       { label: 'Impressions',        col: 'Impressions',        fmt: v => v.toLocaleString(),        accent: '#4f8ef7' },
+  reach:             { label: 'Reach',               col: 'Reach',              fmt: v => v.toLocaleString(),        accent: '#7c5cbf' },
+  link_clicks:       { label: 'Link Clicks',         col: 'Link Clicks',        fmt: v => v.toLocaleString(),        accent: '#22c0a0' },
+  unique_link_clicks:{ label: 'Unique Link Clicks',  col: 'Unique Link Clicks', fmt: v => v.toLocaleString(),        accent: '#f7844f' },
+  spend:             { label: 'Amount Spent (USD)',  col: 'Spent (USD)',        fmt: v => '$' + v.toFixed(2),        accent: '#e94f7c' },
+  cpu:               { label: 'Cost / Unique Click', col: 'Cost/Unique Click',  fmt: v => v ? '$' + v.toFixed(2) : '—', accent: '#f7c94f' },
+};
+
+let activeDrawer = null;
+
+function toggleDrawer(metric) {
+  if (activeDrawer === metric) { closeDrawer(); return; }
+  activeDrawer = metric;
+  const cfg = drawerConfig[metric];
+  const drawer = document.getElementById('kpi-drawer');
+  drawer.style.setProperty('--drawer-accent', cfg.accent);
+
+  // Update header
+  document.getElementById('drawer-title').textContent = cfg.label + ' by Campaign';
+  document.getElementById('drawer-col-header').textContent = cfg.col;
+
+  // Sort by value desc
+  const sorted = [...campaignData].sort((a, b) => (b[metric] || 0) - (a[metric] || 0));
+  const maxVal = sorted[0][metric] || 1;
+
+  const tbody = document.getElementById('drawer-body');
+  tbody.innerHTML = sorted.map(c => {
+    const val = c[metric] || 0;
+    const pct = Math.round((val / maxVal) * 100);
+    return `<tr>
+      <td>${c.name}</td>
+      <td class="num highlight">${cfg.fmt(val)}</td>
+      <td>
+        <div class="drawer-bar-wrap">
+          <div class="drawer-bar-fill" style="width:${pct}%"></div>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  drawer.classList.add('open');
+
+  // Highlight active card
+  document.querySelectorAll('.kpi-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('card-' + metric).classList.add('active');
+  document.querySelectorAll('.kpi-card.active .kpi-expand-hint').forEach(el => el.textContent = '▲ click to close');
+
+  // Scroll drawer into view
+  setTimeout(() => drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+}
+
+function closeDrawer() {
+  activeDrawer = null;
+  document.getElementById('kpi-drawer').classList.remove('open');
+  document.querySelectorAll('.kpi-card').forEach(c => {
+    c.classList.remove('active');
+    c.querySelector('.kpi-expand-hint').textContent = '▼ click for breakdown';
+  });
+}
+</script>
+
+
+
+<script>
+const labels = ["Bar13 6/26/2026", "Bar13 6/27/2026"];
+const spends = [410.75, 375.08];
+
+const colors = [
+  '#4f8ef7','#7c5cbf','#22c0a0','#f7844f','#e94f7c',
+  '#f7c94f','#4fc3f7','#a5d6a7','#ef9a9a','#ce93d8'
+];
+
+new Chart(document.getElementById('spendChart'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Amount Spent (USD)',
+      data: spends,
+      backgroundColor: colors.slice(0, labels.length),
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' $' + ctx.parsed.y.toFixed(2)
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { font: { size: 11 }, color: '#9099b8', maxRotation: 30 }
+      },
+      y: {
+        grid: { color: '#f0f2f8' },
+        ticks: {
+          font: { size: 11 }, color: '#9099b8',
+          callback: v => '$' + v.toLocaleString()
+        }
+      }
+    }
+  }
+});
+</script>
 
 
 
 <script>
 (function() {
   // Sort events chronologically
-  const ebRaw = [{"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-27", "event_id": "1992211827204", "event_name": "College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2229, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-19T15:27:28.211229", "report_label": "current", "ticket_tiers": "[]", "tickets_capacity": 0, "tickets_sold": 0, "venue_name": "Bar 13"}, {"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-26", "event_id": "1992212293599", "event_name": "College Night Out: CaribbeanEdition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2230, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-19T15:27:28.211229", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 2, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 2, "venue_name": "Bar 13"}];
+  const ebRaw = [{"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-27", "event_id": "1992211827204", "event_name": "College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2292, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-22T14:07:57.661684", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 26, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 34, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 3, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 63, "venue_name": "Bar 13"}, {"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-26", "event_id": "1992212293599", "event_name": "College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2293, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-22T14:07:57.661684", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 94, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 79, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 4, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 177, "venue_name": "Bar 13"}];
   const sorted = [...ebRaw].sort((a, b) => a.event_date.localeCompare(b.event_date));
 
   // Assign a color per unique venue
