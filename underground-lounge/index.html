@@ -394,6 +394,7 @@
           <th class="num">Link Clicks</th>
           <th class="num">Unique Clicks</th>
           <th class="num">Spent (USD)</th>
+          <th class="num">Budget</th>
           <th class="num">Cost / Unique Click</th>
           <th class="bar-cell"></th>
         </tr>
@@ -407,6 +408,7 @@
           <td class="num">5,280</td>
           <td class="num">4,761</td>
           <td class="num">$841.46</td>
+          <td class="num">$1000.00</td>
           <td class="num">$0.18</td>
           <td class="bar-cell">
             <div class="bar-wrap">
@@ -422,6 +424,7 @@
           <td class="num">4,847</td>
           <td class="num">4,248</td>
           <td class="num">$797.04</td>
+          <td class="num">$1000.00</td>
           <td class="num">$0.19</td>
           <td class="bar-cell">
             <div class="bar-wrap">
@@ -437,6 +440,7 @@
           <td class="num">3,028</td>
           <td class="num">2,707</td>
           <td class="num">$531.34</td>
+          <td class="num">$1000.00</td>
           <td class="num">$0.20</td>
           <td class="bar-cell">
             <div class="bar-wrap">
@@ -452,6 +456,7 @@
           <td class="num">1,250</td>
           <td class="num">1,182</td>
           <td class="num">$272.98</td>
+          <td class="num">$1000.00</td>
           <td class="num">$0.23</td>
           <td class="bar-cell">
             <div class="bar-wrap">
@@ -494,7 +499,7 @@
     <div class="kpi-card" style="--accent:#f05537;--accent-light:#fff0ec">
       <div class="kpi-icon" style="background:#fff0ec">🎟</div>
       <div class="kpi-label">Total RSVPs / Tickets</div>
-      <div class="kpi-value">1,743</div>
+      <div class="kpi-value">1,749</div>
     </div>
     <div class="kpi-card" style="--accent:#00b87a;--accent-light:#e6faf3">
       <div class="kpi-icon" style="background:#e6faf3">💵</div>
@@ -536,21 +541,21 @@
           <td style="font-weight:600">Whine Your Waistline at Underground Lounge | Everyone Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">UnderGround Lounge</td>
           <td class="num">2026-07-04</td>
-          <td class="num" style="font-weight:700">153</td>
+          <td class="num" style="font-weight:700">155</td>
           <td>
             
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Ladies free entry before 12am</span>
               <span style="font-weight:600;color:#f05537">
-                82
+                83
               </span>
             </div>
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Men free entry before 1130pm</span>
               <span style="font-weight:600;color:#f05537">
-                64
+                65
               </span>
             </div>
             
@@ -569,21 +574,21 @@
           <td style="font-weight:600">Dancehall vs Soca: Everyone Free entry with RSVP at Underground Lounge</td>
           <td style="color:#9099b8;font-size:.82rem">UnderGround Lounge</td>
           <td class="num">2026-07-03</td>
-          <td class="num" style="font-weight:700">559</td>
+          <td class="num" style="font-weight:700">563</td>
           <td>
             
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Ladies free entry before 12am</span>
               <span style="font-weight:600;color:#f05537">
-                293
+                295
               </span>
             </div>
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Men free entry before 1130pm</span>
               <span style="font-weight:600;color:#f05537">
-                237
+                239
               </span>
             </div>
             
@@ -669,7 +674,7 @@
       <tfoot>
         <tr>
           <td colspan="3"><strong>Total</strong></td>
-          <td class="num">1,743</td>
+          <td class="num">1,749</td>
           <td></td>
           <td class="num">$0.00</td>
         </tr>
@@ -830,7 +835,7 @@ new Chart(document.getElementById('spendChart'), {
 <script>
 (function() {
   // Sort events chronologically
-  const ebRaw = [{"client_id": "06418fd1-6635-4bf9-bc50-562eb8b0ac7a", "event_date": "2026-07-04", "event_id": "1992221885288", "event_name": "Whine Your Waistline at Underground Lounge | Everyone Free Entry with RSVP", "gross_revenue": 0.0, "id": 2857, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:34:56.495352", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 82, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 64, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 7, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 153, "venue_name": "UnderGround Lounge"}, {"client_id": "06418fd1-6635-4bf9-bc50-562eb8b0ac7a", "event_date": "2026-07-03", "event_id": "1991765032830", "event_name": "Dancehall vs Soca: Everyone Free entry with RSVP at Underground Lounge", "gross_revenue": 0.0, "id": 2856, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:34:56.495352", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 293, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 237, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 29, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 559, "venue_name": "UnderGround Lounge"}, {"client_id": "06418fd1-6635-4bf9-bc50-562eb8b0ac7a", "event_date": "2026-06-27", "event_id": "1991294298852", "event_name": "Island Gyal Do It Better at Underground Lounge", "gross_revenue": 0.0, "id": 2855, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:34:56.495352", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 139, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 108, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 12, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 259, "venue_name": "UnderGround Lounge"}, {"client_id": "06418fd1-6635-4bf9-bc50-562eb8b0ac7a", "event_date": "2026-06-26", "event_id": "1991294134360", "event_name": "Born To Whine: Everyone Free entry with RSVP at Underground Lounge", "gross_revenue": 0.0, "id": 2854, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:34:56.495352", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 423, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 316, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 33, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 772, "venue_name": "UnderGround Lounge"}];
+  const ebRaw = [{"client_id": "06418fd1-6635-4bf9-bc50-562eb8b0ac7a", "event_date": "2026-07-04", "event_id": "1992221885288", "event_name": "Whine Your Waistline at Underground Lounge | Everyone Free Entry with RSVP", "gross_revenue": 0.0, "id": 2920, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:45:58.089750", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 83, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 65, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 7, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 155, "venue_name": "UnderGround Lounge"}, {"client_id": "06418fd1-6635-4bf9-bc50-562eb8b0ac7a", "event_date": "2026-07-03", "event_id": "1991765032830", "event_name": "Dancehall vs Soca: Everyone Free entry with RSVP at Underground Lounge", "gross_revenue": 0.0, "id": 2919, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:45:58.089750", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 295, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 239, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 29, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 563, "venue_name": "UnderGround Lounge"}, {"client_id": "06418fd1-6635-4bf9-bc50-562eb8b0ac7a", "event_date": "2026-06-27", "event_id": "1991294298852", "event_name": "Island Gyal Do It Better at Underground Lounge", "gross_revenue": 0.0, "id": 2918, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:45:58.089750", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 139, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 108, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 12, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 259, "venue_name": "UnderGround Lounge"}, {"client_id": "06418fd1-6635-4bf9-bc50-562eb8b0ac7a", "event_date": "2026-06-26", "event_id": "1991294134360", "event_name": "Born To Whine: Everyone Free entry with RSVP at Underground Lounge", "gross_revenue": 0.0, "id": 2917, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:45:58.089750", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 423, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 316, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 33, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 772, "venue_name": "UnderGround Lounge"}];
   const sorted = [...ebRaw].sort((a, b) => a.event_date.localeCompare(b.event_date));
 
   // Assign a color per unique venue
