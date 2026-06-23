@@ -243,38 +243,38 @@
     <div class="kpi-card" onclick="toggleDrawer('impressions')" id="card-impressions">
       <div class="kpi-icon">👁</div>
       <div class="kpi-label">Impressions</div>
-      <div class="kpi-value">18,834</div>
+      <div class="kpi-value">93,079</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('reach')" id="card-reach">
       <div class="kpi-icon">👥</div>
       <div class="kpi-label">Reach</div>
-      <div class="kpi-value">14,864</div>
+      <div class="kpi-value">72,728</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('link_clicks')" id="card-link_clicks">
       <div class="kpi-icon">🖱</div>
       <div class="kpi-label">Link Clicks</div>
-      <div class="kpi-value">397</div>
+      <div class="kpi-value">3,060</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('unique_link_clicks')" id="card-unique_link_clicks">
       <div class="kpi-icon">✦</div>
       <div class="kpi-label">Unique Link Clicks</div>
-      <div class="kpi-value">369</div>
+      <div class="kpi-value">2,824</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('spend')" id="card-spend">
       <div class="kpi-icon">💰</div>
       <div class="kpi-label">Amount Spent</div>
-      <div class="kpi-value">$169.73</div>
+      <div class="kpi-value">$960.66</div>
       <div class="kpi-sub">USD</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('cpu')" id="card-cpu">
       <div class="kpi-icon">📊</div>
       <div class="kpi-label">Cost / Unique Click</div>
-      <div class="kpi-value">$0.00</div>
+      <div class="kpi-value">$0.34</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
   </div>
@@ -339,30 +339,30 @@
         
         <tr>
           <td class="campaign-name-cell">Bar13 6/26/2026</td>
-          <td class="num">9,051</td>
-          <td class="num">7,173</td>
-          <td class="num">180</td>
-          <td class="num">168</td>
-          <td class="num">$88.98</td>
-          <td class="num">—</td>
+          <td class="num">52,961</td>
+          <td class="num">41,108</td>
+          <td class="num">1,567</td>
+          <td class="num">1,448</td>
+          <td class="num">$564.13</td>
+          <td class="num">$0.39</td>
           <td class="bar-cell">
             <div class="bar-wrap">
-              <div class="bar-fill" style="width:52.4%"></div>
+              <div class="bar-fill" style="width:58.7%"></div>
             </div>
           </td>
         </tr>
         
         <tr>
           <td class="campaign-name-cell">Bar13 6/27/2026</td>
-          <td class="num">9,783</td>
-          <td class="num">7,691</td>
-          <td class="num">217</td>
-          <td class="num">201</td>
-          <td class="num">$80.75</td>
-          <td class="num">—</td>
+          <td class="num">40,118</td>
+          <td class="num">31,620</td>
+          <td class="num">1,493</td>
+          <td class="num">1,376</td>
+          <td class="num">$396.53</td>
+          <td class="num">$0.29</td>
           <td class="bar-cell">
             <div class="bar-wrap">
-              <div class="bar-fill" style="width:47.6%"></div>
+              <div class="bar-fill" style="width:41.3%"></div>
             </div>
           </td>
         </tr>
@@ -372,12 +372,12 @@
       <tfoot>
         <tr>
           <td><strong>Total</strong></td>
-          <td class="num">18,834</td>
-          <td class="num">14,864</td>
-          <td class="num">397</td>
-          <td class="num">369</td>
-          <td class="num">$169.73</td>
-          <td class="num">$0.00</td>
+          <td class="num">93,079</td>
+          <td class="num">72,728</td>
+          <td class="num">3,060</td>
+          <td class="num">2,824</td>
+          <td class="num">$960.66</td>
+          <td class="num">$0.34</td>
           <td></td>
         </tr>
       </tfoot>
@@ -413,7 +413,7 @@
     <div class="kpi-card" style="--accent:#e94f7c;--accent-light:#ffe8f0">
       <div class="kpi-icon" style="background:#ffe8f0">🎯</div>
       <div class="kpi-label">Cost Per Ticket Sold</div>
-      <div class="kpi-value">$0.55</div>
+      <div class="kpi-value">$3.14</div>
       <div class="kpi-sub">ad spend ÷ tickets</div>
     </div>
     
@@ -545,12 +545,12 @@
 // Campaign data for drawer
 const campaignData = ["Bar13 6/26/2026", "Bar13 6/27/2026"].map((name, i) => ({
   name,
-  impressions: [9051, 9783][i],
-  reach: [7173, 7691][i],
-  link_clicks: [180, 217][i],
-  unique_link_clicks: [168, 201][i],
-  spend: [88.98, 80.75][i],
-  cpu: [0.0, 0.0][i],
+  impressions: [52961, 40118][i],
+  reach: [41108, 31620][i],
+  link_clicks: [1567, 1493][i],
+  unique_link_clicks: [1448, 1376][i],
+  spend: [564.13, 396.53][i],
+  cpu: [0.38959254, 0.28817587][i],
 }));
 
 const drawerConfig = {
@@ -619,7 +619,7 @@ function closeDrawer() {
 
 <script>
 const labels = ["Bar13 6/26/2026", "Bar13 6/27/2026"];
-const spends = [88.98, 80.75];
+const spends = [564.13, 396.53];
 
 const colors = [
   '#4f8ef7','#7c5cbf','#22c0a0','#f7844f','#e94f7c',
@@ -671,7 +671,7 @@ new Chart(document.getElementById('spendChart'), {
 <script>
 (function() {
   // Sort events chronologically
-  const ebRaw = [{"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-27", "event_id": "1992211827204", "event_name": "College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2796, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:26:20.810245", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 36, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 43, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 4, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 83, "venue_name": "Bar 13"}, {"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-26", "event_id": "1992212293599", "event_name": "College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2797, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:26:20.810245", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 115, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 101, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 7, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 223, "venue_name": "Bar 13"}];
+  const ebRaw = [{"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-27", "event_id": "1992211827204", "event_name": "College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2859, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:34:56.495352", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 36, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 43, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 4, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 83, "venue_name": "Bar 13"}, {"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-26", "event_id": "1992212293599", "event_name": "College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2860, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:34:56.495352", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 115, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 101, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 7, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 223, "venue_name": "Bar 13"}];
   const sorted = [...ebRaw].sort((a, b) => a.event_date.localeCompare(b.event_date));
 
   // Assign a color per unique venue
