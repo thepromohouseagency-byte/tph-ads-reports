@@ -401,7 +401,7 @@
     <div class="kpi-card" style="--accent:#f05537;--accent-light:#fff0ec">
       <div class="kpi-icon" style="background:#fff0ec">🎟</div>
       <div class="kpi-label">Total RSVPs / Tickets</div>
-      <div class="kpi-value">304</div>
+      <div class="kpi-value">306</div>
     </div>
     <div class="kpi-card" style="--accent:#00b87a;--accent-light:#e6faf3">
       <div class="kpi-icon" style="background:#e6faf3">💵</div>
@@ -413,7 +413,7 @@
     <div class="kpi-card" style="--accent:#e94f7c;--accent-light:#ffe8f0">
       <div class="kpi-icon" style="background:#ffe8f0">🎯</div>
       <div class="kpi-label">Cost Per Ticket Sold</div>
-      <div class="kpi-value">$0.56</div>
+      <div class="kpi-value">$0.55</div>
       <div class="kpi-sub">ad spend ÷ tickets</div>
     </div>
     
@@ -476,21 +476,21 @@
           <td style="font-weight:600">College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">Bar 13</td>
           <td class="num">2026-06-26</td>
-          <td class="num" style="font-weight:700">221</td>
+          <td class="num" style="font-weight:700">223</td>
           <td>
             
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Ladies free entry before 10</span>
               <span style="font-weight:600;color:#f05537">
-                114
+                115
               </span>
             </div>
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Men free entry before 930pm</span>
               <span style="font-weight:600;color:#f05537">
-                100
+                101
               </span>
             </div>
             
@@ -510,7 +510,7 @@
       <tfoot>
         <tr>
           <td colspan="3"><strong>Total</strong></td>
-          <td class="num">304</td>
+          <td class="num">306</td>
           <td></td>
           <td class="num">$0.00</td>
         </tr>
@@ -671,7 +671,7 @@ new Chart(document.getElementById('spendChart'), {
 <script>
 (function() {
   // Sort events chronologically
-  const ebRaw = [{"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-27", "event_id": "1992211827204", "event_name": "College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2733, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T15:48:41.975911", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 36, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 43, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 4, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 83, "venue_name": "Bar 13"}, {"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-26", "event_id": "1992212293599", "event_name": "College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2734, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T15:48:41.975911", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 114, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 100, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 7, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 221, "venue_name": "Bar 13"}];
+  const ebRaw = [{"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-27", "event_id": "1992211827204", "event_name": "College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2796, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:26:20.810245", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 36, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 43, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 4, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 83, "venue_name": "Bar 13"}, {"client_id": "eb010c6e-1a19-4b70-9732-853303b6ba68", "event_date": "2026-06-26", "event_id": "1992212293599", "event_name": "College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 0.0, "id": 2797, "net_revenue": 0.0, "page_views": 0, "pulled_at": "2026-06-23T16:26:20.810245", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 115, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 101, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 7, \"price\": 0.0, \"free\": true}]", "tickets_capacity": 0, "tickets_sold": 223, "venue_name": "Bar 13"}];
   const sorted = [...ebRaw].sort((a, b) => a.event_date.localeCompare(b.event_date));
 
   // Assign a color per unique venue
