@@ -243,38 +243,38 @@
     <div class="kpi-card" onclick="toggleDrawer('impressions')" id="card-impressions">
       <div class="kpi-icon">👁</div>
       <div class="kpi-label">Impressions</div>
-      <div class="kpi-value">40,567</div>
+      <div class="kpi-value">156,391</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('reach')" id="card-reach">
       <div class="kpi-icon">👥</div>
       <div class="kpi-label">Reach</div>
-      <div class="kpi-value">28,938</div>
+      <div class="kpi-value">110,113</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('link_clicks')" id="card-link_clicks">
       <div class="kpi-icon">🖱</div>
       <div class="kpi-label">Link Clicks</div>
-      <div class="kpi-value">1,544</div>
+      <div class="kpi-value">8,449</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('unique_link_clicks')" id="card-unique_link_clicks">
       <div class="kpi-icon">✦</div>
       <div class="kpi-label">Unique Link Clicks</div>
-      <div class="kpi-value">1,335</div>
+      <div class="kpi-value">7,295</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('spend')" id="card-spend">
       <div class="kpi-icon">💰</div>
       <div class="kpi-label">Amount Spent</div>
-      <div class="kpi-value">$277.78</div>
+      <div class="kpi-value">$1388.16</div>
       <div class="kpi-sub">USD</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('cpu')" id="card-cpu">
       <div class="kpi-icon">📊</div>
       <div class="kpi-label">Cost / Unique Click</div>
-      <div class="kpi-value">$0.00</div>
+      <div class="kpi-value">$0.19</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
   </div>
@@ -318,8 +318,9 @@
           <th class="num">Reach</th>
           <th class="num">Link Clicks</th>
           <th class="num">Unique Clicks</th>
-          <th class="num">Spent (USD)</th>
           <th class="num">Cost / Unique Click</th>
+          <th class="num">Spent (USD)</th>
+          <th class="num">Budget</th>
           <th class="bar-cell"></th>
         </tr>
       </thead>
@@ -327,12 +328,13 @@
         
         <tr>
           <td class="campaign-name-cell">Rocky Yacht 6/27/2026</td>
-          <td class="num">40,567</td>
-          <td class="num">28,938</td>
-          <td class="num">1,544</td>
-          <td class="num">1,335</td>
-          <td class="num">$277.78</td>
-          <td class="num">—</td>
+          <td class="num">156,391</td>
+          <td class="num">110,113</td>
+          <td class="num">8,449</td>
+          <td class="num">7,295</td>
+          <td class="num">$0.19</td>
+          <td class="num">$1388.16</td>
+          <td class="num">$1500.00</td>
           <td class="bar-cell">
             <div class="bar-wrap">
               <div class="bar-fill" style="width:100.0%"></div>
@@ -373,7 +375,7 @@
     <div class="kpi-card" style="--accent:#e94f7c;--accent-light:#ffe8f0">
       <div class="kpi-icon" style="background:#ffe8f0">🎯</div>
       <div class="kpi-label">Cost Per Ticket Sold</div>
-      <div class="kpi-value">$3.23</div>
+      <div class="kpi-value">$16.14</div>
       <div class="kpi-sub">ad spend ÷ tickets</div>
     </div>
     
@@ -465,12 +467,12 @@
 // Campaign data for drawer
 const campaignData = ["Rocky Yacht 6/27/2026"].map((name, i) => ({
   name,
-  impressions: [40567][i],
-  reach: [28938][i],
-  link_clicks: [1544][i],
-  unique_link_clicks: [1335][i],
-  spend: [277.78][i],
-  cpu: [0.0][i],
+  impressions: [156391][i],
+  reach: [110113][i],
+  link_clicks: [8449][i],
+  unique_link_clicks: [7295][i],
+  spend: [1388.16][i],
+  cpu: [0.19028924][i],
 }));
 
 const drawerConfig = {
