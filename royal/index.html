@@ -210,6 +210,10 @@
   </div>
   <div class="topnav-right">
     
+    <div class="period-badge">
+      📅 2026-04-01 – 2026-06-26
+    </div>
+    
   </div>
 </div>
 
@@ -310,11 +314,297 @@
   
 
   
+  <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
+    📅 Data covers campaigns active through <strong>2026-06-26</strong>
+  </div>
+  
 
   
-  <div class="panel">
-    <div class="empty">No Meta Ads data available for this report period.</div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card" onclick="toggleDrawer('impressions')" id="card-impressions">
+      <div class="kpi-icon">👁</div>
+      <div class="kpi-label">Impressions</div>
+      <div class="kpi-value">266,634</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('reach')" id="card-reach">
+      <div class="kpi-icon">👥</div>
+      <div class="kpi-label">Reach</div>
+      <div class="kpi-value">209,506</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('link_clicks')" id="card-link_clicks">
+      <div class="kpi-icon">🖱</div>
+      <div class="kpi-label">Link Clicks</div>
+      <div class="kpi-value">9,480</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('unique_link_clicks')" id="card-unique_link_clicks">
+      <div class="kpi-icon">✦</div>
+      <div class="kpi-label">Unique Link Clicks</div>
+      <div class="kpi-value">8,891</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('spend')" id="card-spend">
+      <div class="kpi-icon">💰</div>
+      <div class="kpi-label">Amount Spent</div>
+      <div class="kpi-value">$2547.39</div>
+      <div class="kpi-sub">USD</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
+    <div class="kpi-card" onclick="toggleDrawer('cpu')" id="card-cpu">
+      <div class="kpi-icon">📊</div>
+      <div class="kpi-label">Cost / Unique Click</div>
+      <div class="kpi-value">$0.00</div>
+      <div class="kpi-expand-hint">▼ click for breakdown</div>
+    </div>
   </div>
+
+  <!-- Expand Drawer -->
+  <div class="kpi-drawer" id="kpi-drawer">
+    <div class="kpi-drawer-header">
+      <span id="drawer-title">Campaign Breakdown</span>
+      <span style="cursor:pointer;font-size:1rem;color:#b0b8d4" onclick="closeDrawer()">✕</span>
+    </div>
+    <div style="display:block;width:100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
+    <table style="width:max-content;min-width:100%;white-space:nowrap;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th class="num" id="drawer-col-header">Value</th>
+          <th style="width:120px"></th>
+        </tr>
+      </thead>
+      <tbody id="drawer-body"></tbody>
+    </table>
+    </div>
+
+  </div>
+
+  <!-- Spend by Campaign Chart -->
+  
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Spend by Campaign</h2>
+      <span class="sub">USD</span>
+    </div>
+    <div class="panel-body">
+      <div class="chart-wrap">
+        <canvas id="spendChart"></canvas>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Campaign Table -->
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Campaign Breakdown</h2>
+      <span class="sub">11 campaigns</span>
+    </div>
+    <div style="display:block;width:100%;overflow-x:scroll;-webkit-overflow-scrolling:touch;">
+    <table style="width:max-content;min-width:100%;white-space:nowrap;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th class="num">Impressions</th>
+          <th class="num">Reach</th>
+          <th class="num">Link Clicks</th>
+          <th class="num">Unique Clicks</th>
+          <th class="num">Spent (USD)</th>
+          <th class="num">Cost / Unique Click</th>
+          <th class="bar-cell"></th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="campaign-name-cell">Cafe Circa Day Party 6/27/2026</td>
+          <td class="num">37,574</td>
+          <td class="num">31,560</td>
+          <td class="num">1,519</td>
+          <td class="num">1,414</td>
+          <td class="num">$424.46</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:16.7%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Cafe Circa Day Party 6/28/2026</td>
+          <td class="num">29,375</td>
+          <td class="num">25,398</td>
+          <td class="num">1,682</td>
+          <td class="num">1,567</td>
+          <td class="num">$379.92</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:14.9%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Seven Midtown 6/27/2026</td>
+          <td class="num">20,832</td>
+          <td class="num">14,636</td>
+          <td class="num">402</td>
+          <td class="num">381</td>
+          <td class="num">$256.15</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:10.1%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Cafe Circa 6/27/2026</td>
+          <td class="num">31,761</td>
+          <td class="num">24,285</td>
+          <td class="num">905</td>
+          <td class="num">878</td>
+          <td class="num">$248.50</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:9.8%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Cafe Circa 6/19//2026</td>
+          <td class="num">32,385</td>
+          <td class="num">25,948</td>
+          <td class="num">1,630</td>
+          <td class="num">1,578</td>
+          <td class="num">$200.00</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:7.9%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Seven Midtown 6/20/2026</td>
+          <td class="num">27,173</td>
+          <td class="num">20,055</td>
+          <td class="num">717</td>
+          <td class="num">671</td>
+          <td class="num">$199.99</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:7.9%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Cafe Circa 6/20/2026</td>
+          <td class="num">23,604</td>
+          <td class="num">17,539</td>
+          <td class="num">803</td>
+          <td class="num">720</td>
+          <td class="num">$199.97</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:7.8%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Cafe Circa 6/26/2026</td>
+          <td class="num">20,328</td>
+          <td class="num">15,479</td>
+          <td class="num">510</td>
+          <td class="num">471</td>
+          <td class="num">$188.55</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:7.4%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Cafe Circa Day Party 6/20/2026</td>
+          <td class="num">19,970</td>
+          <td class="num">16,481</td>
+          <td class="num">545</td>
+          <td class="num">499</td>
+          <td class="num">$149.98</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:5.9%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Revel 6/20/2026</td>
+          <td class="num">11,610</td>
+          <td class="num">8,576</td>
+          <td class="num">345</td>
+          <td class="num">310</td>
+          <td class="num">$149.95</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:5.9%"></div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="campaign-name-cell">Cafe Circa Day Party 6/21/2026</td>
+          <td class="num">12,022</td>
+          <td class="num">9,549</td>
+          <td class="num">422</td>
+          <td class="num">402</td>
+          <td class="num">$149.92</td>
+          <td class="num">—</td>
+          <td class="bar-cell">
+            <div class="bar-wrap">
+              <div class="bar-fill" style="width:5.9%"></div>
+            </div>
+          </td>
+        </tr>
+        
+      </tbody>
+      
+      <tfoot>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td class="num">266,634</td>
+          <td class="num">209,506</td>
+          <td class="num">9,480</td>
+          <td class="num">8,891</td>
+          <td class="num">$2547.39</td>
+          <td class="num">$0.00</td>
+          <td></td>
+        </tr>
+      </tfoot>
+      
+    </table>
+    </div>
+
+  </div>
+
   
 
   <!-- ── Eventbrite Section ── -->
@@ -329,13 +619,20 @@
     <div class="kpi-card" style="--accent:#f05537;--accent-light:#fff0ec">
       <div class="kpi-icon" style="background:#fff0ec">🎟</div>
       <div class="kpi-label">Total RSVPs / Tickets</div>
-      <div class="kpi-value">3,934</div>
+      <div class="kpi-value">3,936</div>
     </div>
     <div class="kpi-card" style="--accent:#00b87a;--accent-light:#e6faf3">
       <div class="kpi-icon" style="background:#e6faf3">💵</div>
       <div class="kpi-label">Gross Revenue</div>
       <div class="kpi-value">$100.00</div>
       <div class="kpi-sub">USD</div>
+    </div>
+    
+    <div class="kpi-card" style="--accent:#e94f7c;--accent-light:#ffe8f0">
+      <div class="kpi-icon" style="background:#ffe8f0">🎯</div>
+      <div class="kpi-label">Cost Per Ticket Sold</div>
+      <div class="kpi-value">$0.65</div>
+      <div class="kpi-sub">ad spend ÷ tickets</div>
     </div>
     
   </div>
@@ -500,39 +797,6 @@
         </tr>
         
         <tr>
-          <td style="font-weight:600">Carnival After Dark at Cafe Circa | Caribbean Party | Free Entry with RSVP</td>
-          <td style="color:#9099b8;font-size:.82rem">Cafe Circa</td>
-          <td class="num">2026-06-27</td>
-          <td class="num" style="font-weight:700">617</td>
-          <td>
-            
-            
-            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
-              <span style="color:#555">Ladies free entry before 11pm</span>
-              <span style="font-weight:600;color:#f05537">
-                296
-              </span>
-            </div>
-            
-            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
-              <span style="color:#555">Men free entry before 11pm</span>
-              <span style="font-weight:600;color:#f05537">
-                273
-              </span>
-            </div>
-            
-            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
-              <span style="color:#555">Birthday Person Free All Night</span>
-              <span style="font-weight:600;color:#f05537">
-                48
-              </span>
-            </div>
-            
-          </td>
-          <td class="num">$0.00</td>
-        </tr>
-        
-        <tr>
           <td style="font-weight:600">Summer Unlocked Brunch &amp; Day Party at Seven Midtown | Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">Seven MidTown</td>
           <td class="num">2026-06-27</td>
@@ -599,17 +863,50 @@
         </tr>
         
         <tr>
-          <td style="font-weight:600">90s vs 00s Hip Hop Anthems at Cafe Circa | Free Entry with RSVP</td>
+          <td style="font-weight:600">Carnival After Dark at Cafe Circa | Caribbean Party | Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">Cafe Circa</td>
-          <td class="num">2026-06-26</td>
-          <td class="num" style="font-weight:700">350</td>
+          <td class="num">2026-06-27</td>
+          <td class="num" style="font-weight:700">618</td>
           <td>
             
             
             <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
               <span style="color:#555">Ladies free entry before 11pm</span>
               <span style="font-weight:600;color:#f05537">
-                184
+                297
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 11pm</span>
+              <span style="font-weight:600;color:#f05537">
+                273
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Night</span>
+              <span style="font-weight:600;color:#f05537">
+                48
+              </span>
+            </div>
+            
+          </td>
+          <td class="num">$0.00</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:600">90s vs 00s Hip Hop Anthems at Cafe Circa | Free Entry with RSVP</td>
+          <td style="color:#9099b8;font-size:.82rem">Cafe Circa</td>
+          <td class="num">2026-06-26</td>
+          <td class="num" style="font-weight:700">351</td>
+          <td>
+            
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 11pm</span>
+              <span style="font-weight:600;color:#f05537">
+                185
               </span>
             </div>
             
@@ -657,72 +954,6 @@
               <span style="color:#555">Birthday Person Free All Day</span>
               <span style="font-weight:600;color:#f05537">
                 7
-              </span>
-            </div>
-            
-          </td>
-          <td class="num">$0.00</td>
-        </tr>
-        
-        <tr>
-          <td style="font-weight:600">Mimosas in Midtown Brunch at Seven Midtown | Free Entry with RSVP</td>
-          <td style="color:#9099b8;font-size:.82rem">Seven MidTown</td>
-          <td class="num">2026-06-20</td>
-          <td class="num" style="font-weight:700">521</td>
-          <td>
-            
-            
-            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
-              <span style="color:#555">Ladies free entry before 4pm</span>
-              <span style="font-weight:600;color:#f05537">
-                306
-              </span>
-            </div>
-            
-            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
-              <span style="color:#555">Men free entry before 4pm</span>
-              <span style="font-weight:600;color:#f05537">
-                175
-              </span>
-            </div>
-            
-            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
-              <span style="color:#555">Birthday Person Free All Day</span>
-              <span style="font-weight:600;color:#f05537">
-                40
-              </span>
-            </div>
-            
-          </td>
-          <td class="num">$0.00</td>
-        </tr>
-        
-        <tr>
-          <td style="font-weight:600">Melanin &amp; Mimosas Brunch &amp; Day Party at Cafe Circa | Free Entry with RSVP</td>
-          <td style="color:#9099b8;font-size:.82rem">Cafe Circa</td>
-          <td class="num">2026-06-20</td>
-          <td class="num" style="font-weight:700">161</td>
-          <td>
-            
-            
-            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
-              <span style="color:#555">Ladies free entry before 4pm</span>
-              <span style="font-weight:600;color:#f05537">
-                114
-              </span>
-            </div>
-            
-            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
-              <span style="color:#555">Men free entry before 4pm</span>
-              <span style="font-weight:600;color:#f05537">
-                34
-              </span>
-            </div>
-            
-            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
-              <span style="color:#555">Birthday Person Free All Day</span>
-              <span style="font-weight:600;color:#f05537">
-                13
               </span>
             </div>
             
@@ -797,6 +1028,72 @@
         </tr>
         
         <tr>
+          <td style="font-weight:600">Mimosas in Midtown Brunch at Seven Midtown | Free Entry with RSVP</td>
+          <td style="color:#9099b8;font-size:.82rem">Seven MidTown</td>
+          <td class="num">2026-06-20</td>
+          <td class="num" style="font-weight:700">521</td>
+          <td>
+            
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 4pm</span>
+              <span style="font-weight:600;color:#f05537">
+                306
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 4pm</span>
+              <span style="font-weight:600;color:#f05537">
+                175
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Day</span>
+              <span style="font-weight:600;color:#f05537">
+                40
+              </span>
+            </div>
+            
+          </td>
+          <td class="num">$0.00</td>
+        </tr>
+        
+        <tr>
+          <td style="font-weight:600">Melanin &amp; Mimosas Brunch &amp; Day Party at Cafe Circa | Free Entry with RSVP</td>
+          <td style="color:#9099b8;font-size:.82rem">Cafe Circa</td>
+          <td class="num">2026-06-20</td>
+          <td class="num" style="font-weight:700">161</td>
+          <td>
+            
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Ladies free entry before 4pm</span>
+              <span style="font-weight:600;color:#f05537">
+                114
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Men free entry before 4pm</span>
+              <span style="font-weight:600;color:#f05537">
+                34
+              </span>
+            </div>
+            
+            <div style="font-size:.78rem;padding:2px 0;display:flex;justify-content:space-between;gap:16px;white-space:nowrap">
+              <span style="color:#555">Birthday Person Free All Day</span>
+              <span style="font-weight:600;color:#f05537">
+                13
+              </span>
+            </div>
+            
+          </td>
+          <td class="num">$0.00</td>
+        </tr>
+        
+        <tr>
           <td style="font-weight:600">R&amp;B Rooftop Therapy at Cafe Circa | Free Entry with RSVP</td>
           <td style="color:#9099b8;font-size:.82rem">Cafe Circa</td>
           <td class="num">2026-06-19</td>
@@ -834,7 +1131,7 @@
       <tfoot>
         <tr>
           <td colspan="3"><strong>Total</strong></td>
-          <td class="num">3,934</td>
+          <td class="num">3,936</td>
           <td></td>
           <td class="num">$100.00</td>
         </tr>
@@ -865,14 +1162,137 @@
 </div>
 
 
+<script>
+// Campaign data for drawer
+const campaignData = ["Cafe Circa Day Party 6/27/2026", "Cafe Circa Day Party 6/28/2026", "Seven Midtown 6/27/2026", "Cafe Circa 6/27/2026", "Cafe Circa 6/19//2026", "Seven Midtown 6/20/2026", "Cafe Circa 6/20/2026", "Cafe Circa 6/26/2026", "Cafe Circa Day Party 6/20/2026", "Revel 6/20/2026", "Cafe Circa Day Party 6/21/2026"].map((name, i) => ({
+  name,
+  impressions: [37574, 29375, 20832, 31761, 32385, 27173, 23604, 20328, 19970, 11610, 12022][i],
+  reach: [31560, 25398, 14636, 24285, 25948, 20055, 17539, 15479, 16481, 8576, 9549][i],
+  link_clicks: [1519, 1682, 402, 905, 1630, 717, 803, 510, 545, 345, 422][i],
+  unique_link_clicks: [1414, 1567, 381, 878, 1578, 671, 720, 471, 499, 310, 402][i],
+  spend: [424.46, 379.92, 256.15, 248.5, 200.0, 199.99, 199.97, 188.55, 149.98, 149.95, 149.92][i],
+  cpu: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0][i],
+}));
 
+const drawerConfig = {
+  impressions:       { label: 'Impressions',        col: 'Impressions',        fmt: v => v.toLocaleString(),        accent: '#4f8ef7' },
+  reach:             { label: 'Reach',               col: 'Reach',              fmt: v => v.toLocaleString(),        accent: '#7c5cbf' },
+  link_clicks:       { label: 'Link Clicks',         col: 'Link Clicks',        fmt: v => v.toLocaleString(),        accent: '#22c0a0' },
+  unique_link_clicks:{ label: 'Unique Link Clicks',  col: 'Unique Link Clicks', fmt: v => v.toLocaleString(),        accent: '#f7844f' },
+  spend:             { label: 'Amount Spent (USD)',  col: 'Spent (USD)',        fmt: v => '$' + v.toFixed(2),        accent: '#e94f7c' },
+  cpu:               { label: 'Cost / Unique Click', col: 'Cost/Unique Click',  fmt: v => v ? '$' + v.toFixed(2) : '—', accent: '#f7c94f' },
+};
+
+let activeDrawer = null;
+
+function toggleDrawer(metric) {
+  if (activeDrawer === metric) { closeDrawer(); return; }
+  activeDrawer = metric;
+  const cfg = drawerConfig[metric];
+  const drawer = document.getElementById('kpi-drawer');
+  drawer.style.setProperty('--drawer-accent', cfg.accent);
+
+  // Update header
+  document.getElementById('drawer-title').textContent = cfg.label + ' by Campaign';
+  document.getElementById('drawer-col-header').textContent = cfg.col;
+
+  // Sort by value desc
+  const sorted = [...campaignData].sort((a, b) => (b[metric] || 0) - (a[metric] || 0));
+  const maxVal = sorted[0][metric] || 1;
+
+  const tbody = document.getElementById('drawer-body');
+  tbody.innerHTML = sorted.map(c => {
+    const val = c[metric] || 0;
+    const pct = Math.round((val / maxVal) * 100);
+    return `<tr>
+      <td>${c.name}</td>
+      <td class="num highlight">${cfg.fmt(val)}</td>
+      <td>
+        <div class="drawer-bar-wrap">
+          <div class="drawer-bar-fill" style="width:${pct}%"></div>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  drawer.classList.add('open');
+
+  // Highlight active card
+  document.querySelectorAll('.kpi-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('card-' + metric).classList.add('active');
+  document.querySelectorAll('.kpi-card.active .kpi-expand-hint').forEach(el => el.textContent = '▲ click to close');
+
+  // Scroll drawer into view
+  setTimeout(() => drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+}
+
+function closeDrawer() {
+  activeDrawer = null;
+  document.getElementById('kpi-drawer').classList.remove('open');
+  document.querySelectorAll('.kpi-card').forEach(c => {
+    c.classList.remove('active');
+    c.querySelector('.kpi-expand-hint').textContent = '▼ click for breakdown';
+  });
+}
+</script>
+
+
+
+<script>
+const labels = ["Cafe Circa Day Party 6/27/2026", "Cafe Circa Day Party 6/28/2026", "Seven Midtown 6/27/2026", "Cafe Circa 6/27/2026", "Cafe Circa 6/19//2026", "Seven Midtown 6/20/2026", "Cafe Circa 6/20/2026", "Cafe Circa 6/26/2026", "Cafe Circa Day Party 6/20/2026", "Revel 6/20/2026", "Cafe Circa Day Party 6/21/2026"];
+const spends = [424.46, 379.92, 256.15, 248.5, 200.0, 199.99, 199.97, 188.55, 149.98, 149.95, 149.92];
+
+const colors = [
+  '#4f8ef7','#7c5cbf','#22c0a0','#f7844f','#e94f7c',
+  '#f7c94f','#4fc3f7','#a5d6a7','#ef9a9a','#ce93d8'
+];
+
+new Chart(document.getElementById('spendChart'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Amount Spent (USD)',
+      data: spends,
+      backgroundColor: colors.slice(0, labels.length),
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' $' + ctx.parsed.y.toFixed(2)
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { font: { size: 11 }, color: '#9099b8', maxRotation: 30 }
+      },
+      y: {
+        grid: { color: '#f0f2f8' },
+        ticks: {
+          font: { size: 11 }, color: '#9099b8',
+          callback: v => '$' + v.toLocaleString()
+        }
+      }
+    }
+  }
+});
+</script>
 
 
 
 <script>
 (function() {
   // Sort events chronologically
-  const ebRaw = [{"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-07-04", "event_id": "1991499892789", "event_name": "R\u0026B \u0026 Ros\u00e9 Brunch \u0026 Day Party at Seven Midtown | Free Entry with RSVP", "gross_revenue": 50.0, "id": 182, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 84, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 37, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 18, \"price\": 0.0, \"free\": true}, {\"name\": \"Deposit: 2 Premium + 1 Champagne + Hookah $600\", \"sold\": 1, \"price\": 50.0, \"free\": false}]", "tickets_sold": 140, "venue_name": "Seven MidTown"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-07-04", "event_id": "1991503968981", "event_name": "Rum Punch Fest at Cafe Circa | Free Entry + 1 Hour Complimentary Rum Punch", "gross_revenue": 0.0, "id": 186, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 152, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 86, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 20, \"price\": 0.0, \"free\": true}]", "tickets_sold": 258, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-07-03", "event_id": "1991504165569", "event_name": "Heatwave: R\u0026B vs Hip Hop at Cafe Circa | Free Entry with RSVP", "gross_revenue": 0.0, "id": 187, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 18, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 11, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 4, \"price\": 0.0, \"free\": true}]", "tickets_sold": 33, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-28", "event_id": "1992220914384", "event_name": "R\u0026B Rooftop Brunch: 2000s Edition at Cafe Circa", "gross_revenue": 0.0, "id": 192, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 23, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 17, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 3, \"price\": 0.0, \"free\": true}]", "tickets_sold": 43, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-27", "event_id": "1991500890774", "event_name": "Carnival After Dark at Cafe Circa | Caribbean Party | Free Entry with RSVP", "gross_revenue": 0.0, "id": 185, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 296, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 273, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 48, \"price\": 0.0, \"free\": true}]", "tickets_sold": 617, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-27", "event_id": "1991500337118", "event_name": "Summer Unlocked Brunch \u0026 Day Party at Seven Midtown | Free Entry with RSVP", "gross_revenue": 0.0, "id": 183, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 112, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 59, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 16, \"price\": 0.0, \"free\": true}]", "tickets_sold": 187, "venue_name": "Seven MidTown"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-27", "event_id": "1992220741868", "event_name": "TrapHouse Rooftop Brunch: Anthems Edition at Cafe Circa", "gross_revenue": 0.0, "id": 191, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 31, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 21, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 5, \"price\": 0.0, \"free\": true}]", "tickets_sold": 57, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-26", "event_id": "1991500537718", "event_name": "90s vs 00s Hip Hop Anthems at Cafe Circa | Free Entry with RSVP", "gross_revenue": 0.0, "id": 184, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 184, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 141, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 25, \"price\": 0.0, \"free\": true}]", "tickets_sold": 350, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-21", "event_id": "1991505351115", "event_name": "Summerfest Brunch \u0026 Day Party at Cafe Circa | Free Entry with RSVP", "gross_revenue": 0.0, "id": 190, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 58, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 35, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 7, \"price\": 0.0, \"free\": true}]", "tickets_sold": 100, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-20", "event_id": "1991206342773", "event_name": "Mimosas in Midtown Brunch at Seven Midtown | Free Entry with RSVP", "gross_revenue": 0.0, "id": 180, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 306, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 175, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 40, \"price\": 0.0, \"free\": true}]", "tickets_sold": 521, "venue_name": "Seven MidTown"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-20", "event_id": "1991505267866", "event_name": "Melanin \u0026 Mimosas Brunch \u0026 Day Party at Cafe Circa | Free Entry with RSVP", "gross_revenue": 0.0, "id": 189, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 114, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 34, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 13, \"price\": 0.0, \"free\": true}]", "tickets_sold": 161, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-20", "event_id": "1991504831561", "event_name": "Black Hollywood at Revel | Free Entry with RSVP", "gross_revenue": 0.0, "id": 188, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 56, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 46, \"price\": 0.0, \"free\": true}]", "tickets_sold": 102, "venue_name": "REVEL ATLANTA"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-20", "event_id": "1991272546791", "event_name": "Reggae vs Soca at Cafe Circa | Free Entry with RSVP", "gross_revenue": 50.0, "id": 181, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 386, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 250, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 40, \"price\": 0.0, \"free\": true}, {\"name\": \"Deposit: 2 Belaire Rose + Hookah $250\", \"sold\": 1, \"price\": 50.0, \"free\": false}]", "tickets_sold": 677, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-19", "event_id": "1991205307677", "event_name": "R\u0026B Rooftop Therapy at Cafe Circa | Free Entry with RSVP", "gross_revenue": 0.0, "id": 179, "pulled_at": "2026-06-26T12:03:40.015928", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 421, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 218, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 49, \"price\": 0.0, \"free\": true}]", "tickets_sold": 688, "venue_name": "Cafe Circa"}];
+  const ebRaw = [{"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-07-04", "event_id": "1991499892789", "event_name": "R\u0026B \u0026 Ros\u00e9 Brunch \u0026 Day Party at Seven Midtown | Free Entry with RSVP", "gross_revenue": 50.0, "id": 247, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 84, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 37, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 18, \"price\": 0.0, \"free\": true}, {\"name\": \"Deposit: 2 Premium + 1 Champagne + Hookah $600\", \"sold\": 1, \"price\": 50.0, \"free\": false}]", "tickets_sold": 140, "venue_name": "Seven MidTown"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-07-04", "event_id": "1991503968981", "event_name": "Rum Punch Fest at Cafe Circa | Free Entry + 1 Hour Complimentary Rum Punch", "gross_revenue": 0.0, "id": 251, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 152, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 86, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 20, \"price\": 0.0, \"free\": true}]", "tickets_sold": 258, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-07-03", "event_id": "1991504165569", "event_name": "Heatwave: R\u0026B vs Hip Hop at Cafe Circa | Free Entry with RSVP", "gross_revenue": 0.0, "id": 252, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 18, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 11, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 4, \"price\": 0.0, \"free\": true}]", "tickets_sold": 33, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-28", "event_id": "1992220914384", "event_name": "R\u0026B Rooftop Brunch: 2000s Edition at Cafe Circa", "gross_revenue": 0.0, "id": 257, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 23, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 17, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 3, \"price\": 0.0, \"free\": true}]", "tickets_sold": 43, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-27", "event_id": "1991500337118", "event_name": "Summer Unlocked Brunch \u0026 Day Party at Seven Midtown | Free Entry with RSVP", "gross_revenue": 0.0, "id": 248, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 112, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 59, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 16, \"price\": 0.0, \"free\": true}]", "tickets_sold": 187, "venue_name": "Seven MidTown"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-27", "event_id": "1992220741868", "event_name": "TrapHouse Rooftop Brunch: Anthems Edition at Cafe Circa", "gross_revenue": 0.0, "id": 256, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 31, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 21, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 5, \"price\": 0.0, \"free\": true}]", "tickets_sold": 57, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-27", "event_id": "1991500890774", "event_name": "Carnival After Dark at Cafe Circa | Caribbean Party | Free Entry with RSVP", "gross_revenue": 0.0, "id": 250, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 297, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 273, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 48, \"price\": 0.0, \"free\": true}]", "tickets_sold": 618, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-26", "event_id": "1991500537718", "event_name": "90s vs 00s Hip Hop Anthems at Cafe Circa | Free Entry with RSVP", "gross_revenue": 0.0, "id": 249, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 185, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 141, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 25, \"price\": 0.0, \"free\": true}]", "tickets_sold": 351, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-21", "event_id": "1991505351115", "event_name": "Summerfest Brunch \u0026 Day Party at Cafe Circa | Free Entry with RSVP", "gross_revenue": 0.0, "id": 255, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 58, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 35, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 7, \"price\": 0.0, \"free\": true}]", "tickets_sold": 100, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-20", "event_id": "1991504831561", "event_name": "Black Hollywood at Revel | Free Entry with RSVP", "gross_revenue": 0.0, "id": 253, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 56, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 46, \"price\": 0.0, \"free\": true}]", "tickets_sold": 102, "venue_name": "REVEL ATLANTA"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-20", "event_id": "1991272546791", "event_name": "Reggae vs Soca at Cafe Circa | Free Entry with RSVP", "gross_revenue": 50.0, "id": 246, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 386, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 250, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 40, \"price\": 0.0, \"free\": true}, {\"name\": \"Deposit: 2 Belaire Rose + Hookah $250\", \"sold\": 1, \"price\": 50.0, \"free\": false}]", "tickets_sold": 677, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-20", "event_id": "1991206342773", "event_name": "Mimosas in Midtown Brunch at Seven Midtown | Free Entry with RSVP", "gross_revenue": 0.0, "id": 245, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 306, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 175, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 40, \"price\": 0.0, \"free\": true}]", "tickets_sold": 521, "venue_name": "Seven MidTown"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-20", "event_id": "1991505267866", "event_name": "Melanin \u0026 Mimosas Brunch \u0026 Day Party at Cafe Circa | Free Entry with RSVP", "gross_revenue": 0.0, "id": 254, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 4pm\", \"sold\": 114, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 4pm\", \"sold\": 34, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Day\", \"sold\": 13, \"price\": 0.0, \"free\": true}]", "tickets_sold": 161, "venue_name": "Cafe Circa"}, {"client_id": "5250ae57-4bfb-40d0-91f0-eda787156a8f", "event_date": "2026-06-19", "event_id": "1991205307677", "event_name": "R\u0026B Rooftop Therapy at Cafe Circa | Free Entry with RSVP", "gross_revenue": 0.0, "id": 244, "pulled_at": "2026-06-26T12:11:53.877127", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 11pm\", \"sold\": 421, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 11pm\", \"sold\": 218, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 49, \"price\": 0.0, \"free\": true}]", "tickets_sold": 688, "venue_name": "Cafe Circa"}];
   const sorted = [...ebRaw].sort((a, b) => a.event_date.localeCompare(b.event_date));
 
   // Assign a color per unique venue
