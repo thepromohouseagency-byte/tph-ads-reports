@@ -211,7 +211,7 @@
   <div class="topnav-right">
     
     <div class="period-badge">
-      📅 2026-04-01 – 2026-06-26
+      📅 2026-04-01 – 2026-06-29
     </div>
     
   </div>
@@ -232,7 +232,7 @@
 
   
   <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
-    📅 Data covers campaigns active through <strong>2026-06-26</strong>
+    📅 Data covers campaigns active through <strong>2026-06-29</strong>
   </div>
   
 
@@ -682,7 +682,7 @@ new Chart(document.getElementById('spendChart'), {
 <script>
 (function() {
   // Sort events chronologically
-  const ebRaw = [{"client_id": "8a4d0c14-6243-4f4b-952e-c86acef2504f", "event_date": "2026-06-13", "event_id": "1991272886808", "event_name": "Kyle Richh of 41 at PH Live | Free Entry  w/ RSVP", "gross_revenue": 0.0, "id": 263, "pulled_at": "2026-06-26T12:37:45.428890", "report_label": "current", "ticket_tiers": "[{\"name\": \"Everyone free entry before 11:30pm\", \"sold\": 97, \"price\": 0.0, \"free\": true}]", "tickets_sold": 97, "venue_name": "Planet Hollywood New York"}, {"client_id": "8a4d0c14-6243-4f4b-952e-c86acef2504f", "event_date": "2026-06-06", "event_id": "1990860959723", "event_name": "Mekai Curtis of Raising Kanan at PH Live | Free Entry Before 12AM w/ RSVP", "gross_revenue": 0.0, "id": 262, "pulled_at": "2026-06-26T12:37:45.428890", "report_label": "current", "ticket_tiers": "[{\"name\": \"Everyone free entry before 12am\", \"sold\": 152, \"price\": 0.0, \"free\": true}]", "tickets_sold": 152, "venue_name": "Planet Hollywood New York"}, {"client_id": "8a4d0c14-6243-4f4b-952e-c86acef2504f", "event_date": "2026-05-30", "event_id": "1990556274401", "event_name": "REMY MA Birthday Celebration at PH Live NYC", "gross_revenue": 0.0, "id": 261, "pulled_at": "2026-06-26T12:37:45.428890", "report_label": "current", "ticket_tiers": "[{\"name\": \"Everyone free entry before 12am\", \"sold\": 749, \"price\": 0.0, \"free\": true}]", "tickets_sold": 749, "venue_name": "Planet Hollywood New York"}];
+  const ebRaw = [{"client_id": "8a4d0c14-6243-4f4b-952e-c86acef2504f", "event_date": "2026-06-13", "event_id": "1991272886808", "event_name": "Kyle Richh of 41 at PH Live | Free Entry  w/ RSVP", "gross_revenue": 0.0, "id": 328, "pulled_at": "2026-06-29T12:07:36.117973", "report_label": "current", "ticket_tiers": "[{\"name\": \"Everyone free entry before 11:30pm\", \"sold\": 97, \"price\": 0.0, \"free\": true}]", "tickets_sold": 97, "venue_name": "Planet Hollywood New York"}, {"client_id": "8a4d0c14-6243-4f4b-952e-c86acef2504f", "event_date": "2026-06-06", "event_id": "1990860959723", "event_name": "Mekai Curtis of Raising Kanan at PH Live | Free Entry Before 12AM w/ RSVP", "gross_revenue": 0.0, "id": 327, "pulled_at": "2026-06-29T12:07:36.117973", "report_label": "current", "ticket_tiers": "[{\"name\": \"Everyone free entry before 12am\", \"sold\": 152, \"price\": 0.0, \"free\": true}]", "tickets_sold": 152, "venue_name": "Planet Hollywood New York"}, {"client_id": "8a4d0c14-6243-4f4b-952e-c86acef2504f", "event_date": "2026-05-30", "event_id": "1990556274401", "event_name": "REMY MA Birthday Celebration at PH Live NYC", "gross_revenue": 0.0, "id": 326, "pulled_at": "2026-06-29T12:07:36.117973", "report_label": "current", "ticket_tiers": "[{\"name\": \"Everyone free entry before 12am\", \"sold\": 749, \"price\": 0.0, \"free\": true}]", "tickets_sold": 749, "venue_name": "Planet Hollywood New York"}];
   const sorted = [...ebRaw].sort((a, b) => a.event_date.localeCompare(b.event_date));
 
   // Assign a color per unique venue
