@@ -211,7 +211,7 @@
   <div class="topnav-right">
     
     <div class="period-badge">
-      📅 2026-04-01 – 2026-07-04
+      📅 2026-04-01 – 2026-07-05
     </div>
     
   </div>
@@ -232,7 +232,7 @@
 
   
   <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
-    📅 Data covers campaigns active through <strong>2026-07-04</strong>
+    📅 Data covers campaigns active through <strong>2026-07-05</strong>
   </div>
   
 
@@ -717,7 +717,7 @@ new Chart(document.getElementById('spendChart'), {
 <script>
 (function() {
   // Sort events chronologically
-  const ebRaw = [{"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-07-03", "event_id": "1992639002898", "event_name": "College Night Out: Hip Hop vs Caribbean @ Bar 13: Free Entry with RSVP", "gross_revenue": 0.0, "id": 688, "pulled_at": "2026-07-04T14:50:51.417783", "report_label": "current", "ticket_tiers": "[]", "tickets_sold": 0, "venue_name": "Bar 13"}, {"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-06-27", "event_id": "1992211827204", "event_name": "College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 100.0, "id": 686, "pulled_at": "2026-07-04T14:50:51.417783", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 108, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 120, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 13, \"price\": 0.0, \"free\": true}, {\"name\": \"General Admission Ticket\", \"sold\": 10, \"price\": 10.0, \"free\": false}]", "tickets_sold": 251, "venue_name": "Bar 13"}, {"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-06-26", "event_id": "1992212293599", "event_name": "College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 80.0, "id": 687, "pulled_at": "2026-07-04T14:50:51.417783", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 206, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 184, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 12, \"price\": 0.0, \"free\": true}, {\"name\": \"General Admission Ticket\", \"sold\": 8, \"price\": 10.0, \"free\": false}]", "tickets_sold": 410, "venue_name": "Bar 13"}];
+  const ebRaw = [{"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-07-03", "event_id": "1992639002898", "event_name": "College Night Out: Hip Hop vs Caribbean @ Bar 13: Free Entry with RSVP", "gross_revenue": 0.0, "id": 762, "pulled_at": "2026-07-05T14:09:59.042001", "report_label": "current", "ticket_tiers": "[]", "tickets_sold": 0, "venue_name": "Bar 13"}, {"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-06-27", "event_id": "1992211827204", "event_name": "College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 100.0, "id": 760, "pulled_at": "2026-07-05T14:09:59.042001", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 108, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 120, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 13, \"price\": 0.0, \"free\": true}, {\"name\": \"General Admission Ticket\", \"sold\": 10, \"price\": 10.0, \"free\": false}]", "tickets_sold": 251, "venue_name": "Bar 13"}, {"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-06-26", "event_id": "1992212293599", "event_name": "College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 80.0, "id": 761, "pulled_at": "2026-07-05T14:09:59.042001", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 206, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 184, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 12, \"price\": 0.0, \"free\": true}, {\"name\": \"General Admission Ticket\", \"sold\": 8, \"price\": 10.0, \"free\": false}]", "tickets_sold": 410, "venue_name": "Bar 13"}];
   const sorted = [...ebRaw].sort((a, b) => a.event_date.localeCompare(b.event_date));
 
   // Assign a color per unique venue
