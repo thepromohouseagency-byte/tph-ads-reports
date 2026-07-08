@@ -211,7 +211,7 @@
   <div class="topnav-right">
     
     <div class="period-badge">
-      📅 2026-04-01 – 2026-07-05
+      📅 2026-04-01 – 2026-07-08
     </div>
     
   </div>
@@ -232,7 +232,7 @@
 
   
   <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
-    📅 Data covers campaigns active through <strong>2026-07-05</strong>
+    📅 Data covers campaigns active through <strong>2026-07-08</strong>
   </div>
   
 
@@ -243,7 +243,7 @@
     <div class="kpi-card" onclick="toggleDrawer('impressions')" id="card-impressions">
       <div class="kpi-icon">👁</div>
       <div class="kpi-label">Impressions</div>
-      <div class="kpi-value">396,687</div>
+      <div class="kpi-value">396,691</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('reach')" id="card-reach">
@@ -261,13 +261,13 @@
     <div class="kpi-card" onclick="toggleDrawer('unique_link_clicks')" id="card-unique_link_clicks">
       <div class="kpi-icon">✦</div>
       <div class="kpi-label">Unique Link Clicks</div>
-      <div class="kpi-value">20,693</div>
+      <div class="kpi-value">20,519</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('spend')" id="card-spend">
       <div class="kpi-icon">💰</div>
       <div class="kpi-label">Amount Spent</div>
-      <div class="kpi-value">$3999.39</div>
+      <div class="kpi-value">$3999.42</div>
       <div class="kpi-sub">USD</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
@@ -343,7 +343,7 @@
           <td class="num">89,481</td>
           <td class="num">61,891</td>
           <td class="num">5,997</td>
-          <td class="num">5,177</td>
+          <td class="num">5,137</td>
           <td class="num">$0.19</td>
           <td class="num">$999.93</td>
           <td class="num">$1000.00</td>
@@ -356,12 +356,12 @@
         
         <tr>
           <td class="campaign-name-cell">Underground Lounge 7/4/2026</td>
-          <td class="num">88,867</td>
+          <td class="num">88,871</td>
           <td class="num">61,659</td>
           <td class="num">5,106</td>
-          <td class="num">4,526</td>
+          <td class="num">4,569</td>
           <td class="num">$0.22</td>
-          <td class="num">$999.84</td>
+          <td class="num">$999.87</td>
           <td class="num">$1000.00</td>
           <td class="bar-cell">
             <div class="bar-wrap">
@@ -375,8 +375,8 @@
           <td class="num">107,367</td>
           <td class="num">77,014</td>
           <td class="num">6,179</td>
-          <td class="num">5,494</td>
-          <td class="num">$0.18</td>
+          <td class="num">5,398</td>
+          <td class="num">$0.19</td>
           <td class="num">$999.83</td>
           <td class="num">$1000.00</td>
           <td class="bar-cell">
@@ -391,7 +391,7 @@
           <td class="num">110,972</td>
           <td class="num">76,371</td>
           <td class="num">6,122</td>
-          <td class="num">5,496</td>
+          <td class="num">5,415</td>
           <td class="num">$0.18</td>
           <td class="num">$999.79</td>
           <td class="num">$1000.00</td>
@@ -407,12 +407,12 @@
       <tfoot>
         <tr>
           <td><strong>Total</strong></td>
-          <td class="num">396,687</td>
+          <td class="num">396,691</td>
           <td class="num">276,935</td>
           <td class="num">23,404</td>
-          <td class="num">20,693</td>
+          <td class="num">20,519</td>
           <td class="num">$0.19</td>
-          <td class="num">$3999.39</td>
+          <td class="num">$3999.42</td>
           <td class="num">$4000.00</td>
           <td></td>
         </tr>
@@ -661,12 +661,12 @@
 // Campaign data for drawer
 const campaignData = ["Underground Lounge 6/27/2026", "Underground Lounge 7/4/2026", "Underground Lounge 6/26/2026", "Underground Lounge 7/3/2026"].map((name, i) => ({
   name,
-  impressions: [89481, 88867, 107367, 110972][i],
+  impressions: [89481, 88871, 107367, 110972][i],
   reach: [61891, 61659, 77014, 76371][i],
   link_clicks: [5997, 5106, 6179, 6122][i],
-  unique_link_clicks: [5177, 4526, 5494, 5496][i],
-  spend: [999.93, 999.84, 999.83, 999.79][i],
-  cpu: [0.19314854, 0.2209103, 0.1819858, 0.1819123][i],
+  unique_link_clicks: [5137, 4569, 5398, 5415][i],
+  spend: [999.93, 999.87, 999.83, 999.79][i],
+  cpu: [0.19465253, 0.21883783, 0.1852223, 0.18463342][i],
 }));
 
 const drawerConfig = {
@@ -735,7 +735,7 @@ function closeDrawer() {
 
 <script>
 const labels = ["Underground Lounge 6/27/2026", "Underground Lounge 7/4/2026", "Underground Lounge 6/26/2026", "Underground Lounge 7/3/2026"];
-const spends = [999.93, 999.84, 999.83, 999.79];
+const spends = [999.93, 999.87, 999.83, 999.79];
 
 const colors = [
   '#4f8ef7','#7c5cbf','#22c0a0','#f7844f','#e94f7c',
@@ -787,7 +787,7 @@ new Chart(document.getElementById('spendChart'), {
 <script>
 (function() {
   // Sort events chronologically
-  const ebRaw = [{"client_id": "146604fc-5f36-4881-b151-e8240628faac", "event_date": "2026-07-04", "event_id": "1992221885288", "event_name": "Whine Your Waistline at Underground Lounge | Everyone Free Entry with RSVP", "gross_revenue": 0.0, "id": 1058, "pulled_at": "2026-07-08T15:29:03.714539", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 611, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 365, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 33, \"price\": 0.0, \"free\": true}]", "tickets_sold": 1009, "venue_name": "UnderGround Lounge"}, {"client_id": "146604fc-5f36-4881-b151-e8240628faac", "event_date": "2026-07-03", "event_id": "1991765032830", "event_name": "Dancehall vs Soca: Everyone Free entry with RSVP at Underground Lounge", "gross_revenue": 50.0, "id": 1057, "pulled_at": "2026-07-08T15:29:03.714539", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 747, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 579, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 58, \"price\": 0.0, \"free\": true}, {\"name\": \"Deposit: 2 Bottles for $300 ++ with 6 Guests\", \"sold\": 1, \"price\": 50.0, \"free\": false}]", "tickets_sold": 1385, "venue_name": "UnderGround Lounge"}, {"client_id": "146604fc-5f36-4881-b151-e8240628faac", "event_date": "2026-06-27", "event_id": "1991294298852", "event_name": "Island Gyal Do It Better at Underground Lounge", "gross_revenue": 0.0, "id": 1056, "pulled_at": "2026-07-08T15:29:03.714539", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 269, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 168, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 20, \"price\": 0.0, \"free\": true}]", "tickets_sold": 457, "venue_name": "UnderGround Lounge"}, {"client_id": "146604fc-5f36-4881-b151-e8240628faac", "event_date": "2026-06-26", "event_id": "1991294134360", "event_name": "Born To Whine: Everyone Free entry with RSVP at Underground Lounge", "gross_revenue": 50.0, "id": 1055, "pulled_at": "2026-07-08T15:29:03.714539", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 579, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 469, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 49, \"price\": 0.0, \"free\": true}, {\"name\": \"Deposit: 2 Bottles for $300 ++ with 6 Guests\", \"sold\": 1, \"price\": 50.0, \"free\": false}]", "tickets_sold": 1098, "venue_name": "UnderGround Lounge"}];
+  const ebRaw = [{"client_id": "146604fc-5f36-4881-b151-e8240628faac", "event_date": "2026-07-04", "event_id": "1992221885288", "event_name": "Whine Your Waistline at Underground Lounge | Everyone Free Entry with RSVP", "gross_revenue": 0.0, "id": 1135, "pulled_at": "2026-07-08T15:32:10.408115", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 611, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 365, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 33, \"price\": 0.0, \"free\": true}]", "tickets_sold": 1009, "venue_name": "UnderGround Lounge"}, {"client_id": "146604fc-5f36-4881-b151-e8240628faac", "event_date": "2026-07-03", "event_id": "1991765032830", "event_name": "Dancehall vs Soca: Everyone Free entry with RSVP at Underground Lounge", "gross_revenue": 50.0, "id": 1134, "pulled_at": "2026-07-08T15:32:10.408115", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 747, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 579, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 58, \"price\": 0.0, \"free\": true}, {\"name\": \"Deposit: 2 Bottles for $300 ++ with 6 Guests\", \"sold\": 1, \"price\": 50.0, \"free\": false}]", "tickets_sold": 1385, "venue_name": "UnderGround Lounge"}, {"client_id": "146604fc-5f36-4881-b151-e8240628faac", "event_date": "2026-06-27", "event_id": "1991294298852", "event_name": "Island Gyal Do It Better at Underground Lounge", "gross_revenue": 0.0, "id": 1133, "pulled_at": "2026-07-08T15:32:10.408115", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 269, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 168, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 20, \"price\": 0.0, \"free\": true}]", "tickets_sold": 457, "venue_name": "UnderGround Lounge"}, {"client_id": "146604fc-5f36-4881-b151-e8240628faac", "event_date": "2026-06-26", "event_id": "1991294134360", "event_name": "Born To Whine: Everyone Free entry with RSVP at Underground Lounge", "gross_revenue": 50.0, "id": 1132, "pulled_at": "2026-07-08T15:32:10.408115", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 12am\", \"sold\": 579, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 1130pm\", \"sold\": 469, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 49, \"price\": 0.0, \"free\": true}, {\"name\": \"Deposit: 2 Bottles for $300 ++ with 6 Guests\", \"sold\": 1, \"price\": 50.0, \"free\": false}]", "tickets_sold": 1098, "venue_name": "UnderGround Lounge"}];
   const sorted = [...ebRaw].sort((a, b) => a.event_date.localeCompare(b.event_date));
 
   // Assign a color per unique venue
