@@ -211,7 +211,7 @@
   <div class="topnav-right">
     
     <div class="period-badge">
-      📅 2026-04-01 – 2026-07-05
+      📅 2026-04-01 – 2026-07-08
     </div>
     
   </div>
@@ -232,7 +232,7 @@
 
   
   <div style="font-size:.85rem;color:#9099b8;margin-bottom:20px">
-    📅 Data covers campaigns active through <strong>2026-07-05</strong>
+    📅 Data covers campaigns active through <strong>2026-07-08</strong>
   </div>
   
 
@@ -249,7 +249,7 @@
     <div class="kpi-card" onclick="toggleDrawer('reach')" id="card-reach">
       <div class="kpi-icon">👥</div>
       <div class="kpi-label">Reach</div>
-      <div class="kpi-value">150,025</div>
+      <div class="kpi-value">149,996</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('link_clicks')" id="card-link_clicks">
@@ -261,7 +261,7 @@
     <div class="kpi-card" onclick="toggleDrawer('unique_link_clicks')" id="card-unique_link_clicks">
       <div class="kpi-icon">✦</div>
       <div class="kpi-label">Unique Link Clicks</div>
-      <div class="kpi-value">7,289</div>
+      <div class="kpi-value">7,303</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
     <div class="kpi-card" onclick="toggleDrawer('spend')" id="card-spend">
@@ -274,7 +274,7 @@
     <div class="kpi-card" onclick="toggleDrawer('cpu')" id="card-cpu">
       <div class="kpi-icon">📊</div>
       <div class="kpi-label">Cost / Unique Click</div>
-      <div class="kpi-value">$0.31</div>
+      <div class="kpi-value">$0.30</div>
       <div class="kpi-expand-hint">▼ click for breakdown</div>
     </div>
   </div>
@@ -341,9 +341,9 @@
         <tr>
           <td class="campaign-name-cell">Bar13 6/26/2026</td>
           <td class="num">88,566</td>
-          <td class="num">61,371</td>
+          <td class="num">61,342</td>
           <td class="num">2,795</td>
-          <td class="num">2,595</td>
+          <td class="num">2,612</td>
           <td class="num">$0.39</td>
           <td class="num">$1011.69</td>
           <td class="num">$1124.00</td>
@@ -359,7 +359,7 @@
           <td class="num">88,959</td>
           <td class="num">64,095</td>
           <td class="num">3,387</td>
-          <td class="num">3,014</td>
+          <td class="num">3,011</td>
           <td class="num">$0.33</td>
           <td class="num">$999.74</td>
           <td class="num">$1000.00</td>
@@ -392,10 +392,10 @@
         <tr>
           <td><strong>Total</strong></td>
           <td class="num">205,728</td>
-          <td class="num">150,025</td>
+          <td class="num">149,996</td>
           <td class="num">7,963</td>
-          <td class="num">7,289</td>
-          <td class="num">$0.31</td>
+          <td class="num">7,303</td>
+          <td class="num">$0.30</td>
           <td class="num">$2225.59</td>
           <td class="num">$2574.00</td>
           <td></td>
@@ -592,11 +592,11 @@
 const campaignData = ["Bar13 6/26/2026", "Bar13 6/27/2026", "Bar13 7/3/2026"].map((name, i) => ({
   name,
   impressions: [88566, 88959, 28203][i],
-  reach: [61371, 64095, 24559][i],
+  reach: [61342, 64095, 24559][i],
   link_clicks: [2795, 3387, 1781][i],
-  unique_link_clicks: [2595, 3014, 1680][i],
+  unique_link_clicks: [2612, 3011, 1680][i],
   spend: [1011.69, 999.74, 214.16][i],
-  cpu: [0.3898613, 0.33169875, 0.12747619][i],
+  cpu: [0.3873239, 0.33202922, 0.12747619][i],
 }));
 
 const drawerConfig = {
@@ -717,7 +717,7 @@ new Chart(document.getElementById('spendChart'), {
 <script>
 (function() {
   // Sort events chronologically
-  const ebRaw = [{"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-07-03", "event_id": "1992639002898", "event_name": "College Night Out: Hip Hop vs Caribbean @ Bar 13: Free Entry with RSVP", "gross_revenue": 0.0, "id": 986, "pulled_at": "2026-07-08T15:29:03.714539", "report_label": "current", "ticket_tiers": "[]", "tickets_sold": 0, "venue_name": "Bar 13"}, {"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-06-27", "event_id": "1992211827204", "event_name": "College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 100.0, "id": 984, "pulled_at": "2026-07-08T15:29:03.714539", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 108, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 120, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 13, \"price\": 0.0, \"free\": true}, {\"name\": \"General Admission Ticket\", \"sold\": 10, \"price\": 10.0, \"free\": false}]", "tickets_sold": 251, "venue_name": "Bar 13"}, {"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-06-26", "event_id": "1992212293599", "event_name": "College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 80.0, "id": 985, "pulled_at": "2026-07-08T15:29:03.714539", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 206, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 184, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 12, \"price\": 0.0, \"free\": true}, {\"name\": \"General Admission Ticket\", \"sold\": 8, \"price\": 10.0, \"free\": false}]", "tickets_sold": 410, "venue_name": "Bar 13"}];
+  const ebRaw = [{"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-07-03", "event_id": "1992639002898", "event_name": "College Night Out: Hip Hop vs Caribbean @ Bar 13: Free Entry with RSVP", "gross_revenue": 0.0, "id": 1063, "pulled_at": "2026-07-08T15:32:10.408115", "report_label": "current", "ticket_tiers": "[]", "tickets_sold": 0, "venue_name": "Bar 13"}, {"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-06-27", "event_id": "1992211827204", "event_name": "College Night Out: Hip Hop Edition at Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 100.0, "id": 1061, "pulled_at": "2026-07-08T15:32:10.408115", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 108, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 120, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 13, \"price\": 0.0, \"free\": true}, {\"name\": \"General Admission Ticket\", \"sold\": 10, \"price\": 10.0, \"free\": false}]", "tickets_sold": 251, "venue_name": "Bar 13"}, {"client_id": "340d4d04-8b07-4cc2-a5c3-489fc9e6c6c6", "event_date": "2026-06-26", "event_id": "1992212293599", "event_name": "College Night Out: Caribbean Edition @ Bar 13 Rooftop: Free Entry with RSVP", "gross_revenue": 80.0, "id": 1062, "pulled_at": "2026-07-08T15:32:10.408115", "report_label": "current", "ticket_tiers": "[{\"name\": \"Ladies free entry before 10\", \"sold\": 206, \"price\": 0.0, \"free\": true}, {\"name\": \"Men free entry before 930pm\", \"sold\": 184, \"price\": 0.0, \"free\": true}, {\"name\": \"Birthday Person Free All Night\", \"sold\": 12, \"price\": 0.0, \"free\": true}, {\"name\": \"General Admission Ticket\", \"sold\": 8, \"price\": 10.0, \"free\": false}]", "tickets_sold": 410, "venue_name": "Bar 13"}];
   const sorted = [...ebRaw].sort((a, b) => a.event_date.localeCompare(b.event_date));
 
   // Assign a color per unique venue
